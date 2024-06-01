@@ -1,23 +1,25 @@
 //Hash_Map
 
+#include "Transport_Classes/Transport.cpp"
+
 template <typename T>
-class Map
+class HashMap
 {
 public:
-	Map();
-	~Map();
+	HashMap();
+	~HashMap();
 private:
 
 };
 
 template <typename T>
-Map<T>::Map()
+HashMap<T>::HashMap()
 {
 
 }
 
 template <typename T>
-Map<T>::~Map()
+HashMap<T>::~HashMap()
 {
 
 }
