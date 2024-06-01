@@ -1,5 +1,6 @@
 #include "Transport/TrasnportBase/TransportBase.h"
 #include <string>
+#include <exception>
 
 class Shuttle : public TransportBase
 {

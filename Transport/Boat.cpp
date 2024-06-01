@@ -1,6 +1,7 @@
 #include "Transport/TrasnportBase/TransportBase.h"
+#include <exception>
 
-class Boat :: public TransportBase
+class Boat : public TransportBase
 {
 public:
 	Boat() : TransportBase() override;
