@@ -1,5 +1,3 @@
-// include_guard
-
 #ifndef TRANSPORTBASE
 #define TRANSPORTBASE
 

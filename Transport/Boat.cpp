@@ -1,5 +1,7 @@
-#include "Transport/TrasnportBase/TransportBase.h"
+#include "Transport/TrasnportBase/TransportBase.cpp"
 #include <exception>
+
+//Realization boat class:
 
 class Boat : public TransportBase
 {
@@ -7,16 +9,21 @@ public:
 	Boat() : TransportBase() override;
 	~Boat() : ~TransportBase() override;
 
-	void editDislacement();
-	void editScrewDepth();
+	inline void editDisplacement();
+	inline void editScrewDepth();
 private:
 	int displacement;
 	int screwDepth;
 };
 
-Boat::Boat()
+Boat::Boat(uint32_t ID)
 {
+	uniqueID = ID;
+	type = "Water Transport Type";
 
+	addNewData();
+	editDisplacement();
+	editScrewDepth();
 }
 
 Boat::~Boat()

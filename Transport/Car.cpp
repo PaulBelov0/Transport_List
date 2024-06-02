@@ -1,22 +1,31 @@
 #include "Transport/TrasnportBase/TransportBase.h"
 #include <exception>
 
+//Realizatuion car type class:
+
 class Car : public TransportBase
 {
 public:
 	Car() : TransportBase() override;
 	~Car() : ~TransportBase() override;
 
-	void editOwnersQuantity();
-	void editMileage();
+	inline void editOwnersQuantity();
+	inline void editMileage();
+
 private:
+
 	int ownersQuantity;
 	int mileage;
 };
 
-Car::Car()
+Car::Car(uint32_t ID)
 {
+	type = "Car Type";
+	uniqueID = ID;
 
+	addNewData();
+	editOwnersQuantity();
+	editMileage();
 }
 
 Car::~Car()

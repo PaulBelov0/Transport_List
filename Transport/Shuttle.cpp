@@ -2,22 +2,29 @@
 #include <string>
 #include <exception>
 
+//Realization Space shuttle class:
+
 class Shuttle : public TransportBase
 {
 public:
 	Shuttle() : TransportBase() override;
 	~Shuttle() : ~TransportBase() override;
 
-	void editFuelType();
-	void editMaxFlyingDistance();
+	inline void editFuelType();
+	inline void editMaxFlyingDistance();
 private:
 	std::string fuelType;
 	int maxFlyingDistance;
 };
 
-Shuttle::Shuttle()
+Shuttle::Shuttle(uint32_t ID)
 {
+	uniqueID = ID;
+	type = "Space Shuttle Type";
 
+	addNewData();
+	editFuelType();
+	editMaxFlyingDistance();
 }
 
 Shuttle::~Shuttle()

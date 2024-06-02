@@ -1,22 +1,29 @@
 #include "Transport/TransportBase/TransportBase.h"
 #include <exception>
 
+//Realizaton air type transport class:
+
 class AirTransport : public TransportBase
 {
 public:
 	AirTransport() : TransportBase() override;
 	~AirTransport() : ~TransportBase() override;
 
-	void editWingspan();
-	void editPayloadCapacity();
+	inline void editWingspan();
+	inline void editPayloadCapacity();
 private:
 	int wingspan;
 	int payloadCapacity;
 };
 
-AirTransport::AirTransport()
+AirTransport::AirTransport(uint32_t ID)
 {
+	uniqueID = ID;
+	type = "Air Transport Type";
 
+	addNewData();
+	editWingspan();
+	editPayloadCapacity();
 }
 
 AirTransport::~AirTransport()

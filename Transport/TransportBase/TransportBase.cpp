@@ -6,6 +6,7 @@
 #include <string>
 #include <iostream>
 #include <exception>
+#include <cstdint>
 
 class TransportBase
 {
@@ -13,13 +14,16 @@ public:
 	virtual TransportBase() = 0;
 	virtual ~TransportBase() = 0;
 
-	void editBrand();
-	void editModel();
-	void editYear() noexcept;
-	void editWeigth() noexcept;
+	inline void editBrand();
+	inline void editModel();
+	inline void editYear() noexcept;
+	inline void editWeigth() noexcept;
+
+	uint32_t uniqueID;
+	std::string type;
 
 protected:
-
+	void addNewData();
 	std::string brand;
 	std::string model;
 	int year;
@@ -64,6 +68,14 @@ protected:
 	 {
 		 std::cout << "Incorrect Data!";
 	 }
+ }
+
+ void TransportBase::addNewData()
+ {
+	 editBrand();
+	 editModel();
+	 editYear();
+	 editWeigth();
  }
 
 #endif
