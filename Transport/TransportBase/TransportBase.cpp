@@ -1,7 +1,7 @@
 //Realization of transport base type
 
-#ifndef STRING_H
-#define STRING_H
+//#ifndef STRING_H
+//#define STRING_H
 
 #include <string>
 #include <iostream>
@@ -11,13 +11,14 @@
 class TransportBase
 {
 public:
-	virtual TransportBase() = 0;
+	TransportBase();
 	virtual ~TransportBase() = 0;
 
 	inline void editBrand();
 	inline void editModel();
 	inline void editYear() noexcept;
 	inline void editWeigth() noexcept;
+	void virtual def(const uint32_t);
 
 	uint32_t uniqueID;
 	std::string type;
@@ -28,7 +29,23 @@ protected:
 	std::string model;
 	int year;
 	int weight;
+
 };
+
+void TransportBase::def(const uint32_t)
+{
+	uniqueID = 0;
+	type = "None";
+	brand = "None";
+	model = "None";
+	year = 0;
+	weight = 0;
+}
+
+TransportBase::TransportBase()
+{
+	
+}
 
  void TransportBase::editBrand()
 {
@@ -49,7 +66,7 @@ protected:
 	 std::cout << "Enter the year of manufacturing: ";
 	 try
 	 {
-		 std::cin >> weigth;
+		 std::cin >> weight;
 	 }
 	 catch (_exception)
 	 {
@@ -62,7 +79,7 @@ protected:
 	 std::cout << "Enter the Weigth (killograms) : ";
 	 try
 	 {
-		 std::cin >> weigth;
+		 std::cin >> weight;
 	 }
 	 catch (_exception)
 	 {
@@ -77,5 +94,5 @@ protected:
 	 editYear();
 	 editWeigth();
  }
-
-#endif
+//
+//#endif

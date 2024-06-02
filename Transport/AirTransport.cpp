@@ -1,16 +1,22 @@
-#include "Transport/TransportBase/TransportBase.h"
+#include <Transport/TransportBase/TransportBase.h>
 #include <exception>
-
+#include <iostream>
 //Realizaton air type transport class:
 
 class AirTransport : public TransportBase
 {
 public:
-	AirTransport() : TransportBase() override;
-	~AirTransport() : ~TransportBase() override;
+	AirTransport(uint32_t ID);
+	~AirTransport();
 
 	inline void editWingspan();
 	inline void editPayloadCapacity();
+
+	void def(const uint32_t) override
+	{
+		wingspan = 0;
+		payloadCapacity = 0;
+	}
 private:
 	int wingspan;
 	int payloadCapacity;
@@ -20,10 +26,16 @@ AirTransport::AirTransport(uint32_t ID)
 {
 	uniqueID = ID;
 	type = "Air Transport Type";
-
-	addNewData();
-	editWingspan();
-	editPayloadCapacity();
+	if (ID == 0)
+	{
+		def(0);
+	}
+	else
+	{
+		addNewData();
+		editWingspan();
+		editPayloadCapacity();
+	}
 }
 
 AirTransport::~AirTransport()
@@ -31,12 +43,12 @@ AirTransport::~AirTransport()
 
 }
 
-AirTransport::editWingspan()
+void AirTransport::editWingspan()
 {
 	std::cout << "Enter the wingspan (meters) : ";
 	try
 	{
-		std::cin >> weigth;
+		std::cin >> wingspan;
 	}
 	catch (_exception)
 	{
@@ -44,12 +56,12 @@ AirTransport::editWingspan()
 	}
 }
 
-AirTransport::editPayloadCapacity()
+void AirTransport::editPayloadCapacity()
 {
 	std::cout << "Enter the Payload Capacity (kilograms): ";
 	try
 	{
-		std::cin >> weigth;
+		std::cin >> payloadCapacity;
 	}
 	catch (_exception)
 	{

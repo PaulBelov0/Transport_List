@@ -1,47 +1,47 @@
-﻿#include "Source.h"
-#include <unordered_map>
-#include <cstdint>
+﻿#include <Source.h>
 
-void addNewTransport(std::unordered_map<TransportBase, uint32_t> transportDB);
+void addNewTransport(std::unordered_map<uint32_t, TransportBase> transportDB);
 
 int main()
 {
-	std::unordered_map<TransportBase, uint32_t> transportDB;
+	Car defCar(0);
+	// Problem: unord_map doesn't work with polimorphic types.
+	std::unordered_map<uint32_t, TransportBase> transportDB;
 
 	addNewTransport(transportDB);
 
 	return 0;
 }
 
-void addNewTransport(std::unordered_map<TransportBase, uint32_t> transportDB)
+void addNewTransport(std::unordered_map<uint32_t, TransportBase> transportDB)
 {
 	static uint32_t identifier = 0;
-	std::string userInput;
+	int userInput = 0;
 
 	std::cout << "If you want add a new transport to data base, enter the type of transport (Example - '1'):\n1. Car type.\n2. Water transport type.\n3. Space Shuttle type.\n 4. Air transport type." << std::endl;
-	std::cin >> userInput;
+	try
+	{
+		std::cin >> userInput;
+	}
+	catch (_exception)
+	{
+		std::cout << "\n\nINCORRECT DATA!" << std::endl;
+	}
+
 
 	switch (userInput)
 	{
-	case "1":
-		Car* car = new Car(identifier);
-		transportDB.insert(*car, identifier);
-		delete car;
+	case 1:
+		Car car = Car(identifier);
 		break;
-	case "2":
-		Boat* boat = new Boat(identifier);
-		transportDB.insert(*boat, identifier);
-		delete boat;
+	case 2:
+		Boat boat = Boat(identifier);
 		break;
-	case "3":
-		Shuttle* shuttle = new Shuttle(identifier);
-		transportDB.insert(*shuttle, identifier);
-		delete shuttle;
+	case 3:
+		Shuttle shuttle = Shuttle(identifier);
 		break;
-	case "4":
-		AirTransport* airTrsnprt = new AirTransport(identifier);
-		transportDB.insert(*airTrsnprt, identifier);
-		delete airTrsnprt;
+	case 4:
+		AirTransport airTrsnprt = AirTransport(identifier);
 		break;
 	default:
 		std::cout << "\n\nINCORRECT DATA!" << std::endl;

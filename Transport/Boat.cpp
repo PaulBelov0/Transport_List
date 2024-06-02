@@ -1,16 +1,23 @@
-#include "Transport/TrasnportBase/TransportBase.cpp"
+#include <Transport/TransportBase/TransportBase.h>
 #include <exception>
+#include <iostream>
 
 //Realization boat class:
 
 class Boat : public TransportBase
 {
 public:
-	Boat() : TransportBase() override;
-	~Boat() : ~TransportBase() override;
+	Boat(uint32_t ID);
+	~Boat();
 
 	inline void editDisplacement();
 	inline void editScrewDepth();
+
+	void def(const uint32_t) override
+	{
+		displacement = 0;
+		screwDepth = 0;
+	}
 private:
 	int displacement;
 	int screwDepth;
@@ -21,9 +28,16 @@ Boat::Boat(uint32_t ID)
 	uniqueID = ID;
 	type = "Water Transport Type";
 
-	addNewData();
-	editDisplacement();
-	editScrewDepth();
+	if (ID == 0)
+	{
+		def(0);
+	}
+	else
+	{
+		addNewData();
+		editDisplacement();
+		editScrewDepth();
+	}
 }
 
 Boat::~Boat()
@@ -31,7 +45,7 @@ Boat::~Boat()
 
 }
 
-Boat::editDisplacement()
+void Boat::editDisplacement()
 {
 	std::cout << "Enter the displacement of a boat (liters): ";
 	try
@@ -44,7 +58,7 @@ Boat::editDisplacement()
 	}
 }
 
-Boat::editScrewDepth()
+void Boat::editScrewDepth()
 {
 	std::cout << "Enter the screw depth (meters): ";
 	try

@@ -1,17 +1,24 @@
-#include "Transport/TrasnportBase/TransportBase.h"
+#include <Transport/TransportBase/TransportBase.h>
 #include <string>
 #include <exception>
+#include <iostream>
 
 //Realization Space shuttle class:
 
 class Shuttle : public TransportBase
 {
 public:
-	Shuttle() : TransportBase() override;
-	~Shuttle() : ~TransportBase() override;
+	Shuttle(uint32_t ID);
+	~Shuttle();
 
 	inline void editFuelType();
 	inline void editMaxFlyingDistance();
+
+	void def(const uint32_t) override
+	{
+		maxFlyingDistance = 0;
+		fuelType = "None";
+	}
 private:
 	std::string fuelType;
 	int maxFlyingDistance;
@@ -21,10 +28,16 @@ Shuttle::Shuttle(uint32_t ID)
 {
 	uniqueID = ID;
 	type = "Space Shuttle Type";
-
-	addNewData();
-	editFuelType();
-	editMaxFlyingDistance();
+	if (ID == 0)
+	{
+		def(0);
+	}
+	else
+	{
+		addNewData();
+		editFuelType();
+		editMaxFlyingDistance();
+	}
 }
 
 Shuttle::~Shuttle()
@@ -32,13 +45,13 @@ Shuttle::~Shuttle()
 
 }
 
-Shuttle::editFuelType()
+void Shuttle::editFuelType()
 {
 	std::cout << "Enter the fuel type: ";
 	std::getline(std::cin, fuelType);
 }
 
-Shuttle::editMaxFlyingDistance()
+void Shuttle::editMaxFlyingDistance()
 {
 	std::cout << "Enter the max flying distance: ";
 	try

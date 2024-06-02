@@ -1,17 +1,23 @@
-#include "Transport/TrasnportBase/TransportBase.h"
+#include "Transport/TransportBase/TransportBase.h"
 #include <exception>
+#include <iostream>
 
 //Realizatuion car type class:
 
 class Car : public TransportBase
 {
 public:
-	Car() : TransportBase() override;
-	~Car() : ~TransportBase() override;
+	Car(uint32_t ID);
+	~Car();
 
 	inline void editOwnersQuantity();
 	inline void editMileage();
 
+	void def(const uint32_t) override
+	{
+		mileage = 0;
+		ownersQuantity = 0;
+	}
 private:
 
 	int ownersQuantity;
@@ -22,10 +28,16 @@ Car::Car(uint32_t ID)
 {
 	type = "Car Type";
 	uniqueID = ID;
-
-	addNewData();
-	editOwnersQuantity();
-	editMileage();
+	if (ID == 0)
+	{
+		def(0);
+	}
+	else
+	{
+		addNewData();
+		editOwnersQuantity();
+		editMileage();
+	}
 }
 
 Car::~Car()
@@ -33,7 +45,7 @@ Car::~Car()
 
 }
 
-Car::editMileage()
+void Car::editMileage()
 {
 	std::cout << "Enter the mileage (kilometers): ";
 	try
@@ -46,7 +58,7 @@ Car::editMileage()
 	}
 }
 
-Car::editOwnersQuantity()
+void Car::editOwnersQuantity()
 {
 	std::cout << "Enter the number of owner: ";
 	try
