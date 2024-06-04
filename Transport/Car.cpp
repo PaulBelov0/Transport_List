@@ -15,9 +15,18 @@ public:
 
 	void def(const uint32_t) override
 	{
+		TransportBase::def(0);
 		mileage = 0;
 		ownersQuantity = 0;
 	}
+
+	void printElements() override
+	{
+		TransportBase::printElements();
+		std::cout << "Owners quantity : " << ownersQuantity << std::endl;
+		std::cout << "Mileage : " << mileage << "\n\n" << std::endl;
+	}
+
 private:
 
 	int ownersQuantity;
@@ -50,7 +59,7 @@ void Car::editMileage()
 	std::cout << "Enter the mileage (kilometers): ";
 	try
 	{
-		std::cin >> weigth;
+		std::cin >> weight;
 	}
 	catch (_exception)
 	{
@@ -63,7 +72,7 @@ void Car::editOwnersQuantity()
 	std::cout << "Enter the number of owner: ";
 	try
 	{
-		std::cin >> weigth;
+		std::cin >> weight;
 	}
 	catch (_exception)
 	{

@@ -15,9 +15,18 @@ public:
 
 	void def(const uint32_t) override
 	{
+		TransportBase::def(0);
 		displacement = 0;
 		screwDepth = 0;
 	}
+
+	void printElements() override
+	{
+		TransportBase::printElements();
+		std::cout << "Water displacement : " << displacement << std::endl;
+		std::cout << "Screw depth : " << screwDepth << "\n\n" << std::endl;
+	}
+
 private:
 	int displacement;
 	int screwDepth;

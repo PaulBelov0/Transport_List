@@ -14,9 +14,18 @@ public:
 
 	void def(const uint32_t) override
 	{
+		TransportBase::def(0);
 		wingspan = 0;
 		payloadCapacity = 0;
 	}
+
+	void printElements() override
+	{
+		TransportBase::printElements();
+		std::cout << "Wingspan : " << wingspan << std::endl;
+		std::cout << "Payload capacity : " << payloadCapacity << "\n\n" << std::endl;
+	}
+
 private:
 	int wingspan;
 	int payloadCapacity;

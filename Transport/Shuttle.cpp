@@ -16,9 +16,18 @@ public:
 
 	void def(const uint32_t) override
 	{
+		TransportBase::def(0);
 		maxFlyingDistance = 0;
 		fuelType = "None";
 	}
+
+	void printElements() override
+	{
+		TransportBase::printElements();
+		std::cout << "Fuel type : " << fuelType << std::endl;
+		std::cout << "Max flying distance : " << maxFlyingDistance << "\n\n" << std::endl;
+	}
+
 private:
 	std::string fuelType;
 	int maxFlyingDistance;

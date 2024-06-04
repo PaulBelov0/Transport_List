@@ -1,7 +1,7 @@
 //Realization of transport base type
 
-//#ifndef STRING_H
-//#define STRING_H
+#ifndef STRING_H
+#define STRING_H
 
 #include <string>
 #include <iostream>
@@ -20,6 +20,8 @@ public:
 	inline void editWeigth() noexcept;
 	void virtual def(const uint32_t);
 
+	void virtual printElements();
+
 	uint32_t uniqueID;
 	std::string type;
 
@@ -32,6 +34,7 @@ protected:
 
 };
 
+
 void TransportBase::def(const uint32_t)
 {
 	uniqueID = 0;
@@ -42,9 +45,10 @@ void TransportBase::def(const uint32_t)
 	weight = 0;
 }
 
+
 TransportBase::TransportBase()
 {
-	
+
 }
 
  void TransportBase::editBrand()
@@ -94,5 +98,14 @@ TransportBase::TransportBase()
 	 editYear();
 	 editWeigth();
  }
-//
-//#endif
+
+ void TransportBase::printElements()
+ {
+	 std::cout << "ID : #" << uniqueID << std::endl;
+	 std::cout << "Brand : " << brand << std::endl;
+	 std::cout << "Model : " << model << std::endl;
+	 std::cout << "Year : " << year << std::endl;
+	 std::cout << "Weight : " << weight << std::endl;
+ }
+
+#endif
