@@ -1,52 +1,11 @@
-#include <Transport/TransportBase/TransportBase.h>
-#include <string>
-#include <exception>
-#include <iostream>
+#include <transport.h>
 
 //Realization Space shuttle class:
-
-class Shuttle : public TransportBase
-{
-public:
-	Shuttle(uint32_t ID);
-	~Shuttle();
-
-	inline void editFuelType();
-	inline void editMaxFlyingDistance();
-
-	void def(const uint32_t) override
-	{
-		TransportBase::def(0);
-		maxFlyingDistance = 0;
-		fuelType = "None";
-	}
-
-	void printElements() override
-	{
-		TransportBase::printElements();
-		std::cout << "Fuel type : " << fuelType << std::endl;
-		std::cout << "Max flying distance : " << maxFlyingDistance << "\n\n" << std::endl;
-	}
-
-private:
-	std::string fuelType;
-	int maxFlyingDistance;
-};
 
 Shuttle::Shuttle(uint32_t ID)
 {
 	uniqueID = ID;
-	type = "Space Shuttle Type";
-	if (ID == 0)
-	{
-		def(0);
-	}
-	else
-	{
-		addNewData();
-		editFuelType();
-		editMaxFlyingDistance();
-	}
+	type = "Space Shuttle";
 }
 
 Shuttle::~Shuttle()
@@ -54,21 +13,12 @@ Shuttle::~Shuttle()
 
 }
 
-void Shuttle::editFuelType()
+void Shuttle::editFuelType(std::string fuelType)
 {
-	std::cout << "Enter the fuel type: ";
-	std::getline(std::cin, fuelType);
+	this->fuelType = fuelType;
 }
 
-void Shuttle::editMaxFlyingDistance()
+void Shuttle::editMaxFlyingDistance(int maxFlyingDistance)
 {
-	std::cout << "Enter the max flying distance: ";
-	try
-	{
-		std::cin >> maxFlyingDistance;
-	}
-	catch (_exception)
-	{
-		std::cout << "Incorrect Data!";
-	}
+	this->maxFlyingDistance = maxFlyingDistance;
 }

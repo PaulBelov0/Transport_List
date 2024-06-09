@@ -1,41 +1,8 @@
 //Realization of transport base type
 
-#ifndef STRING_H
-#define STRING_H
+#include <TransportBase.h>
 
-#include <string>
-#include <iostream>
-#include <exception>
-#include <cstdint>
-
-class TransportBase
-{
-public:
-	TransportBase();
-	virtual ~TransportBase() = 0;
-
-	inline void editBrand();
-	inline void editModel();
-	inline void editYear() noexcept;
-	inline void editWeigth() noexcept;
-	void virtual def(const uint32_t);
-
-	void virtual printElements();
-
-	uint32_t uniqueID;
-	std::string type;
-
-protected:
-	void addNewData();
-	std::string brand;
-	std::string model;
-	int year;
-	int weight;
-
-};
-
-
-void TransportBase::def(const uint32_t)
+void TransportBase::defaultElement(const uint32_t)
 {
 	uniqueID = 0;
 	type = "None";
@@ -51,55 +18,29 @@ TransportBase::TransportBase()
 
 }
 
- void TransportBase::editBrand()
+ void TransportBase::editBrand(std::string brand)
 {
-	 std::cout << "Enter the Label: ";
-	 std::getline(std::cin, brand);
+	 this->brand = brand;
 }
 
 
- void TransportBase::editModel()
+ void TransportBase::editModel(std::string model)
  {
-	 std::cout << "Enter the Model: ";
-	 std::getline(std::cin, brand);
+	 this->model = model;
  }
 
 
- void TransportBase::editYear()
+ void TransportBase::editYear(int year) 
  {
-	 std::cout << "Enter the year of manufacturing: ";
-	 try
-	 {
-		 std::cin >> weight;
-	 }
-	 catch (_exception)
-	 {
-		 std::cout << "Incorrect Data!";
-	 }
+	 this->year = year;
  }
 
- void TransportBase::editWeigth()
+ void TransportBase::editWeight(int weight)
  {
-	 std::cout << "Enter the Weigth (killograms) : ";
-	 try
-	 {
-		 std::cin >> weight;
-	 }
-	 catch (_exception)
-	 {
-		 std::cout << "Incorrect Data!";
-	 }
+	 this->weight = weight;
  }
 
- void TransportBase::addNewData()
- {
-	 editBrand();
-	 editModel();
-	 editYear();
-	 editWeigth();
- }
-
- void TransportBase::printElements()
+ void TransportBase::print()
  {
 	 std::cout << "ID : #" << uniqueID << std::endl;
 	 std::cout << "Brand : " << brand << std::endl;
@@ -108,4 +49,7 @@ TransportBase::TransportBase()
 	 std::cout << "Weight : " << weight << std::endl;
  }
 
-#endif
+ void TransportBase::write()
+ {
+	 
+ }
