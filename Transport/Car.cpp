@@ -12,10 +12,7 @@ Car::Car(uint32_t ID)
 	type = "Car";
 }
 
-Car::~Car()
-{
-
-}
+Car::~Car() {}
 
 void Car::editMileage(int mileage)
 {
@@ -25,4 +22,11 @@ void Car::editMileage(int mileage)
 void Car::editOwnersQuantity(int ownersQuantity)
 {
 	this->ownersQuantity = ownersQuantity;
+}
+
+void Car::print()
+{
+	TransportBase::print();
+	std::cout << "Mileage: " << mileage << std::endl;
+	std::cout << "Owners quantity: " << ownersQuantity << std::endl;
 }

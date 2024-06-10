@@ -12,11 +12,7 @@ void TransportBase::defaultElement(const uint32_t)
 	weight = 0;
 }
 
-
-TransportBase::TransportBase()
-{
-
-}
+TransportBase::TransportBase() {}
 
  void TransportBase::editBrand(std::string brand)
 {
@@ -49,7 +45,7 @@ TransportBase::TransportBase()
 	 std::cout << "Weight : " << weight << std::endl;
  }
 
- void TransportBase::write()
+ void TransportBase::uploadBase()
  {
 	 
  }

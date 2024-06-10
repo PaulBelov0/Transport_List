@@ -1,5 +1,5 @@
-#ifndef TRANSPORTBASE_H
-#define TRANSPORTBASE_H
+#ifndef _TRANSPORTBASE_H_
+#define _TRANSPORTBASE_H_
 
 #include <string>
 #include <iostream>
@@ -19,7 +19,7 @@ public:
 	inline void editWeight(int weight);
 	void virtual defaultElement(const uint32_t ID);
 	void virtual print();
-	void virtual write();
+	void virtual uploadBase();
 
 protected:
 

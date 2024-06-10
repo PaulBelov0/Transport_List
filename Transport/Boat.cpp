@@ -8,10 +8,7 @@ Boat::Boat(uint32_t ID)
 	type = "Water Transport";
 }
 
-Boat::~Boat()
-{
-
-}
+Boat::~Boat() {}
 
 void Boat::editDisplacement(int displacement)
 {
@@ -21,4 +18,11 @@ void Boat::editDisplacement(int displacement)
 void Boat::editScrewDepth(int screwDepth)
 {
 	this->screwDepth = screwDepth;
+}
+
+void Boat::print()
+{
+	TransportBase::print();
+	std::cout << "Displacement: " << displacement << std::endl;
+	std::cout << "Screw depth: " << screwDepth << std::endl;
 }
