@@ -32,7 +32,7 @@ int Menu::mainMenu()
 	{
 		std::cout << "What's your next action? (Enter the variant number):\n" << std::endl;
 		std::cout << "1. Add new element.\n2. Delete element.\n3. Show all database. \n4. Find element.\n5. Save database.\n6. Quit.\n" << std::endl;
-		
+
 		while (userInput != nullptr)
 		{
 			try
@@ -78,7 +78,7 @@ void Menu::addNewElement(uint32_t ID)
 {
 	char* transportType = nullptr;
 
-	while(transportType == nullptr)
+	while (transportType == nullptr)
 	{
 		std::cout << "Enter the number of transport type\n" << std::endl;
 		std::cout << "1. Air transport\n2. Water transport\n3. Car\n4. Space shuttle" << std::endl;
@@ -94,7 +94,7 @@ void Menu::addNewElement(uint32_t ID)
 		switch (*transportType)
 		{
 		case'1':
-			transportDB->insert({ID, createElement(ID, transportType)});
+			transportDB->insert({ ID, createElement(ID, transportType) });
 			break;
 		case'2':
 			transportDB->insert({ ID, createElement(ID, transportType) });

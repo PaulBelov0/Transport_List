@@ -1,10 +1,6 @@
-#include "Transport/TransportBase/TransportBase.h"
-#include <exception>
-#include <iostream>
+#include <transport.h>
 
 //Realizatuion car type class:
-
-#include <transport.h>
 
 Car::Car(uint32_t ID)
 {
