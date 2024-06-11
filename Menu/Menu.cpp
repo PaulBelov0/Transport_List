@@ -1,4 +1,4 @@
-#include <Menu.h>
+#include <Menu/Menu.h>
 
 Menu::Menu(std::map<uint32_t, TransportBase&>* DB)
 {
@@ -141,12 +141,12 @@ void Menu::findElement()
 
 int Menu::saveDatabase()
 {
-
+	return 0;
 }
 
 std::map<uint32_t, TransportBase&>* Menu::loadDataBase()
 {
-
+	return NULL;
 }
 
 TransportBase& Menu::createElement(uint32_t ID, char* type)
