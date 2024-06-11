@@ -106,6 +106,7 @@ void Menu::addNewElement(uint32_t ID)
 			transportDB->insert({ ID, createElement(ID, transportType) });
 			break;
 		default:
+			std::cout << "Incorrect input!" << std::endl;
 			transportType = nullptr;
 			break;
 		}
@@ -135,6 +136,7 @@ void Menu::showDatabase()
 
 void Menu::findElement()
 {
+
 }
 
 int Menu::saveDatabase()
