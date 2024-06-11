@@ -25,3 +25,25 @@ void AirTransport::print()
 	std::cout << "Wingspan: " << wingspan << std::endl;
 	std::cout << "Payload capacity: " << payloadCapacity << std::endl;
 }
+
+std::string AirTransport::finderOnValueType(char typeOfValue)
+{
+	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
+
+	if (returningValue == std::to_string(NULL))
+	{
+		if (typeOfValue == '6')
+		{
+			returningValue = std::to_string(wingspan);
+			return returningValue;
+		}
+		else if (typeOfValue == '7')
+		{
+			returningValue = std::to_string(payloadCapacity);
+		}
+	}
+	else
+	{
+		return returningValue;
+	}
+}
