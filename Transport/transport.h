@@ -12,6 +12,7 @@ public:
 	inline void editWingspan(int wingspan);
 	inline void editPayloadCapacity(int payloadCapacity);
 	inline void print() override;
+	inline std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	int wingspan;
@@ -28,6 +29,7 @@ public:
 	inline void editDisplacement(int displacement);
 	inline void editScrewDepth(int screwDepth);
 	inline void print() override;
+	inline std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	int displacement;
@@ -44,6 +46,7 @@ public:
 	inline void editOwnersQuantity(int ownersQuantity);
 	inline void editMileage(int mileage);
 	inline void print() override;
+	inline std::string finderOnValueType(char typeOfValue) override;
 
 private:
 
@@ -61,6 +64,7 @@ public:
 	inline void editFuelType(std::string fuelType);
 	inline void editMaxFlyingDistance(int maxFlyingDistance);
 	inline void print() override;
+	inline std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	std::string fuelType;

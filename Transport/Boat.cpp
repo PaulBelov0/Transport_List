@@ -26,3 +26,26 @@ void Boat::print()
 	std::cout << "Displacement: " << displacement << std::endl;
 	std::cout << "Screw depth: " << screwDepth << std::endl;
 }
+
+std::string Boat::finderOnValueType(char typeOfValue)
+{
+	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
+
+	if (returningValue == std::to_string(NULL))
+	{
+		if (typeOfValue == '6')
+		{
+			returningValue = std::to_string(displacement);
+			return returningValue;
+		}
+		else if (typeOfValue == '7')
+		{
+			returningValue = std::to_string(screwDepth);
+			return returningValue;
+		}
+	}
+	else
+	{
+		return returningValue;
+	}
+}

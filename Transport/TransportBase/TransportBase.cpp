@@ -49,3 +49,38 @@ TransportBase::TransportBase() {}
  {
 	 
  }
+
+ std::string TransportBase::finderOnValueType(char typeOfValue)
+ {
+	 std::string returningValue;
+
+	 if (typeOfValue == '1')
+	 {
+		 returningValue = std::to_string(uniqueID);
+		 return returningValue;
+	 }
+	 else if (typeOfValue == '2')
+	 {
+		 returningValue = brand;
+		 return returningValue;
+	 }
+	 else if (typeOfValue == '3')
+	 {
+		 returningValue = model;
+		 return returningValue;
+	 }
+	 else if (typeOfValue == '4')
+	 {
+		 returningValue == std::to_string(year);
+		 return returningValue;
+	 }
+	 else if (typeOfValue == '5')
+	 {
+		 returningValue == std::to_string(weight);
+		 return returningValue;
+	 }
+	 else
+	 {
+		 return std::to_string(NULL);
+	 }
+ }
