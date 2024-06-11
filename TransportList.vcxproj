@@ -63,6 +63,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -99,7 +104,6 @@
     <ClCompile Include="Transport\Shuttle.cpp" />
     <ClCompile Include="Transport\TransportBase\TransportBase.cpp" />
     <QtRcc Include="TransportList.qrc" />
-    <QtUic Include="TransportList.ui" />
     <QtMoc Include="TransportList.h" />
     <ClCompile Include="TransportList.cpp" />
     <ClCompile Include="main.cpp" />
@@ -109,7 +113,6 @@
     <None Include=".gitignore" />
     <None Include="CMakePresets.json" />
     <None Include="CppProperties.json" />
-    <None Include="TransportList.aps" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
@@ -122,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="TransportList.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="TransportList.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
