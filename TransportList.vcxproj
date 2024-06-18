@@ -39,6 +39,8 @@
     <QtInstall>_QT_6.7.1</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
+    <QtPlugin>true</QtPlugin>
+    <QtQMLDebugEnable>true</QtQMLDebugEnable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>_QT_6.7.1</QtInstall>
@@ -63,11 +65,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-    </ClCompile>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -103,7 +100,6 @@
     <ClCompile Include="Transport\Car.cpp" />
     <ClCompile Include="Transport\Shuttle.cpp" />
     <ClCompile Include="Transport\TransportBase\TransportBase.cpp" />
-    <QtRcc Include="TransportList.qrc" />
     <QtMoc Include="TransportList.h" />
     <ClCompile Include="TransportList.cpp" />
     <ClCompile Include="main.cpp" />
@@ -113,18 +109,21 @@
     <None Include=".gitignore" />
     <None Include="CMakePresets.json" />
     <None Include="CppProperties.json" />
+    <None Include="TransportList.aps" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Menu\Menu.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="Transport\AirTransport.h" />
+    <ClInclude Include="Transport\Boat.h" />
+    <ClInclude Include="Transport\Car.h" />
+    <ClInclude Include="Transport\Shuttle.h" />
     <ClInclude Include="Transport\transport.h" />
     <ClInclude Include="Transport\TransportBase\TransportBase.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="TransportList.rc" />
+    <ClInclude Include="x64\Release\uic\ui_TransportList.h" />
+    <ClInclude Include="x64\Release\uic\ui_TransportList.h" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TransportList.ui" />
