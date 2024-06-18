@@ -3,12 +3,13 @@
 
 #include <Transport/transport.h>
 #include <map>
+#include <memory>
 
 class Menu
 {
 public:
 
-	Menu(std::map<uint32_t, TransportBase&>* DB);
+	Menu();
 	~Menu();
 
 	int mainMenu();
@@ -17,7 +18,7 @@ public:
 	void showDatabase();
 	void findElement();
 	int saveDatabase();
-	std::map<uint32_t, TransportBase&>* loadDataBase();
+	std::map<uint32_t, TransportBase&> loadDataBase();
 
 protected:
 
@@ -26,7 +27,7 @@ protected:
 private:
 	static uint32_t uniqueID;
 	char* userInput;
-	std::map<uint32_t, TransportBase&>* transportDB;
+	std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
 };
 
 #endif
