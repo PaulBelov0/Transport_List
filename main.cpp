@@ -12,9 +12,7 @@ int main(int argc, char *argv[])
     TransportList w;
     w.show();
 
-    std::map<uint32_t, TransportBase&>* transportDB = new std::map<uint32_t, TransportBase&>;
-
-    Menu menu(transportDB);
+    Menu menu;
     menu.mainMenu();
 
     return a.exec();

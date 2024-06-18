@@ -2,14 +2,14 @@
 
 //QT_Version
 
-Menu::Menu(std::map<uint32_t, TransportBase&>* DB)
+Menu::Menu()
 {
-	transportDB = DB;
+	
 }
 
 Menu::~Menu()
 {
-	delete transportDB;
+
 }
 
 int Menu::mainMenu()
@@ -18,7 +18,7 @@ int Menu::mainMenu()
 
 	std::cout << "We're loading database . . . " << std::endl;
 
-	transportDB = loadDataBase();
+	transportDB = std::make_unique<std::map<uint32_t, TransportBase&>>(loadDataBase());
 
 	try
 	{
@@ -146,9 +146,10 @@ int Menu::saveDatabase()
 	return 0;
 }
 
-std::map<uint32_t, TransportBase&>* Menu::loadDataBase()
+std::map<uint32_t, TransportBase&> Menu::loadDataBase()
 {
-	return NULL;
+	std::map<uint32_t, TransportBase&> sth;
+	return sth;
 }
 
 TransportBase& Menu::createElement(uint32_t ID, char* type)
