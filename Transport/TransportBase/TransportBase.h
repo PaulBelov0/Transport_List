@@ -13,10 +13,10 @@ public:
 	TransportBase();
 	virtual ~TransportBase() = 0;
 
-	inline void editBrand(std::string brand);
-	inline void editModel(std::string model);
-	inline void editYear(int year);
-	inline void editWeight(int weight);
+	void editBrand(std::string brand);
+	void editModel(std::string model);
+	void editYear(int year);
+	void editWeight(int weight);
 
 	std::string virtual finderOnValueType(char typeOfValue);
 	void virtual defaultElement(const uint32_t ID);

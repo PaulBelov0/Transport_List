@@ -1,4 +1,4 @@
-#include <Menu/Menu.h>
+#include "Menu.h"
 
 //QT_Version
 
@@ -18,7 +18,7 @@ int Menu::mainMenu()
 
 	std::cout << "We're loading database . . . " << std::endl;
 
-	transportDB = std::make_unique<std::map<uint32_t, TransportBase&>>(loadDataBase());
+	transportDB = std::make_unique<std::map<uint32_t, TransportBase&> >(loadDataBase());
 
 	try
 	{

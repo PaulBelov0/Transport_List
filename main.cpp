@@ -1,19 +1,13 @@
-#include "TransportList.h"
-#include <QtWidgets/QApplication>
-#include <iostream>
-#include <Transport/transport.h>
-#include <map>
-#include <cstdint>
-#include <Menu/Menu.h>
+#include "mainwindow.h"
+#include "Menu/Menu.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    TransportList w;
+    MainWindow w;
     w.show();
-
     Menu menu;
     menu.mainMenu();
-
     return a.exec();
 }
