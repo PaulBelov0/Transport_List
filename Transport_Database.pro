@@ -9,12 +9,14 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
     Transport/Boat.cpp \
     Transport/Car.cpp \
     Transport/Shuttle.cpp \
     Transport/TransportBase/TransportBase.cpp \
+    Transport_Map/transportmap.cpp \
     main.cpp \
     mainwindow.cpp
     Menu.cpp
@@ -25,6 +27,7 @@ SOURCES += \
     Air.Transport.cpp
 
 HEADERS += \
+    TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
     Transport/Boat.h \
@@ -32,6 +35,7 @@ HEADERS += \
     Transport/Shuttle.h \
     Transport/TransportBase/TransportBase.h \
     Transport/transport.h \
+    Transport_Map/transportmap.h \
     mainwindow.h
     transport.h
     TransportBase.h
