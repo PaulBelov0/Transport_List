@@ -1,13 +1,14 @@
-#ifndef _TRANSPORTBASE_H_
-#define _TRANSPORTBASE_H_
+#ifndef TRANSPORTBASE_H
+#define TRANSPORTBASE_H
 
+#include <QString>
 #include <string>
 #include <cstdint>
-#include <mainwindow.h>
 
 class TransportBase
 {
 public:
+
 	TransportBase();
 	virtual ~TransportBase() = 0;
 
@@ -16,10 +17,8 @@ public:
 	void editYear(int year);
 	void editWeight(int weight);
 
-	std::string virtual finderOnValueType(char typeOfValue);
-	void virtual defaultElement(const uint32_t ID);
-	void virtual print();
-	void virtual uploadBase();
+    std::string virtual finderOnValueType(char typeOfValue);
+    virtual QString* print();
 
 protected:
 
@@ -30,6 +29,7 @@ protected:
 	int year;
 	int weight;
 
+    std::string outputString[7];
 };
 
-#endif
+#endif //TRANSPORTBASE_H

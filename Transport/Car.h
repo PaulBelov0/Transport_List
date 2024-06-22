@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef _CAR_H_
-#define _CAR_H_
+#ifndef CAR_H
+#define CAR_H
 
-#include "TransportBase/TransportBase.h"
+#include <Transport/TransportBase/TransportBase.h>
 
 class Car : public TransportBase
 {
@@ -11,10 +11,10 @@ public:
 	Car(uint32_t ID);
 	~Car();
 
-	inline void editOwnersQuantity(int ownersQuantity);
-	inline void editMileage(int mileage);
-	inline void print() override;
-	inline std::string finderOnValueType(char typeOfValue) override;
+    void editOwnersQuantity(int ownersQuantity);
+    void editMileage(int mileage);
+    QString* print() override;
+    std::string finderOnValueType(char typeOfValue) override;
 
 private:
 
@@ -22,4 +22,4 @@ private:
 	int mileage;
 };
 
-#endif
+#endif //CAR_H

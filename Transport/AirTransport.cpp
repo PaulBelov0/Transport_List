@@ -1,4 +1,4 @@
-#include "AirTransport.h"
+#include <Transport/AirTransport.h>
 
 //Realizaton air transport class:
 
@@ -20,12 +20,23 @@ void AirTransport::editPayloadCapacity(int payloadCapacity)
 	this->payloadCapacity = payloadCapacity;
 }
 
-void AirTransport::print()
+QString* AirTransport::print()
 {
-	TransportBase::print();
-    ui->
-	std::cout << "Wingspan: " << wingspan << std::endl;
-	std::cout << "Payload capacity: " << payloadCapacity << std::endl;
+    QString* output = new QString [7];
+
+    TransportBase::print();
+
+    outputString[5] = "Wingspan: ";
+    outputString[5] += wingspan;
+    outputString[6] = "Payload capacity: ";
+    outputString[6] += payloadCapacity;
+
+    for (int i = 5; i < 7; i++)
+    {
+        output[7] = QString::fromStdString(outputString[i]);
+    }
+
+    return output;
 }
 
 std::string AirTransport::finderOnValueType(char typeOfValue)

@@ -19,11 +19,23 @@ void Boat::editScrewDepth(int screwDepth)
 	this->screwDepth = screwDepth;
 }
 
-void Boat::print()
+QString* Boat::print()
 {
-	TransportBase::print();
-	std::cout << "Displacement: " << displacement << std::endl;
-	std::cout << "Screw depth: " << screwDepth << std::endl;
+    QString* output = new QString [7];
+
+    TransportBase::print();
+
+    outputString[5] = "Displacement: ";
+    outputString[5] += displacement;
+    outputString[6] = "Screw depth: ";
+    outputString[6] += screwDepth;
+
+    for (int i = 5; i < 7; i++)
+    {
+        output[7] = QString::fromStdString(outputString[i]);
+    }
+
+    return output;
 }
 
 std::string Boat::finderOnValueType(char typeOfValue)

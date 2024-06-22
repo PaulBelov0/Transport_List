@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>QDialog</class>
+ <widget class="QDialog" name="QDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="AddNewElement_Button">
+  <widget class="QPushButton" name="addNewElementButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -36,7 +36,7 @@
     <string>Add new element</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="DeleteElement_Button">
+  <widget class="QPushButton" name="deleteElementButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -49,7 +49,7 @@
     <string>Delete element</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="EditElement_Button">
+  <widget class="QPushButton" name="editElementButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -62,7 +62,7 @@
     <string>Edit element</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="ShowElement_Button">
+  <widget class="QPushButton" name="showElementButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -75,7 +75,7 @@
     <string>Show element</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Save_Database">
+  <widget class="QPushButton" name="saveDatabaseButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -85,10 +85,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Save database</string>
+    <string>Save to database</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Load_Database">
+  <widget class="QPushButton" name="loadDatabaseButton">
    <property name="geometry">
     <rect>
      <x>570</x>
@@ -101,7 +101,7 @@
     <string>Load database</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Quit">
+  <widget class="QPushButton" name="exitButton">
    <property name="geometry">
     <rect>
      <x>630</x>
@@ -111,7 +111,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>Exit</string>
    </property>
   </widget>
  </widget>

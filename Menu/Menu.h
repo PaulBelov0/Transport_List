@@ -1,5 +1,5 @@
-#ifndef _MENU_H_
-#define _MENU_H_
+#ifndef MENU_H
+#define MENU_H
 
 #include <TransportMap/transportmap.h>
 #include <map>
@@ -14,19 +14,19 @@ public:
 
 	int mainMenu();
 	void addNewElement(uint32_t ID);
-	std::string deleteElement(const uint32_t ID);
+    void deleteElement(const uint32_t ID);
 	void showDatabase();
 	void findElement();
-	int saveDatabase();
-	std::map<uint32_t, TransportBase&> loadDataBase();
+    void saveDatabase();
+    void loadDataBase();
 
 protected:
 
-	TransportBase& createElement(uint32_t ID, char* type);
+    void createElement(uint32_t ID, char* type);
 
 private:
     static uint32_t uniqueID;
     TransportMap transportDB(uint32_t uniqueID);
 };
 
-#endif
+#endif //MENU_H

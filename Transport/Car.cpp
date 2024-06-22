@@ -20,11 +20,23 @@ void Car::editOwnersQuantity(int ownersQuantity)
 	this->ownersQuantity = ownersQuantity;
 }
 
-void Car::print()
+QString* Car::print()
 {
-	TransportBase::print();
-	std::cout << "Mileage: " << mileage << std::endl;
-	std::cout << "Owners quantity: " << ownersQuantity << std::endl;
+    QString* output = new QString [7];
+
+    TransportBase::print();
+
+    outputString[5] = "Mileage: ";
+    outputString[5] += mileage;
+    outputString[6] = "Owners quantity: ";
+    outputString[6] += ownersQuantity;
+
+    for (int i = 5; i < 7; i++)
+    {
+        output[7] = QString::fromStdString(outputString[i]);
+    }
+
+    return output;
 }
 
 std::string Car::finderOnValueType(char typeOfValue)

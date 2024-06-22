@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef _BOAT_H_
-#define _BOAT_H_
+#ifndef BOAT_H
+#define BOAT_H
 
-#include "TransportBase/TransportBase.h"
+#include <Transport/TransportBase/TransportBase.h>
 
 class Boat : public TransportBase
 {
@@ -11,14 +11,14 @@ public:
 	Boat(uint32_t ID);
 	~Boat();
 
-	inline void editDisplacement(int displacement);
-	inline void editScrewDepth(int screwDepth);
-	inline void print() override;
-	inline std::string finderOnValueType(char typeOfValue) override;
+    void editDisplacement(int displacement);
+    void editScrewDepth(int screwDepth);
+    QString* print() override;
+    std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	int displacement;
 	int screwDepth;
 };
 
-#endif
+#endif //BOAT_H

@@ -1,4 +1,5 @@
 #include "Shuttle.h"
+#include <ostream>
 
 //Realization Space shuttle class:
 
@@ -20,11 +21,23 @@ void Shuttle::editMaxFlyingDistance(int maxFlyingDistance)
 	this->maxFlyingDistance = maxFlyingDistance;
 }
 
-void Shuttle::print()
+QString* Shuttle::print()
 {
-	TransportBase::print();
-	std::cout << "Fuel type: " << fuelType << std::endl;
-	std::cout << "Max flying distance: " << maxFlyingDistance << std::endl;
+    QString* output = new QString [7];
+
+    TransportBase::print();
+
+    outputString[5] = "Fuel type: ";
+    outputString[5] += fuelType;
+    outputString[6] = "Max flying distance: ";
+    outputString[6] += maxFlyingDistance;
+
+    for (int i = 5; i < 7; i++)
+    {
+        output[7] = QString::fromStdString(outputString[i]);
+    }
+
+    return output;
 }
 
 std::string Shuttle::finderOnValueType(char typeOfValue)

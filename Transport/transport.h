@@ -1,10 +1,10 @@
-#ifndef _TRANSPORT_H_
-#define _TRANSPORT_H_
+#ifndef TRANSPORT_H
+#define TRANSPORT_H
 
-#include "AirTransport.h"
-#include "Boat.h"
-#include "Car.h"
-#include "Shuttle.h"
-#include "TransportBase/TransportBase.h"
+#include <Transport/AirTransport.h>
+#include <Transport/Boat.h>
+#include <Transport/Car.h>
+#include <Transport/Shuttle.h>
+#include <Transport/TransportBase/TransportBase.h>
 
-#endif
+#endif //TRANSPORT_H

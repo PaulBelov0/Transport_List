@@ -2,16 +2,6 @@
 
 #include "TransportBase.h"
 
-void TransportBase::defaultElement(const uint32_t)
-{
-	uniqueID = 0;
-	type = "None";
-	brand = "None";
-	model = "None";
-	year = 0;
-	weight = 0;
-}
-
 TransportBase::TransportBase() {}
 
  void TransportBase::editBrand(std::string brand)
@@ -36,18 +26,24 @@ TransportBase::TransportBase() {}
 	 this->weight = weight;
  }
 
- void TransportBase::print()
+ QString* TransportBase::print()
  {
-	 std::cout << "ID : #" << uniqueID << std::endl;
-	 std::cout << "Brand : " << brand << std::endl;
-	 std::cout << "Model : " << model << std::endl;
-	 std::cout << "Year : " << year << std::endl;
-	 std::cout << "Weight : " << weight << std::endl;
- }
+     QString* output = new QString[7];
+     outputString[0] = "ID : #";
+     outputString[0] += uniqueID;
+     outputString[1] = "Brand: " + brand;
+     outputString[2] = "Model: " + model;
+     outputString[3] = "Year: ";
+     outputString[3] += year;
+     outputString[4] = "Weight: ";
+     outputString[4] += weight;
 
- void TransportBase::uploadBase()
- {
-	 
+     for (int i = 0; i < 5; i++)
+     {
+         output[i] = QString::fromStdString(outputString[i]);
+     }
+
+     return output;
  }
 
  std::string TransportBase::finderOnValueType(char typeOfValue)
