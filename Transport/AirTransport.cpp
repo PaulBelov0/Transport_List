@@ -23,6 +23,7 @@ void AirTransport::editPayloadCapacity(int payloadCapacity)
 void AirTransport::print()
 {
 	TransportBase::print();
+    ui->
 	std::cout << "Wingspan: " << wingspan << std::endl;
 	std::cout << "Payload capacity: " << payloadCapacity << std::endl;
 }

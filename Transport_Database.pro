@@ -16,7 +16,7 @@ SOURCES += \
     Transport/Car.cpp \
     Transport/Shuttle.cpp \
     Transport/TransportBase/TransportBase.cpp \
-    Transport_Map/transportmap.cpp \
+    TransportMap/transportmap.cpp \
     main.cpp \
     mainwindow.cpp
     Menu.cpp
@@ -24,9 +24,10 @@ SOURCES += \
     Car.cpp
     Shuttle.cpp
     Boat.cpp
-    Air.Transport.cpp
+    AirTransport.cpp
 
 HEADERS += \
+    mainwindow.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
@@ -35,8 +36,7 @@ HEADERS += \
     Transport/Shuttle.h \
     Transport/TransportBase/TransportBase.h \
     Transport/transport.h \
-    Transport_Map/transportmap.h \
-    mainwindow.h
+    TransportMap/transportmap.h \
     transport.h
     TransportBase.h
     Boat.h

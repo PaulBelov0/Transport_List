@@ -1,4 +1,4 @@
-#include "Menu.h"
+#include <Menu/Menu.h>
 
 //QT_Version
 
@@ -14,12 +14,6 @@ Menu::~Menu()
 
 int Menu::mainMenu()
 {
-	std::cout << "Hello!\n" << "\nThis is Transport Database application." << std::endl;
-
-	std::cout << "We're loading database . . . " << std::endl;
-
-	transportDB = std::make_unique<std::map<uint32_t, TransportBase&> >(loadDataBase());
-
 	try
 	{
 		auto& element = transportDB->at(1);

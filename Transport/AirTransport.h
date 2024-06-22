@@ -4,6 +4,7 @@
 #define _AIRTRANSPORT_H_
 
 #include "TransportBase/TransportBase.h"
+#include <mainwindow.h>
 
 class AirTransport : public TransportBase
 {
