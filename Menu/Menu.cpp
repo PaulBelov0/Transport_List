@@ -4,7 +4,7 @@
 
 Menu::Menu()
 {
-	
+    loadDataBase();
 }
 
 Menu::~Menu()
@@ -37,7 +37,7 @@ void Menu::saveDatabase()
 
 }
 
-void Menu::loadDataBase()
+TransportMap Menu::loadDataBase()
 {
 
 }

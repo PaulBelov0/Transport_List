@@ -1,13 +1,17 @@
 #include <TransportMap/transportmap.h>
 #include <Transport/TransportBase/TransportBase.h>
 
-TransportMap::TransportMap(uint32_t index)
-{
 
+TransportMap::TransportMap() {}
+TransportMap::~TransportMap() {}
+
+QString* TransportMap::showDatabaseElement(const uint32_t& index)
+{
+    QString* outputString = transportDB->find(index)->second.print();
+    return outputString;
 }
-TransportMap::~TransportMap(){}
 
-QString* TransportMap::print(uint32_t& index)
+void TransportMap::addNewElement(uint32_t index, TransportBase& data)
 {
-    QString* outputString = transportDB->at(index).print();
+    transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
 }

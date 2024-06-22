@@ -18,7 +18,7 @@ public:
 	void showDatabase();
 	void findElement();
     void saveDatabase();
-    void loadDataBase();
+    TransportMap loadDataBase();
 
 protected:
 
@@ -26,7 +26,7 @@ protected:
 
 private:
     static uint32_t uniqueID;
-    TransportMap transportDB(uint32_t uniqueID);
+    TransportMap database;
 };
 
 #endif //MENU_H

@@ -1,5 +1,5 @@
-#ifndef TRANSPORT_MAP_H
-#define TRANSPORT_MAP_H
+#ifndef TRANSPORTMAP_H
+#define TRANSPORTMAP_H
 
 #include <QString>
 #include <map>
@@ -11,12 +11,13 @@
 class TransportMap
 {
 public:
-    TransportMap(uint32_t index);
+    TransportMap();
     ~TransportMap();
 
-    QString* print(uint32_t& index);
+    QString* showDatabaseElement(const uint32_t& index);
+    void addNewElement(uint32_t index, TransportBase& data);
 private:
     std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
 };
 
-#endif // TRANSPORT_MAP_H
+#endif // TRANSPORTMAP_H

@@ -5,6 +5,10 @@ class Database
 {
 public:
     Database();
+    ~Database();
+
+    void download();
+    void upload();
 };
 
 #endif // DATABASE_H
