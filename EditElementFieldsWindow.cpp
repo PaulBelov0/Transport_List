@@ -1,5 +1,5 @@
-#include <EditElementFieldsWindow_.h>
-#include "ui_EditElementFieldsWindow_.h"
+#include "EditElementFieldsWindow.h"
+#include "ui_EditElementFieldsWindow.h"
 
 EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
     : QDialog(parent)

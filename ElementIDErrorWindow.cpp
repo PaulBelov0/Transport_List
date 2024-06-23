@@ -15,6 +15,6 @@ ElementIDErrorWindow::~ElementIDErrorWindow()
 
 void ElementIDErrorWindow::on_closeButton_clicked()
 {
-
+    this->close();
 }
 
