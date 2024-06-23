@@ -3,7 +3,7 @@
 
 SearchElementWindow::SearchElementWindow(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::DeleteElementWindow)
+    , ui(new Ui::SearchElementWindow)
 {
     ui->setupUi(this);
 }

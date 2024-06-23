@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>DeleteErrorWindow</class>
- <widget class="QDialog" name="DeleteErrorWindow">
+ <class>ElementIDErrorWindow</class>
+ <widget class="QDialog" name="ElementIDErrorWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

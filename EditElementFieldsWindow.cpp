@@ -1,9 +1,9 @@
-#include "EditElementFieldsWindow.h"
-#include "ui_EditElementFieldsWindow.h"
+#include <EditElementFieldsWindow_.h>
+#include "ui_EditElementFieldsWindow_.h"
 
 EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::AddNewElementWindow)
+    , ui(new Ui::EditElementFieldsWindow)
 {
     ui->setupUi(this);
 }

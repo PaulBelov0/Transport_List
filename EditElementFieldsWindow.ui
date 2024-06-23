@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddNewElementWindow</class>
- <widget class="QDialog" name="AddNewElementWindow">
+ <class>EditElementFieldsWindow</class>
+ <widget class="QDialog" name="EditElementFieldsWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

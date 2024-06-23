@@ -3,7 +3,7 @@
 
 ElementIDErrorWindow::ElementIDErrorWindow(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::SearchErrorWindow)
+    , ui(new Ui::ElementIDErrorWindow)
 {
     ui->setupUi(this);
 }
