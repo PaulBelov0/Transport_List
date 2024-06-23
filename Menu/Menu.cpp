@@ -4,7 +4,7 @@
 
 Menu::Menu()
 {
-    loadDataBase();
+
 }
 
 Menu::~Menu()
@@ -12,17 +12,17 @@ Menu::~Menu()
 
 }
 
-void Menu::addNewElement(uint32_t ID)
+void Menu::addNewElement(uint32_t& ID)
 {
 
 }
 
-void Menu::deleteElement(const uint32_t ID)
+void Menu::deleteDatabaseElement(const uint32_t& ID)
 {
-
+    transportDatabase.
 }
 
-void Menu::showDatabase()
+void Menu::showDatabaseElement(const uint32_t& ID)
 {
 
 }
@@ -34,13 +34,14 @@ void Menu::findElement()
 
 void Menu::saveDatabase(TransportMap& transportMap)
 {
+    Database database;
     database.upload(transportMap);
 }
 
-TransportMap& Menu::loadDataBase()
+TransportMap& Menu::loadDatabase()
 {
-    TransportMap& transportMap = database.download();
-    return transportMap;
+    Database database;
+    return database.download();
 }
 
 void Menu::createElement(uint32_t ID, char* type)

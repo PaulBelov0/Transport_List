@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <SearchElementWindow.h>
-#include <ElementIDErrorWindow.h>
 #include <EditElementFieldsWindow.h>
+#include <DeleteElementWindow.h>
 
 namespace Ui {
 class MainWindow;
@@ -36,8 +36,9 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    EditElementFieldsWindow addNewelementWindow;
-    SearchElementWindow deleteElementWindow;
+    EditElementFieldsWindow editElementFieldsWindow;
+    SearchElementWindow searchElementWindow;
+    DeleteElementWindow deleteElementWindow;
 };
 
 #endif // MAINWINDOW_H

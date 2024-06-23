@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Error! Wrong ID number!</string>
+    <string>Error! Wrong input data!</string>
    </property>
   </widget>
   <widget class="QPushButton" name="closeButton">

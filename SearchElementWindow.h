@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <ElementIDErrorWindow.h>
+#include <Menu/Menu.h>
+#include <QException>
 
 namespace Ui {
 class SearchElementWindow;
@@ -19,12 +21,12 @@ public:
 private slots:
     void on_exitButton_clicked();
 
-    void on_deleteButton_clicked();
+    void on_okButton_clicked();
 
 private:
     Ui::SearchElementWindow *ui;
 
-    ElementIDErrorWindow deleteErrorWindow;
+    ElementIDErrorWindow elementIDErrorWindow;
 };
 
 #endif // SEARCHELEMENTWINDOW_H

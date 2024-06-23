@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Database/Database.cpp \
+    DeleteElementWindow.cpp \
     EditElementFieldsWindow.cpp \
     ElementIDErrorWindow.cpp \
     SearchElementWindow.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     Database/Database.h \
+    DeleteElementWindow.h \
     EditElementFieldsWindow.h \
     ElementIDErrorWindow.h \
     SearchElementWindow.h \
@@ -54,6 +56,7 @@ HEADERS += \
     Menu.h
 
 FORMS += \
+    DeleteElementWindow.ui \
     EditElementFieldsWindow.ui \
     ElementIDErrorWindow.ui \
     SearchElementWindow.ui \

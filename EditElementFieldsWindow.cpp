@@ -21,6 +21,6 @@ void EditElementFieldsWindow::on_okButton_clicked()
 
 void EditElementFieldsWindow::on_cancelButton_clicked()
 {
-
+    this->close();
 }
 

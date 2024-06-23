@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include <TransportMap/transportmap.h>
-#include <map>
 #include <Transport/TransportBase/TransportBase.h>
 #include <Database/Database.h>
 
@@ -13,13 +12,12 @@ public:
 	Menu();
 	~Menu();
 
-	int mainMenu();
-	void addNewElement(uint32_t ID);
-    void deleteElement(const uint32_t ID);
-	void showDatabase();
+    void addNewElement(uint32_t& ID);
+    void deleteDatabaseElement(const uint32_t& ID);
+    void showDatabaseElement(const uint32_t& ID);
 	void findElement();
+    TransportMap& loadDatabase();
     void saveDatabase(TransportMap& transportMap);
-    TransportMap& loadDataBase();
 
 protected:
 
@@ -28,7 +26,6 @@ protected:
 private:
     static uint32_t uniqueID;
     TransportMap& transportDatabase;
-    Database database;
 };
 
 #endif //MENU_H

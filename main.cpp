@@ -1,17 +1,17 @@
 #include <mainwindow.h>
 #include <Menu/Menu.h>
-#include <fstream>
 #include <QApplication>
+#include <fstream>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    Menu menu;
+    menu.loadDatabase();
+
     MainWindow w;
     w.show();
-
-    Menu menu;
-    menu.mainMenu();
 
     return a.exec();
 }

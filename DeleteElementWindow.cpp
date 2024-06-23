@@ -1,25 +1,19 @@
-#include "SearchElementWindow.h"
-#include "ui_SearchElementWindow.h"
+#include "DeleteElementWindow.h"
+#include "ui_DeleteElementWindow.h"
 
-SearchElementWindow::SearchElementWindow(QWidget *parent)
+DeleteElementWindow::DeleteElementWindow(QWidget *parent)
     : QDialog(parent)
-    , ui(new Ui::SearchElementWindow)
+    , ui(new Ui::DeleteElementWindow)
 {
     ui->setupUi(this);
 }
 
-SearchElementWindow::~SearchElementWindow()
+DeleteElementWindow::~DeleteElementWindow()
 {
     delete ui;
 }
 
-void SearchElementWindow::on_exitButton_clicked()
-{
-    this->close();
-}
-
-
-void SearchElementWindow::on_okButton_clicked()
+void DeleteElementWindow::on_deleteButton_clicked()
 {
     if(ui->plainTextEdit != NULL)
     {
@@ -33,10 +27,17 @@ void SearchElementWindow::on_okButton_clicked()
             elementIDErrorWindow.show();
         }
         Menu menu;
-        menu.showDatabaseElement(index);
+        menu.deleteDatabaseElement(index);
     }
     else
     {
         elementIDErrorWindow.show();
     }
 }
+
+
+void DeleteElementWindow::on_exitButton_clicked()
+{
+
+}
+
