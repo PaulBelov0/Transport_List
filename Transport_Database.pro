@@ -10,6 +10,9 @@ CONFIG += c++17
 
 SOURCES += \
     Database/Database.cpp \
+    EditElementFieldsWindow.cpp \
+    ElementIDErrorWindow.cpp \
+    SearchElementWindow.cpp \
     TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -29,7 +32,9 @@ SOURCES += \
 
 HEADERS += \
     Database/Database.h \
-    mainwindow.h \
+    EditElementFieldsWindow.h \
+    ElementIDErrorWindow.h \
+    SearchElementWindow.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
@@ -39,6 +44,7 @@ HEADERS += \
     Transport/TransportBase/TransportBase.h \
     Transport/transport.h \
     TransportMap/transportmap.h \
+    mainwindow.h \
     transport.h
     TransportBase.h
     Boat.h
@@ -48,6 +54,9 @@ HEADERS += \
     Menu.h
 
 FORMS += \
+    EditElementFieldsWindow.ui \
+    ElementIDErrorWindow.ui \
+    SearchElementWindow.ui \
     mainwindow.ui
 
 # Default rules for deployment.

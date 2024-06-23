@@ -4,12 +4,12 @@ Database::Database() {}
 
 Database::~Database() {}
 
-void Database::download()
+TransportMap& Database::download()
 {
 
 }
 
-void Database::upload()
+void Database::upload(TransportMap& database)
 {
 
 }

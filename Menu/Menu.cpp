@@ -32,14 +32,15 @@ void Menu::findElement()
 
 }
 
-void Menu::saveDatabase()
+void Menu::saveDatabase(TransportMap& transportMap)
 {
-
+    database.upload(transportMap);
 }
 
-TransportMap Menu::loadDataBase()
+TransportMap& Menu::loadDataBase()
 {
-
+    TransportMap& transportMap = database.download();
+    return transportMap;
 }
 
 void Menu::createElement(uint32_t ID, char* type)

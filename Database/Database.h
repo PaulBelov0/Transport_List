@@ -1,14 +1,16 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include <TransportMap/transportmap.h>
+
 class Database
 {
 public:
     Database();
     ~Database();
 
-    void download();
-    void upload();
+    TransportMap& download();
+    void upload(TransportMap& database);
 };
 
 #endif // DATABASE_H
