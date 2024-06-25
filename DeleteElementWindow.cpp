@@ -38,6 +38,6 @@ void DeleteElementWindow::on_deleteButton_clicked()
 
 void DeleteElementWindow::on_exitButton_clicked()
 {
-
+    this->close();
 }
 

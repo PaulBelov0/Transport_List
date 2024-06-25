@@ -2,15 +2,9 @@
 
 //QT_Version
 
-Menu::Menu()
-{
+Menu::Menu() : transportDatabase(loadDatabase()) {}
 
-}
-
-Menu::~Menu()
-{
-
-}
+Menu::~Menu() {}
 
 void Menu::addNewElement(uint32_t& ID)
 {
@@ -19,7 +13,7 @@ void Menu::addNewElement(uint32_t& ID)
 
 void Menu::deleteDatabaseElement(const uint32_t& ID)
 {
-    transportDatabase.
+    transportDatabase.deleteElement(ID);
 }
 
 void Menu::showDatabaseElement(const uint32_t& ID)

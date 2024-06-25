@@ -15,7 +15,9 @@ public:
     ~TransportMap();
 
     QString* showDatabaseElement(const uint32_t& index);
-    void addNewElement(uint32_t index, TransportBase& data);
+    void addNewElement(uint32_t& index, TransportBase& data);
+    void deleteElement(const uint32_t& index);
+
 private:
     std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
 };

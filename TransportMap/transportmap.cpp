@@ -11,7 +11,12 @@ QString* TransportMap::showDatabaseElement(const uint32_t& index)
     return outputString;
 }
 
-void TransportMap::addNewElement(uint32_t index, TransportBase& data)
+void TransportMap::addNewElement(uint32_t& index, TransportBase& data)
 {
     transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
+}
+
+void deleteElement(const uint32_t& index)
+{
+
 }

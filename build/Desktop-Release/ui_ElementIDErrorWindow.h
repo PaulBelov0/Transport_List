@@ -46,7 +46,7 @@ public:
     void retranslateUi(QDialog *ElementIDErrorWindow)
     {
         ElementIDErrorWindow->setWindowTitle(QCoreApplication::translate("ElementIDErrorWindow", "Dialog", nullptr));
-        label->setText(QCoreApplication::translate("ElementIDErrorWindow", "Error! Wrong ID number!", nullptr));
+        label->setText(QCoreApplication::translate("ElementIDErrorWindow", "Error! Wrong input data!", nullptr));
         closeButton->setText(QCoreApplication::translate("ElementIDErrorWindow", "Close", nullptr));
     } // retranslateUi
 

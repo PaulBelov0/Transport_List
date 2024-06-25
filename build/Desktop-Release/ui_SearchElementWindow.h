@@ -23,7 +23,7 @@ class Ui_SearchElementWindow
 public:
     QPlainTextEdit *plainTextEdit;
     QLabel *label;
-    QPushButton *deleteButton;
+    QPushButton *okButton;
     QPushButton *exitButton;
 
     void setupUi(QDialog *SearchElementWindow)
@@ -33,13 +33,17 @@ public:
         SearchElementWindow->resize(480, 320);
         plainTextEdit = new QPlainTextEdit(SearchElementWindow);
         plainTextEdit->setObjectName("plainTextEdit");
-        plainTextEdit->setGeometry(QRect(10, 70, 191, 41));
+        plainTextEdit->setGeometry(QRect(10, 70, 231, 41));
+        QFont font;
+        font.setPointSize(12);
+        plainTextEdit->setFont(font);
         label = new QLabel(SearchElementWindow);
         label->setObjectName("label");
         label->setGeometry(QRect(20, 20, 181, 31));
-        deleteButton = new QPushButton(SearchElementWindow);
-        deleteButton->setObjectName("deleteButton");
-        deleteButton->setGeometry(QRect(180, 240, 121, 29));
+        label->setFont(font);
+        okButton = new QPushButton(SearchElementWindow);
+        okButton->setObjectName("okButton");
+        okButton->setGeometry(QRect(180, 240, 121, 29));
         exitButton = new QPushButton(SearchElementWindow);
         exitButton->setObjectName("exitButton");
         exitButton->setGeometry(QRect(340, 240, 121, 29));
@@ -53,7 +57,7 @@ public:
     {
         SearchElementWindow->setWindowTitle(QCoreApplication::translate("SearchElementWindow", "Dialog", nullptr));
         label->setText(QCoreApplication::translate("SearchElementWindow", "Enter the element ID:", nullptr));
-        deleteButton->setText(QCoreApplication::translate("SearchElementWindow", "Ok", nullptr));
+        okButton->setText(QCoreApplication::translate("SearchElementWindow", "Ok", nullptr));
         exitButton->setText(QCoreApplication::translate("SearchElementWindow", "Exit", nullptr));
     } // retranslateUi
 
