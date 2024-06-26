@@ -56,6 +56,7 @@ void MainWindow::on_saveDataBaseButton_clicked()
 
 void MainWindow::on_exitButton_clicked()
 {
+    on_saveDataBaseButton_clicked();
     this->close();
 }
 

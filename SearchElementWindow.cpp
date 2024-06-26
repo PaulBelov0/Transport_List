@@ -43,7 +43,7 @@ void SearchElementWindow::on_okButton_clicked()
 
 QString& SearchElementWindow::getElement()
 {
-    QString* text;
+    std::unique_ptr<QString> text;
     for (int i = 0; i< 7; i++){
         *text += outputText[i];
         *text += "\n";

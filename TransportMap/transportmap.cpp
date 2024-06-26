@@ -12,6 +12,11 @@ QString* TransportMap::showDatabaseElement(const uint32_t& index)
     {
         outputString = transportDB->find(index)->second.print();
     }
+    else
+    {
+        ElementIDErrorWindow error;
+        error.show();
+    }
     return outputString;
 }
 
@@ -20,6 +25,11 @@ void TransportMap::addNewElement(uint32_t index, TransportBase& data)
     if (transportDB->count(index) == false)
     {
         transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
+    }
+    else
+    {
+        ElementIDErrorWindow error;
+        error.show();
     }
 }
 
