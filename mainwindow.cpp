@@ -22,7 +22,7 @@ void MainWindow::on_addNewElementButton_clicked()
 
 void MainWindow::on_editElementButton_clicked()
 {
-    editElementFieldsWindow.show();
+    searchElementWindow.show();
 }
 
 

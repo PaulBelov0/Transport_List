@@ -2,7 +2,7 @@
 #define EDITELEMENTFIELDSWINDOW_H
 
 #include <QDialog>
-#include <ElementIDErrorWindow.h>
+#include <MessageToUserWindow.h>
 
 namespace Ui {
 class EditElementFieldsWindow;
@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::EditElementFieldsWindow *ui;
 
-    ElementIDErrorWindow elementIDErrorWindow;
+    MessageToUserWindow messageToUserWindow;
 };
 
 #endif // EDITELEMENTFIELDSWINDOW_H

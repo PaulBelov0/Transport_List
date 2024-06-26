@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ElementIDErrorWindow</class>
- <widget class="QDialog" name="ElementIDErrorWindow">
+ <class>MessageToUserWindow</class>
+ <widget class="QDialog" name="MessageToUserWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,35 +13,30 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="textMessage">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>70</y>
-     <width>231</width>
-     <height>71</height>
+     <x>40</x>
+     <y>79</y>
+     <width>221</width>
+     <height>51</height>
     </rect>
    </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
    <property name="text">
-    <string>Error! Wrong input data!</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QPushButton" name="closeButton">
+  <widget class="QPushButton" name="okButton">
    <property name="geometry">
     <rect>
      <x>120</x>
-     <y>190</y>
+     <y>180</y>
      <width>83</width>
      <height>29</height>
     </rect>
    </property>
    <property name="text">
-    <string>Close</string>
+    <string>OK</string>
    </property>
   </widget>
  </widget>

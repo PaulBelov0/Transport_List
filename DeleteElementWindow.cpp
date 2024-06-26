@@ -24,15 +24,16 @@ void DeleteElementWindow::on_deleteButton_clicked()
             index = std::stoi(text);
         }
         catch(QException& e){
-            elementIDErrorWindow.show();
+            messageToUserWindow.show();
+            messageToUserWindow.setTextMessage("element successful deleted!");
         }
         Menu menu;
         menu.deleteDatabaseElement(index);
-        successDeleting.show();
     }
     else
     {
-        elementIDErrorWindow.show();
+        messageToUserWindow.show();
+        messageToUserWindow.setTextMessage("Error! Wrong input data!");
     }
 }
 

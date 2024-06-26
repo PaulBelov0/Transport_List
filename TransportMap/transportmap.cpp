@@ -14,8 +14,8 @@ QString* TransportMap::showDatabaseElement(const uint32_t& index)
     }
     else
     {
-        ElementIDErrorWindow error;
-        error.show();
+        //
+        //error.show();
     }
     return outputString;
 }
@@ -28,8 +28,8 @@ void TransportMap::addNewElement(uint32_t index, TransportBase& data)
     }
     else
     {
-        ElementIDErrorWindow error;
-        error.show();
+        //
+        //error.show();
     }
 }
 

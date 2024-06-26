@@ -12,9 +12,8 @@ SOURCES += \
     Database/Database.cpp \
     DeleteElementWindow.cpp \
     EditElementFieldsWindow.cpp \
-    ElementIDErrorWindow.cpp \
+    MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
-    SuccessDeleting.cpp \
     TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -35,9 +34,8 @@ HEADERS += \
     Database/Database.h \
     DeleteElementWindow.h \
     EditElementFieldsWindow.h \
-    ElementIDErrorWindow.h \
+    MessageToUserWindow.h \
     SearchElementWindow.h \
-    SuccessDeleting.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
@@ -59,9 +57,8 @@ HEADERS += \
 FORMS += \
     DeleteElementWindow.ui \
     EditElementFieldsWindow.ui \
-    ElementIDErrorWindow.ui \
+    MessageToUserWindow.ui \
     SearchElementWindow.ui \
-    SuccessDeleting.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -98,7 +98,7 @@
   <widget class="QLabel" name="labelID">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>70</x>
      <y>90</y>
      <width>31</width>
      <height>31</height>
@@ -112,11 +112,14 @@
    <property name="text">
     <string>ID:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelBrand">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>30</x>
      <y>130</y>
      <width>71</width>
      <height>31</height>
@@ -130,11 +133,14 @@
    <property name="text">
     <string> Brand:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelModel">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>30</x>
      <y>170</y>
      <width>71</width>
      <height>31</height>
@@ -148,11 +154,14 @@
    <property name="text">
     <string>Model:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelYear">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>50</x>
      <y>210</y>
      <width>51</width>
      <height>31</height>
@@ -166,11 +175,14 @@
    <property name="text">
     <string>Year:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelWeight">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>30</x>
      <y>250</y>
      <width>71</width>
      <height>31</height>
@@ -184,11 +196,14 @@
    <property name="text">
     <string>Weight:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelSpecialFieldFirst">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>290</y>
      <width>91</width>
      <height>31</height>
@@ -202,11 +217,14 @@
    <property name="text">
     <string>Special 1:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QLabel" name="labelSpecialFieldSecond">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>10</x>
      <y>330</y>
      <width>91</width>
      <height>31</height>
@@ -220,6 +238,9 @@
    <property name="text">
     <string>Special 2:</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QPushButton" name="okButton">
    <property name="geometry">
@@ -231,7 +252,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Ok</string>
+    <string>OK</string>
    </property>
   </widget>
   <widget class="QPushButton" name="cancelButton">
@@ -299,6 +320,9 @@
      <width>131</width>
      <height>121</height>
     </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
    </property>
    <property name="text">
     <string>Special fields for Air transport: 

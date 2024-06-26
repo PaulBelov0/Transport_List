@@ -2,7 +2,7 @@
 #define SEARCHELEMENTWINDOW_H
 
 #include <QDialog>
-#include <ElementIDErrorWindow.h>
+#include <MessageToUserWindow.h>
 #include <Menu/Menu.h>
 #include <QException>
 
@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::SearchElementWindow *ui;
 
-    ElementIDErrorWindow elementIDErrorWindow;
+    MessageToUserWindow messageToUserWindow;
     QString outputText;
 };
 

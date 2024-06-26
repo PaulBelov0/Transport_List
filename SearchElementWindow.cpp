@@ -30,14 +30,16 @@ void SearchElementWindow::on_okButton_clicked()
             index = std::stoi(text);
         }
         catch(QException& e){
-            elementIDErrorWindow.show();
+            messageToUserWindow.show();
+            messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
         Menu menu;
         outputText = *menu.showDatabaseElement(index);
     }
     else
     {
-        elementIDErrorWindow.show();
+        messageToUserWindow.show();
+        messageToUserWindow.setTextMessage("Error! Wrong input data!");
     }
 }
 

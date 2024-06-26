@@ -3,8 +3,7 @@
 
 #include <QDialog>
 #include <QException>
-#include <ElementIDErrorWindow.h>
-#include <SuccessDeleting.h>
+#include <MessageToUserWindow.h>
 #include <Menu/Menu.h>
 
 namespace Ui {
@@ -27,8 +26,7 @@ private slots:
 private:
     Ui::DeleteElementWindow *ui;
 
-    ElementIDErrorWindow elementIDErrorWindow;
-    SuccessDeleting successDeleting;
+    MessageToUserWindow messageToUserWindow;
 };
 
 #endif // DELETEELEMENTWINDOW_H
