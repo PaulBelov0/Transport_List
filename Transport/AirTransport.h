@@ -14,7 +14,6 @@ public:
     void editWingspan(int wingspan);
     void editPayloadCapacity(int payloadCapacity);
     QString* print() override;
-    std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	int wingspan;

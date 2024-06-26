@@ -1,5 +1,4 @@
-#include "Shuttle.h"
-#include <ostream>
+#include <Transport/Shuttle.h>
 
 //Realization Space shuttle class:
 
@@ -40,25 +39,3 @@ QString* Shuttle::print()
     return output;
 }
 
-std::string Shuttle::finderOnValueType(char typeOfValue)
-{
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = fuelType;
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(maxFlyingDistance);
-			return returningValue;
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
-}

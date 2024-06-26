@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include <mainwindow.h>
+#include <ui_mainwindow.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -7,7 +7,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    qDebug() << QSqlDatabase::drivers(); // List of availible drivers
 }
 
 MainWindow::~MainWindow()
@@ -36,6 +35,10 @@ void MainWindow::on_deleteElementButton_clicked()
 void MainWindow::on_showElementButton_clicked()
 {
     searchElementWindow.show();
+
+    QString& output = searchElementWindow.getElement();
+
+    ui->textBrowser->setText(output);
 }
 
 

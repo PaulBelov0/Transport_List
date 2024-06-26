@@ -1,5 +1,5 @@
-#include "SearchElementWindow.h"
-#include "ui_SearchElementWindow.h"
+#include <SearchElementWindow.h>
+#include <ui_SearchElementWindow.h>
 
 SearchElementWindow::SearchElementWindow(QWidget *parent)
     : QDialog(parent)
@@ -33,10 +33,21 @@ void SearchElementWindow::on_okButton_clicked()
             elementIDErrorWindow.show();
         }
         Menu menu;
-        menu.showDatabaseElement(index);
+        outputText = *menu.showDatabaseElement(index);
     }
     else
     {
         elementIDErrorWindow.show();
     }
+}
+
+QString& SearchElementWindow::getElement()
+{
+    QString* text;
+    for (int i = 0; i< 7; i++){
+        *text += outputText[i];
+        *text += "\n";
+    }
+    QString& output = *text;
+    return output;
 }

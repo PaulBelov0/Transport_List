@@ -18,6 +18,8 @@ public:
     explicit SearchElementWindow(QWidget *parent = nullptr);
     ~SearchElementWindow();
 
+    QString& getElement();
+
 private slots:
     void on_exitButton_clicked();
 
@@ -27,6 +29,7 @@ private:
     Ui::SearchElementWindow *ui;
 
     ElementIDErrorWindow elementIDErrorWindow;
+    QString outputText;
 };
 
 #endif // SEARCHELEMENTWINDOW_H

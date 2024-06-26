@@ -1,5 +1,4 @@
-#include "Car.h"
-
+#include <Transport/Car.h>
 //Realizatuion car type class:
 
 Car::Car(uint32_t ID)
@@ -39,24 +38,3 @@ QString* Car::print()
     return output;
 }
 
-std::string Car::finderOnValueType(char typeOfValue)
-{
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = std::to_string(mileage);
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(ownersQuantity);
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
-}

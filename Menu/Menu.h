@@ -14,7 +14,7 @@ public:
 
     void addNewElement(uint32_t& ID);
     void deleteDatabaseElement(const uint32_t& ID);
-    void showDatabaseElement(const uint32_t& ID);
+    QString* showDatabaseElement(const uint32_t& ID);
 	void findElement();
     TransportMap& loadDatabase();
     void saveDatabase(TransportMap& transportMap);

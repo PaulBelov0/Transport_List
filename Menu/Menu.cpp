@@ -16,9 +16,10 @@ void Menu::deleteDatabaseElement(const uint32_t& ID)
     transportDatabase.deleteElement(ID);
 }
 
-void Menu::showDatabaseElement(const uint32_t& ID)
+QString* Menu::showDatabaseElement(const uint32_t& ID)
 {
-
+    QString* result;
+    result = transportDatabase.showDatabaseElement(ID);
 }
 
 void Menu::findElement()

@@ -7,16 +7,26 @@ TransportMap::~TransportMap() {}
 
 QString* TransportMap::showDatabaseElement(const uint32_t& index)
 {
-    QString* outputString = transportDB->find(index)->second.print();
+    QString* outputString;
+    if (transportDB->count(index) == true)
+    {
+        outputString = transportDB->find(index)->second.print();
+    }
     return outputString;
 }
 
-void TransportMap::addNewElement(uint32_t& index, TransportBase& data)
+void TransportMap::addNewElement(uint32_t index, TransportBase& data)
 {
-    transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
+    if (transportDB->count(index) == false)
+    {
+        transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
+    }
 }
 
-void deleteElement(const uint32_t& index)
+void TransportMap::deleteElement(const uint32_t& index)
 {
-
+    if (transportDB->count(index) == true)
+    {
+        transportDB->erase(index);
+    }
 }

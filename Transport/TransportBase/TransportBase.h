@@ -17,7 +17,6 @@ public:
 	void editYear(int year);
 	void editWeight(int weight);
 
-    std::string virtual finderOnValueType(char typeOfValue);
     virtual QString* print();
 
 protected:

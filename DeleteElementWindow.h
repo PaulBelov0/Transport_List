@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QException>
 #include <ElementIDErrorWindow.h>
+#include <SuccessDeleting.h>
 #include <Menu/Menu.h>
 
 namespace Ui {
@@ -27,6 +28,7 @@ private:
     Ui::DeleteElementWindow *ui;
 
     ElementIDErrorWindow elementIDErrorWindow;
+    SuccessDeleting successDeleting;
 };
 
 #endif // DELETEELEMENTWINDOW_H

@@ -26,10 +26,8 @@ QString* AirTransport::print()
 
     TransportBase::print();
 
-    outputString[5] = "Wingspan: ";
-    outputString[5] += wingspan;
-    outputString[6] = "Payload capacity: ";
-    outputString[6] += payloadCapacity;
+    outputString[5] = wingspan;
+    outputString[6] = payloadCapacity;
 
     for (int i = 5; i < 7; i++)
     {
@@ -39,24 +37,3 @@ QString* AirTransport::print()
     return output;
 }
 
-std::string AirTransport::finderOnValueType(char typeOfValue)
-{
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = std::to_string(wingspan);
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(payloadCapacity);
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
-}

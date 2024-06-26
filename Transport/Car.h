@@ -14,7 +14,6 @@ public:
     void editOwnersQuantity(int ownersQuantity);
     void editMileage(int mileage);
     QString* print() override;
-    std::string finderOnValueType(char typeOfValue) override;
 
 private:
 

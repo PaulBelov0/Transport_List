@@ -14,6 +14,7 @@ SOURCES += \
     EditElementFieldsWindow.cpp \
     ElementIDErrorWindow.cpp \
     SearchElementWindow.cpp \
+    SuccessDeleting.cpp \
     TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -21,7 +22,6 @@ SOURCES += \
     Transport/Car.cpp \
     Transport/Shuttle.cpp \
     Transport/TransportBase/TransportBase.cpp \
-    TransportMap/transportmap.cpp \
     main.cpp \
     mainwindow.cpp
     Menu.cpp
@@ -37,6 +37,7 @@ HEADERS += \
     EditElementFieldsWindow.h \
     ElementIDErrorWindow.h \
     SearchElementWindow.h \
+    SuccessDeleting.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
@@ -60,6 +61,7 @@ FORMS += \
     EditElementFieldsWindow.ui \
     ElementIDErrorWindow.ui \
     SearchElementWindow.ui \
+    SuccessDeleting.ui \
     mainwindow.ui
 
 # Default rules for deployment.

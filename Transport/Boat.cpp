@@ -1,4 +1,4 @@
-#include "Boat.h"
+#include <Transport/Boat.h>
 //Realization boat class:
 
 Boat::Boat(uint32_t ID)
@@ -38,25 +38,3 @@ QString* Boat::print()
     return output;
 }
 
-std::string Boat::finderOnValueType(char typeOfValue)
-{
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = std::to_string(displacement);
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(screwDepth);
-			return returningValue;
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
-}

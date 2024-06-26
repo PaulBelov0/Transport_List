@@ -14,8 +14,6 @@ public:
     void editFuelType(std::string fuelType);
     void editMaxFlyingDistance(int maxFlyingDistance);
     QString* print() override;
-    std::string finderOnValueType(char typeOfValue) override;
-
 private:
 	std::string fuelType;
 	int maxFlyingDistance;

@@ -28,6 +28,7 @@ void DeleteElementWindow::on_deleteButton_clicked()
         }
         Menu menu;
         menu.deleteDatabaseElement(index);
+        successDeleting.show();
     }
     else
     {

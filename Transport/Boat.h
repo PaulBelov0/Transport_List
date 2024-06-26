@@ -14,7 +14,6 @@ public:
     void editDisplacement(int displacement);
     void editScrewDepth(int screwDepth);
     QString* print() override;
-    std::string finderOnValueType(char typeOfValue) override;
 
 private:
 	int displacement;
