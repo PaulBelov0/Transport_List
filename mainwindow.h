@@ -5,6 +5,8 @@
 #include <SearchElementWindow.h>
 #include <EditElementFieldsWindow.h>
 #include <DeleteElementWindow.h>
+#include <QtSql/QSqlDatabase>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;

@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    qDebug() << QSqlDatabase::drivers(); // List of availible drivers
 }
 
 MainWindow::~MainWindow()
