@@ -12,11 +12,12 @@
 #include <QtCore/QLocale>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,14 +26,13 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QTextBrowser *textBrowser;
     QPushButton *addNewElementButton;
     QPushButton *editElementButton;
     QPushButton *deleteElementButton;
-    QPushButton *showElementButton;
     QPushButton *loadDatabaseButton;
     QPushButton *saveDataBaseButton;
     QPushButton *exitButton;
+    QTableView *tableView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -40,38 +40,35 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(800, 600);
+        MainWindow->resize(1081, 600);
         MainWindow->setLocale(QLocale(QLocale::English, QLocale::UnitedKingdom));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        textBrowser = new QTextBrowser(centralwidget);
-        textBrowser->setObjectName("textBrowser");
-        textBrowser->setGeometry(QRect(40, 50, 321, 441));
         addNewElementButton = new QPushButton(centralwidget);
         addNewElementButton->setObjectName("addNewElementButton");
-        addNewElementButton->setGeometry(QRect(560, 60, 141, 29));
+        addNewElementButton->setGeometry(QRect(900, 90, 141, 29));
         editElementButton = new QPushButton(centralwidget);
         editElementButton->setObjectName("editElementButton");
-        editElementButton->setGeometry(QRect(560, 100, 141, 29));
+        editElementButton->setGeometry(QRect(900, 130, 141, 29));
         deleteElementButton = new QPushButton(centralwidget);
         deleteElementButton->setObjectName("deleteElementButton");
-        deleteElementButton->setGeometry(QRect(560, 140, 141, 29));
-        showElementButton = new QPushButton(centralwidget);
-        showElementButton->setObjectName("showElementButton");
-        showElementButton->setGeometry(QRect(560, 180, 141, 29));
+        deleteElementButton->setGeometry(QRect(900, 170, 141, 29));
         loadDatabaseButton = new QPushButton(centralwidget);
         loadDatabaseButton->setObjectName("loadDatabaseButton");
-        loadDatabaseButton->setGeometry(QRect(560, 270, 141, 29));
+        loadDatabaseButton->setGeometry(QRect(900, 270, 141, 29));
         saveDataBaseButton = new QPushButton(centralwidget);
         saveDataBaseButton->setObjectName("saveDataBaseButton");
-        saveDataBaseButton->setGeometry(QRect(560, 310, 141, 29));
+        saveDataBaseButton->setGeometry(QRect(900, 310, 141, 29));
         exitButton = new QPushButton(centralwidget);
         exitButton->setObjectName("exitButton");
-        exitButton->setGeometry(QRect(630, 490, 141, 29));
+        exitButton->setGeometry(QRect(910, 490, 141, 29));
+        tableView = new QTableView(centralwidget);
+        tableView->setObjectName("tableView");
+        tableView->setGeometry(QRect(30, 30, 851, 501));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 1081, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -84,11 +81,10 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Transport Database", nullptr));
         addNewElementButton->setText(QCoreApplication::translate("MainWindow", "Add new element", nullptr));
         editElementButton->setText(QCoreApplication::translate("MainWindow", "Edit element", nullptr));
         deleteElementButton->setText(QCoreApplication::translate("MainWindow", "Delete element", nullptr));
-        showElementButton->setText(QCoreApplication::translate("MainWindow", "Show element", nullptr));
         loadDatabaseButton->setText(QCoreApplication::translate("MainWindow", "Load database", nullptr));
         saveDataBaseButton->setText(QCoreApplication::translate("MainWindow", "Save database", nullptr));
         exitButton->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));

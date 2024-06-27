@@ -15,17 +15,15 @@ public:
     void addNewElement(uint32_t& ID);
     void deleteDatabaseElement(const uint32_t& ID);
     QString* showDatabaseElement(const uint32_t& ID);
-	void findElement();
+    void findElement();
+    void saveDatabase();
     TransportMap& loadDatabase();
-    void saveDatabase(TransportMap& transportMap);
-
-protected:
-
-    void createElement(uint32_t ID, char* type);
+    QSqlDatabase* getDatabaseFromSource();
 
 private:
     static uint32_t uniqueID;
     TransportMap& transportDatabase;
+    Database database;
 };
 
 #endif //MENU_H

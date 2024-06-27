@@ -55,7 +55,7 @@ public:
 
     void retranslateUi(QDialog *DeleteElementWindow)
     {
-        DeleteElementWindow->setWindowTitle(QCoreApplication::translate("DeleteElementWindow", "Dialog", nullptr));
+        DeleteElementWindow->setWindowTitle(QCoreApplication::translate("DeleteElementWindow", "Delete element", nullptr));
         deleteButton->setText(QCoreApplication::translate("DeleteElementWindow", "Delete", nullptr));
         exitButton->setText(QCoreApplication::translate("DeleteElementWindow", "Exit", nullptr));
         label->setText(QCoreApplication::translate("DeleteElementWindow", "Enter the ID of deleting element:", nullptr));

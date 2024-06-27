@@ -42,7 +42,7 @@ public:
 
     void retranslateUi(QDialog *MessageToUserWindow)
     {
-        MessageToUserWindow->setWindowTitle(QCoreApplication::translate("MessageToUserWindow", "Dialog", nullptr));
+        MessageToUserWindow->setWindowTitle(QCoreApplication::translate("MessageToUserWindow", "Message", nullptr));
         textMessage->setText(QString());
         okButton->setText(QCoreApplication::translate("MessageToUserWindow", "OK", nullptr));
     } // retranslateUi

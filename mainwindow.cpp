@@ -7,12 +7,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    model = new QSqlTableModel(this, *menu.getDatabaseFromSource());
+    model->setTable("TransportDatabase");
+    model->select();
+
+    ui->tableView->setModel(model);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { delete model;  delete ui; }
+
 
 void MainWindow::on_addNewElementButton_clicked()
 {
@@ -32,19 +35,9 @@ void MainWindow::on_deleteElementButton_clicked()
 }
 
 
-void MainWindow::on_showElementButton_clicked()
-{
-    searchElementWindow.show();
-
-    QString& output = searchElementWindow.getElement();
-
-    ui->textBrowser->setText(output);
-}
-
-
 void MainWindow::on_loadDatabaseButton_clicked()
 {
-
+    menu.loadDatabase();
 }
 
 

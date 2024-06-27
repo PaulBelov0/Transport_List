@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <MessageToUserWindow.h>
-#include <Menu/Menu.h>
 #include <QException>
+#include <Menu/Menu.h>
 
 namespace Ui {
 class SearchElementWindow;

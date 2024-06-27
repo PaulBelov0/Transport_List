@@ -27,11 +27,11 @@ void Menu::findElement()
 
 }
 
-void Menu::saveDatabase(TransportMap& transportMap)
+void Menu::saveDatabase()
 {
-    Database database;
-    database.upload(transportMap);
+    database.upload();
 }
+
 
 TransportMap& Menu::loadDatabase()
 {
@@ -39,7 +39,8 @@ TransportMap& Menu::loadDatabase()
     return database.download();
 }
 
-void Menu::createElement(uint32_t ID, char* type)
+QSqlDatabase* Menu::getDatabaseFromSource()
 {
-
+    return database.getDatabase();
 }
+

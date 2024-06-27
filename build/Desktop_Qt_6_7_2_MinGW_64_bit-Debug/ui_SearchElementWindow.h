@@ -55,7 +55,7 @@ public:
 
     void retranslateUi(QDialog *SearchElementWindow)
     {
-        SearchElementWindow->setWindowTitle(QCoreApplication::translate("SearchElementWindow", "Dialog", nullptr));
+        SearchElementWindow->setWindowTitle(QCoreApplication::translate("SearchElementWindow", "Find element", nullptr));
         label->setText(QCoreApplication::translate("SearchElementWindow", "Enter the element ID:", nullptr));
         okButton->setText(QCoreApplication::translate("SearchElementWindow", "Ok", nullptr));
         exitButton->setText(QCoreApplication::translate("SearchElementWindow", "Exit", nullptr));

@@ -14,8 +14,7 @@ QString* TransportMap::showDatabaseElement(const uint32_t& index)
     }
     else
     {
-        //
-        //error.show();
+        messageToUserWindow.show();
     }
     return outputString;
 }
@@ -28,8 +27,7 @@ void TransportMap::addNewElement(uint32_t index, TransportBase& data)
     }
     else
     {
-        //
-        //error.show();
+        messageToUserWindow.show();
     }
 }
 
@@ -40,3 +38,10 @@ void TransportMap::deleteElement(const uint32_t& index)
         transportDB->erase(index);
     }
 }
+
+std::map<uint32_t, TransportBase&>& TransportMap::getMap()
+{
+    std::map<uint32_t, TransportBase&>& outputMap = *transportDB;
+    return outputMap;
+}
+

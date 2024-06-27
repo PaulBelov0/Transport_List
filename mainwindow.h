@@ -2,11 +2,15 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <SearchElementWindow.h>
+#include <Menu/Menu.h>
+#include <Database/Database.h>
 #include <EditElementFieldsWindow.h>
+#include <SearchElementWindow.h>
 #include <DeleteElementWindow.h>
+#include <QtSql/QtSql>
 #include <QtSql/QSqlDatabase>
-#include <QDebug>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlTableModel>
 
 namespace Ui {
 class MainWindow;
@@ -27,8 +31,6 @@ private slots:
 
     void on_deleteElementButton_clicked();
 
-    void on_showElementButton_clicked();
-
     void on_loadDatabaseButton_clicked();
 
     void on_saveDataBaseButton_clicked();
@@ -38,9 +40,13 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    Menu menu;
+
     EditElementFieldsWindow editElementFieldsWindow;
     SearchElementWindow searchElementWindow;
     DeleteElementWindow deleteElementWindow;
+
+    QSqlTableModel* model;
 };
 
 #endif // MAINWINDOW_H

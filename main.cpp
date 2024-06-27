@@ -1,7 +1,6 @@
 #include <mainwindow.h>
 #include <Menu/Menu.h>
 #include <QApplication>
-#include <fstream>
 
 int main(int argc, char *argv[])
 {
