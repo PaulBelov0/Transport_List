@@ -5,6 +5,7 @@
 #include <MessageToUserWindow.h>
 #include <Menu/Menu.h>
 #include <MessageToUserWindow.h>
+#include <TransportMap/transportmap.h>
 
 namespace Ui {
 class EditElementFieldsWindow;
@@ -18,6 +19,9 @@ public:
     explicit EditElementFieldsWindow(QWidget *parent = nullptr);
     ~EditElementFieldsWindow();
 
+    void setElementByID(const uint32_t& ID);
+    void setActionForRealizationThisWnd(std::string action);
+
 private slots:
     void on_okButton_clicked();
 
@@ -26,6 +30,8 @@ private slots:
 private:
     Ui::EditElementFieldsWindow *ui;
 
+    TransportMap transportMap;
+    std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
 };
 

@@ -34,7 +34,19 @@ void SearchElementWindow::on_okButton_clicked()
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
         Menu menu;
-        outputText = *menu.showDatabaseElement(index);
+        bool resultChecking = menu.checkElementAvilable(index);
+
+        if (resultChecking == true)
+        {
+            editElementFieldsWindow.show();
+            editElementFieldsWindow.setActionForRealizationThisWnd("edit");
+            editElementFieldsWindow.setElementByID(index);
+        }
+        else
+        {
+            messageToUserWindow.show();
+            messageToUserWindow.setTextMessage("Error! \nNo one element have this ID!");
+        }
     }
     else
     {

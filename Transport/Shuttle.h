@@ -8,15 +8,23 @@
 class Shuttle : public TransportBase
 {
 public:
-	Shuttle(uint32_t ID);
+    Shuttle(const int& ID, const QString& brand,
+            const QString& model, const int& year,
+            const int& weight,
+            const int& maxFlyingDistance,
+            const QString& fuelType
+            );
 	~Shuttle();
 
-    void editFuelType(std::string fuelType);
-    void editMaxFlyingDistance(int maxFlyingDistance);
-    QString* print() override;
+    void editSpecialFirst(const uint32_t& maxFlyingDistance) override;
+    void editSpecialSecond(const QString& fuelType) override;
+
+    uint32_t& getSpecialFirst() override;
+    QString& getSpecialSecond() override;
+
 private:
-	std::string fuelType;
-	int maxFlyingDistance;
+    uint32_t maxFlyingDistance;
+    std::string fuelType;
 };
 
 #endif //SHUTTLE_H

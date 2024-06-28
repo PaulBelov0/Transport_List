@@ -5,42 +5,64 @@
 TransportBase::TransportBase() {}
 TransportBase::~TransportBase() {}
 
- void TransportBase::editBrand(std::string brand)
+ void TransportBase::editBrand(const std::string& brand)
 {
 	 this->brand = brand;
 }
 
 
- void TransportBase::editModel(std::string model)
+ void TransportBase::editModel(const std::string& model)
  {
 	 this->model = model;
  }
 
 
- void TransportBase::editYear(int year) 
+ void TransportBase::editYear(const int& year)
  {
 	 this->year = year;
  }
 
- void TransportBase::editWeight(int weight)
+ void TransportBase::editWeight(const int& weight)
  {
 	 this->weight = weight;
  }
 
- QString* TransportBase::print()
+ uint32_t& TransportBase::getID()
  {
-     QString* output = new QString[7];
-     outputString[0] = uniqueID;
-     outputString[1] = brand;
-     outputString[2] = model;
-     outputString[3] = year;
-     outputString[4] = weight;
-
-     for (int i = 0; i < 5; i++)
-     {
-         output[i] = QString::fromStdString(outputString[i]);
-     }
-
-     return output;
+     return uniqueID;
  }
 
+ QString& TransportBase::getType()
+ {
+     outputQstring = QString::fromStdString(type);
+     return outputQstring;
+ }
+
+ QString& TransportBase::getBrand()
+ {
+     outputQstring = QString::fromStdString(brand);
+     return outputQstring;
+ }
+
+ QString& TransportBase::getModel()
+ {
+     outputQstring = QString::fromStdString(model);
+     return outputQstring;
+ }
+
+ uint32_t& TransportBase::getYear()
+ {
+     return year;
+ }
+
+ uint32_t& TransportBase::getWeight()
+ {
+     return weight;
+ }
+
+
+ void TransportBase::editSpecialFirst(const uint32_t& value) {}
+ void TransportBase::editSpecialSecond(const QString& value) {}
+
+ uint32_t& TransportBase::getSpecialFirst() {}
+ QString& TransportBase::getSpecialSecond() {}

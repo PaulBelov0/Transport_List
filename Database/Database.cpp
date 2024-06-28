@@ -25,7 +25,7 @@ void Database::upload()
     TransportMap map;
     for(const auto& element : map.getMap())
     {
-
+        //SQLite REQUEST
     }
 }
 

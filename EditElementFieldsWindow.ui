@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>Element fields</string>
   </property>
-  <widget class="QPlainTextEdit" name="IDTextBox">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>90</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPlainTextEdit" name="brandTextBox">
    <property name="geometry">
     <rect>
@@ -31,6 +21,11 @@
      <width>141</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="modelTextBox">
@@ -41,6 +36,11 @@
      <width>141</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QSpinBox" name="yearSpinBox">
@@ -59,7 +59,7 @@
     <number>2024</number>
    </property>
   </widget>
-  <widget class="QSpinBox" name="weightTextBox">
+  <widget class="QSpinBox" name="weightSpinBox">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -75,14 +75,19 @@
     <number>2000000</number>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="firstSpecialFieldTextBox">
+  <widget class="QPlainTextEdit" name="secondSpecialFieldTextBox">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>330</y>
+     <y>370</y>
      <width>141</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="labelID">
@@ -304,7 +309,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>190</y>
+     <y>180</y>
      <width>131</width>
      <height>121</height>
     </rect>
@@ -328,7 +333,7 @@
    <property name="geometry">
     <rect>
      <x>440</x>
-     <y>190</y>
+     <y>180</y>
      <width>151</width>
      <height>121</height>
     </rect>
@@ -354,6 +359,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLabel" name="labelType">
    <property name="geometry">
@@ -376,14 +386,58 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QSpinBox" name="secondSpecialFieldIntBox">
+  <widget class="QSpinBox" name="firstSpecialFieldSpinBox">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>370</y>
+     <y>330</y>
      <width>141</width>
      <height>29</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="uinqueIDIntBox">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>90</y>
+     <width>141</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>310</y>
+     <width>311</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="text">
+    <string>Available types: 
+Car, Boat, Air, Shuttle.</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

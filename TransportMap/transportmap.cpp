@@ -5,18 +5,20 @@
 TransportMap::TransportMap() {}
 TransportMap::~TransportMap() {}
 
-QString* TransportMap::showDatabaseElement(const uint32_t& index)
+bool TransportMap::findDatabaseElement(const uint32_t& index)
 {
-    QString* outputString;
+    bool output;
     if (transportDB->count(index) == true)
     {
-        outputString = transportDB->find(index)->second.print();
+        output = true;
     }
     else
     {
+        output = false;
         messageToUserWindow.show();
+        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
     }
-    return outputString;
+    return output;
 }
 
 void TransportMap::addNewElement(uint32_t index, TransportBase& data)

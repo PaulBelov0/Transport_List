@@ -8,17 +8,23 @@
 class Car : public TransportBase
 {
 public:
-	Car(uint32_t ID);
+    Car(const int& ID, const QString& brand,
+        const QString& model, const int& year,
+        const int& weight, const int& mileage,
+        const int& owners
+        );
 	~Car();
 
-    void editOwnersQuantity(int ownersQuantity);
-    void editMileage(int mileage);
-    QString* print() override;
+    void editSpecialFirst(const uint32_t& mileage) override;
+    void editSpecialSecond(const QString& ownersQuantity) override;
+
+    uint32_t& getSpecialFirst() override;
+    QString& getSpecialSecond() override;
 
 private:
 
-	int ownersQuantity;
-	int mileage;
+    uint32_t mileage;
+    uint32_t ownersQuantity;
 };
 
 #endif //CAR_H

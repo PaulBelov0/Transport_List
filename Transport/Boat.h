@@ -8,16 +8,22 @@
 class Boat : public TransportBase
 {
 public:
-	Boat(uint32_t ID);
+    Boat(const int& ID, const QString& brand,
+         const QString& model, const int& year,
+         const int& weight, const int& displacement,
+         const int& screwDepth
+         );
 	~Boat();
 
-    void editDisplacement(int displacement);
-    void editScrewDepth(int screwDepth);
-    QString* print() override;
+    void editSpecialFirst(const uint32_t& displacement) override;
+    void editSpecialSecond(const QString& screwDepth) override;
+
+    uint32_t& getSpecialFirst() override;
+    QString& getSpecialSecond() override;
 
 private:
-	int displacement;
-	int screwDepth;
+    uint32_t displacement;
+    uint32_t screwDepth;
 };
 
 #endif //BOAT_H

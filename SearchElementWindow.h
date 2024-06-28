@@ -5,6 +5,7 @@
 #include <MessageToUserWindow.h>
 #include <QException>
 #include <Menu/Menu.h>
+#include <EditElementFieldsWindow.h>
 
 namespace Ui {
 class SearchElementWindow;
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::SearchElementWindow *ui;
 
+    EditElementFieldsWindow editElementFieldsWindow;
     MessageToUserWindow messageToUserWindow;
     QString outputText;
 };

@@ -2,38 +2,44 @@
 
 //Realizaton air transport class:
 
-AirTransport::AirTransport(uint32_t ID)
+AirTransport::AirTransport(const int& ID, const QString& brand,
+                           const QString& model, const int& year,
+                           const int& weight, const int& wingspan,
+                           const int& payloadCapacity
+                           )
 {
-	uniqueID = ID;
-	type = "Air Transport";
+    uniqueID = ID;
+    type = "Air";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->wingspan = wingspan;
+    this->payloadCapacity = payloadCapacity;
 }
 
 AirTransport::~AirTransport() {}
 
-void AirTransport::editWingspan(int wingspan)
+void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {
-	this->wingspan = wingspan;
+    this->wingspan = wingspan;
 }
 
-void AirTransport::editPayloadCapacity(int payloadCapacity)
+
+void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 {
-	this->payloadCapacity = payloadCapacity;
+    this->payloadCapacity = payloadCapacity.toInt();
 }
 
-QString* AirTransport::print()
+
+uint32_t& AirTransport::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = wingspan;
-    outputString[6] = payloadCapacity;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    return wingspan;
 }
 
+QString& AirTransport::getSpecialSecond()
+{
+    std::string tmp = std::to_string(payloadCapacity);
+    outputQstring = QString::fromStdString(tmp);
+    return outputQstring;
+}

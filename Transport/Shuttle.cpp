@@ -2,40 +2,45 @@
 
 //Realization Space shuttle class:
 
-Shuttle::Shuttle(uint32_t ID)
+Shuttle::Shuttle(const int& ID, const QString& brand,
+                 const QString& model, const int& year,
+                 const int& weight,
+                 const int& maxFlyingDistance,
+                 const QString& fuelType
+                 )
 {
-	uniqueID = ID;
-	type = "Space Shuttle";
+    uniqueID = ID;
+    type = "Shuttle";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->maxFlyingDistance = maxFlyingDistance;
+    this->fuelType = fuelType.toStdString();
 }
 
 Shuttle::~Shuttle() {}
 
-void Shuttle::editFuelType(std::string fuelType)
+
+void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {
-	this->fuelType = fuelType;
+    this->maxFlyingDistance = maxFlyingDisatnce;
 }
 
-void Shuttle::editMaxFlyingDistance(int maxFlyingDistance)
+
+void Shuttle::editSpecialSecond(const QString& fuelType)
 {
-	this->maxFlyingDistance = maxFlyingDistance;
+    this->fuelType = fuelType.toStdString();
 }
 
-QString* Shuttle::print()
+
+uint32_t& Shuttle::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = "Fuel type: ";
-    outputString[5] += fuelType;
-    outputString[6] = "Max flying distance: ";
-    outputString[6] += maxFlyingDistance;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    return maxFlyingDistance;
 }
 
+QString& Shuttle::getSpecialSecond()
+{
+    outputQstring = QString::fromStdString(fuelType);
+    return outputQstring;
+}

@@ -15,7 +15,7 @@ public:
     TransportMap();
     ~TransportMap();
 
-    QString* showDatabaseElement(const uint32_t& index);
+    bool findDatabaseElement(const uint32_t& index);
     void addNewElement(uint32_t index, TransportBase& data);
     void deleteElement(const uint32_t& index);
 

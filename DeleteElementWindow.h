@@ -27,6 +27,7 @@ private:
     Ui::DeleteElementWindow *ui;
 
     MessageToUserWindow messageToUserWindow;
+    Menu menu;
 };
 
 #endif // DELETEELEMENTWINDOW_H

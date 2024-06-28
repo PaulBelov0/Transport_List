@@ -12,12 +12,22 @@ public:
 	TransportBase();
 	virtual ~TransportBase() = 0;
 
-	void editBrand(std::string brand);
-	void editModel(std::string model);
-	void editYear(int year);
-	void editWeight(int weight);
+    void editBrand(const std::string& brand);
+    void editModel(const std::string& model);
+    void editYear(const int& year);
+    void editWeight(const int& weight);
+    virtual void editSpecialFirst(const uint32_t& inputValue);
+    virtual void editSpecialSecond(const QString& inputValue);
 
-    virtual QString* print();
+    uint32_t& getID();
+    QString& getType();
+    QString& getBrand();
+    QString& getModel();
+    uint32_t& getYear();
+    uint32_t& getWeight();
+    virtual uint32_t& getSpecialFirst();
+    virtual QString& getSpecialSecond();
+
 
 protected:
 
@@ -25,10 +35,10 @@ protected:
 	std::string type;
 	std::string brand;
 	std::string model;
-	int year;
-	int weight;
+    uint32_t year;
+    uint32_t weight;
 
-    std::string outputString[7];
+    QString outputQstring;
 };
 
 #endif //TRANSPORTBASE_H

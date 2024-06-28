@@ -20,6 +20,7 @@ MainWindow::~MainWindow() { delete model;  delete ui; }
 void MainWindow::on_addNewElementButton_clicked()
 {
     editElementFieldsWindow.show();
+    editElementFieldsWindow.setActionForRealizationThisWnd("add");
 }
 
 
@@ -43,7 +44,7 @@ void MainWindow::on_loadDatabaseButton_clicked()
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-
+    menu.saveDatabase();
 }
 
 

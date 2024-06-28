@@ -22,12 +22,11 @@ QT_BEGIN_NAMESPACE
 class Ui_EditElementFieldsWindow
 {
 public:
-    QPlainTextEdit *IDTextBox;
     QPlainTextEdit *brandTextBox;
     QPlainTextEdit *modelTextBox;
     QSpinBox *yearSpinBox;
-    QSpinBox *weightTextBox;
-    QPlainTextEdit *firstSpecialFieldTextBox;
+    QSpinBox *weightSpinBox;
+    QPlainTextEdit *secondSpecialFieldTextBox;
     QLabel *labelID;
     QLabel *labelBrand;
     QLabel *labelModel;
@@ -43,71 +42,75 @@ public:
     QLabel *label_4;
     QPlainTextEdit *typeTextBox;
     QLabel *labelType;
-    QSpinBox *secondSpecialFieldIntBox;
+    QSpinBox *firstSpecialFieldSpinBox;
+    QSpinBox *uinqueIDIntBox;
+    QLabel *label_5;
 
     void setupUi(QDialog *EditElementFieldsWindow)
     {
         if (EditElementFieldsWindow->objectName().isEmpty())
             EditElementFieldsWindow->setObjectName("EditElementFieldsWindow");
         EditElementFieldsWindow->resize(640, 480);
-        IDTextBox = new QPlainTextEdit(EditElementFieldsWindow);
-        IDTextBox->setObjectName("IDTextBox");
-        IDTextBox->setGeometry(QRect(110, 90, 141, 31));
         brandTextBox = new QPlainTextEdit(EditElementFieldsWindow);
         brandTextBox->setObjectName("brandTextBox");
         brandTextBox->setGeometry(QRect(110, 170, 141, 31));
+        QFont font;
+        font.setPointSize(10);
+        brandTextBox->setFont(font);
         modelTextBox = new QPlainTextEdit(EditElementFieldsWindow);
         modelTextBox->setObjectName("modelTextBox");
         modelTextBox->setGeometry(QRect(110, 210, 141, 31));
+        modelTextBox->setFont(font);
         yearSpinBox = new QSpinBox(EditElementFieldsWindow);
         yearSpinBox->setObjectName("yearSpinBox");
         yearSpinBox->setGeometry(QRect(110, 250, 141, 29));
         yearSpinBox->setMinimum(1860);
         yearSpinBox->setMaximum(2024);
-        weightTextBox = new QSpinBox(EditElementFieldsWindow);
-        weightTextBox->setObjectName("weightTextBox");
-        weightTextBox->setGeometry(QRect(110, 290, 141, 29));
-        weightTextBox->setMinimum(50);
-        weightTextBox->setMaximum(2000000);
-        firstSpecialFieldTextBox = new QPlainTextEdit(EditElementFieldsWindow);
-        firstSpecialFieldTextBox->setObjectName("firstSpecialFieldTextBox");
-        firstSpecialFieldTextBox->setGeometry(QRect(110, 330, 141, 31));
+        weightSpinBox = new QSpinBox(EditElementFieldsWindow);
+        weightSpinBox->setObjectName("weightSpinBox");
+        weightSpinBox->setGeometry(QRect(110, 290, 141, 29));
+        weightSpinBox->setMinimum(50);
+        weightSpinBox->setMaximum(2000000);
+        secondSpecialFieldTextBox = new QPlainTextEdit(EditElementFieldsWindow);
+        secondSpecialFieldTextBox->setObjectName("secondSpecialFieldTextBox");
+        secondSpecialFieldTextBox->setGeometry(QRect(110, 370, 141, 31));
+        secondSpecialFieldTextBox->setFont(font);
         labelID = new QLabel(EditElementFieldsWindow);
         labelID->setObjectName("labelID");
         labelID->setGeometry(QRect(70, 90, 31, 31));
-        QFont font;
-        font.setPointSize(12);
-        labelID->setFont(font);
+        QFont font1;
+        font1.setPointSize(12);
+        labelID->setFont(font1);
         labelID->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelBrand = new QLabel(EditElementFieldsWindow);
         labelBrand->setObjectName("labelBrand");
         labelBrand->setGeometry(QRect(30, 170, 71, 31));
-        labelBrand->setFont(font);
+        labelBrand->setFont(font1);
         labelBrand->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelModel = new QLabel(EditElementFieldsWindow);
         labelModel->setObjectName("labelModel");
         labelModel->setGeometry(QRect(30, 210, 71, 31));
-        labelModel->setFont(font);
+        labelModel->setFont(font1);
         labelModel->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelYear = new QLabel(EditElementFieldsWindow);
         labelYear->setObjectName("labelYear");
         labelYear->setGeometry(QRect(50, 250, 51, 31));
-        labelYear->setFont(font);
+        labelYear->setFont(font1);
         labelYear->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelWeight = new QLabel(EditElementFieldsWindow);
         labelWeight->setObjectName("labelWeight");
         labelWeight->setGeometry(QRect(30, 290, 71, 31));
-        labelWeight->setFont(font);
+        labelWeight->setFont(font1);
         labelWeight->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelSpecialFieldFirst = new QLabel(EditElementFieldsWindow);
         labelSpecialFieldFirst->setObjectName("labelSpecialFieldFirst");
         labelSpecialFieldFirst->setGeometry(QRect(10, 330, 91, 31));
-        labelSpecialFieldFirst->setFont(font);
+        labelSpecialFieldFirst->setFont(font1);
         labelSpecialFieldFirst->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         labelSpecialFieldSecond = new QLabel(EditElementFieldsWindow);
         labelSpecialFieldSecond->setObjectName("labelSpecialFieldSecond");
         labelSpecialFieldSecond->setGeometry(QRect(10, 370, 91, 31));
-        labelSpecialFieldSecond->setFont(font);
+        labelSpecialFieldSecond->setFont(font1);
         labelSpecialFieldSecond->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         okButton = new QPushButton(EditElementFieldsWindow);
         okButton->setObjectName("okButton");
@@ -127,26 +130,39 @@ public:
         label_2->setWordWrap(true);
         label_3 = new QLabel(EditElementFieldsWindow);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(290, 190, 131, 121));
+        label_3->setGeometry(QRect(290, 180, 131, 121));
         label_3->setFocusPolicy(Qt::NoFocus);
         label_3->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_3->setWordWrap(true);
         label_4 = new QLabel(EditElementFieldsWindow);
         label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(440, 190, 151, 121));
+        label_4->setGeometry(QRect(440, 180, 151, 121));
         label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_4->setWordWrap(true);
         typeTextBox = new QPlainTextEdit(EditElementFieldsWindow);
         typeTextBox->setObjectName("typeTextBox");
         typeTextBox->setGeometry(QRect(110, 130, 141, 31));
+        typeTextBox->setFont(font);
         labelType = new QLabel(EditElementFieldsWindow);
         labelType->setObjectName("labelType");
         labelType->setGeometry(QRect(20, 130, 81, 31));
-        labelType->setFont(font);
+        labelType->setFont(font1);
         labelType->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        secondSpecialFieldIntBox = new QSpinBox(EditElementFieldsWindow);
-        secondSpecialFieldIntBox->setObjectName("secondSpecialFieldIntBox");
-        secondSpecialFieldIntBox->setGeometry(QRect(110, 370, 141, 29));
+        firstSpecialFieldSpinBox = new QSpinBox(EditElementFieldsWindow);
+        firstSpecialFieldSpinBox->setObjectName("firstSpecialFieldSpinBox");
+        firstSpecialFieldSpinBox->setGeometry(QRect(110, 330, 141, 29));
+        uinqueIDIntBox = new QSpinBox(EditElementFieldsWindow);
+        uinqueIDIntBox->setObjectName("uinqueIDIntBox");
+        uinqueIDIntBox->setGeometry(QRect(110, 90, 141, 29));
+        uinqueIDIntBox->setMinimum(1);
+        uinqueIDIntBox->setMaximum(99999);
+        label_5 = new QLabel(EditElementFieldsWindow);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(300, 310, 311, 71));
+        label_5->setFont(font1);
+        label_5->setFocusPolicy(Qt::NoFocus);
+        label_5->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_5->setWordWrap(true);
 
         retranslateUi(EditElementFieldsWindow);
 
@@ -178,6 +194,8 @@ public:
 "1) Fuel Type\n"
 "2) Max Flying Distance (in kilometers)", nullptr));
         labelType->setText(QCoreApplication::translate("EditElementFieldsWindow", "Type:", nullptr));
+        label_5->setText(QCoreApplication::translate("EditElementFieldsWindow", "Available types: \n"
+"Car, Boat, Air, Shuttle.", nullptr));
     } // retranslateUi
 
 };

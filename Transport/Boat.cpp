@@ -1,40 +1,43 @@
 #include <Transport/Boat.h>
 //Realization boat class:
 
-Boat::Boat(uint32_t ID)
+Boat::Boat(const int& ID, const QString& brand,
+           const QString& model, const int& year,
+           const int& weight, const int& displacement,
+           const int& screwDepth
+           )
 {
-	uniqueID = ID;
-	type = "Water Transport";
+    uniqueID = ID;
+    type = "Boat";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->displacement = displacement;
+    this->screwDepth = screwDepth;
 }
 
 Boat::~Boat() {}
 
-void Boat::editDisplacement(int displacement)
+void Boat::editSpecialFirst(const uint32_t& displacement)
 {
-	this->displacement = displacement;
+    this->displacement = displacement;
 }
 
-void Boat::editScrewDepth(int screwDepth)
+
+void Boat::editSpecialSecond(const QString& screwDepth)
 {
-	this->screwDepth = screwDepth;
+    this->screwDepth = screwDepth.toInt();
 }
 
-QString* Boat::print()
+uint32_t& Boat::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = "Displacement: ";
-    outputString[5] += displacement;
-    outputString[6] = "Screw depth: ";
-    outputString[6] += screwDepth;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    return displacement;
 }
 
+QString& Boat::getSpecialSecond()
+{
+    std::string tmp = std::to_string(screwDepth);
+    outputQstring = QString::fromStdString(tmp);
+    return outputQstring;
+}
