@@ -15,7 +15,6 @@ DeleteElementWindow::~DeleteElementWindow()
 
 void DeleteElementWindow::on_deleteButton_clicked()
 {
-    Menu* menu = new Menu;
     uint32_t index;
     QString qString = ui->plainTextEdit->toPlainText();
 
@@ -31,7 +30,7 @@ void DeleteElementWindow::on_deleteButton_clicked()
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
-        qString = menu->deleteDatabaseElement(index);
+        qString = menu.deleteDatabaseElement(index);
         messageToUserWindow.setTextMessage(qString);
     }
     else
@@ -39,7 +38,6 @@ void DeleteElementWindow::on_deleteButton_clicked()
         messageToUserWindow.show();
         messageToUserWindow.setTextMessage("Error! Wrong input data!");
     }
-    delete menu;
 }
 
 
@@ -48,3 +46,7 @@ void DeleteElementWindow::on_exitButton_clicked()
     this->close();
 }
 
+uint32_t& DeleteElementWindow::getID()
+{
+    return menu.getID();
+}

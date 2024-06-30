@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <Menu/Menu.h>
-#include <Database/Database.h>
 #include <EditElementFieldsWindow.h>
 #include <SearchElementWindow.h>
 #include <DeleteElementWindow.h>
@@ -40,6 +39,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    Database database;
     Menu menu;
 
     EditElementFieldsWindow editElementFieldsWindow;

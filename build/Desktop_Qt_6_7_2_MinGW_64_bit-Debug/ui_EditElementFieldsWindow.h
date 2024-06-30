@@ -191,8 +191,8 @@ public:
 "1) Wingspan (in meters)\n"
 "2) Payload Capacity", nullptr));
         label_4->setText(QCoreApplication::translate("EditElementFieldsWindow", "Special fields for Space shuttle: \n"
-"1) Fuel Type\n"
-"2) Max Flying Distance (in kilometers)", nullptr));
+"1) Max Flying Distance (in kilometers)\n"
+"2) Fuel type", nullptr));
         labelType->setText(QCoreApplication::translate("EditElementFieldsWindow", "Type:", nullptr));
         label_5->setText(QCoreApplication::translate("EditElementFieldsWindow", "Available types: \n"
 "Car, Boat, Air, Shuttle.", nullptr));

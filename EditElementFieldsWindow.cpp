@@ -34,6 +34,7 @@ void EditElementFieldsWindow::on_okButton_clicked()
     {
         menu.editElement(ID, type, brand, model, year, weight, firstSpecialField, secondSpecialField);
     }
+    this->close();
 }
 
 void EditElementFieldsWindow::setElementByID(const uint32_t& ID)

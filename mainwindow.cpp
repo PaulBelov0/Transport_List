@@ -7,11 +7,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this, *menu.getDatabaseFromSource());
+    model = new QSqlTableModel(this, database.getDatabase());
     model->setTable("TransportDatabase");
     model->select();
 
     ui->tableView->setModel(model);
+
+    menu.setMap(database.download());
 }
 
 MainWindow::~MainWindow() { delete model;  delete ui; }
@@ -19,6 +21,8 @@ MainWindow::~MainWindow() { delete model;  delete ui; }
 
 void MainWindow::on_addNewElementButton_clicked()
 {
+    model->insertRow(model->rowCount());
+
     editElementFieldsWindow.show();
     editElementFieldsWindow.setActionForRealizationThisWnd("add");
 }
@@ -33,18 +37,20 @@ void MainWindow::on_editElementButton_clicked()
 void MainWindow::on_deleteElementButton_clicked()
 {
     deleteElementWindow.show();
+
+    model->removeRow(deleteElementWindow.getID());
 }
 
 
 void MainWindow::on_loadDatabaseButton_clicked()
 {
-    menu.loadDatabase();
+    menu.setMap(database.download());
 }
 
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-    menu.saveDatabase();
+    database.upload(menu.getMap());
 }
 
 

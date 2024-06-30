@@ -2,8 +2,8 @@
 #include <Transport/TransportBase/TransportBase.h>
 
 
-TransportMap::TransportMap() {}
-TransportMap::~TransportMap() {}
+TransportMap::TransportMap() { transportDB = new std::map<uint32_t, TransportBase&>; }
+TransportMap::~TransportMap() { delete transportDB; }
 
 bool TransportMap::findDatabaseElement(const uint32_t& index)
 {
@@ -43,7 +43,14 @@ void TransportMap::deleteElement(const uint32_t& index)
 
 std::map<uint32_t, TransportBase&>& TransportMap::getMap()
 {
-    std::map<uint32_t, TransportBase&>& outputMap = *transportDB;
-    return outputMap;
+    return *transportDB;
+}
+
+void TransportMap::setMap(std::map<uint32_t, TransportBase&> inputMap)
+{
+    for (const auto& element : inputMap)
+    {
+        transportDB->insert(element);
+    }
 }
 

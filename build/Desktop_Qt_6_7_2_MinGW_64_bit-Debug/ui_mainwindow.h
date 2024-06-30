@@ -64,7 +64,7 @@ public:
         exitButton->setGeometry(QRect(910, 490, 141, 29));
         tableView = new QTableView(centralwidget);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(30, 30, 851, 501));
+        tableView->setGeometry(QRect(30, 30, 821, 501));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");

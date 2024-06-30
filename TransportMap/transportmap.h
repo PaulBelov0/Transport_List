@@ -20,9 +20,10 @@ public:
     void deleteElement(const uint32_t& index);
 
     std::map<uint32_t, TransportBase&>& getMap();
+    void setMap(std::map<uint32_t, TransportBase&> inputMap);
 
 private:
-    std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
+    std::map<uint32_t, TransportBase&>* transportDB;
 
     MessageToUserWindow messageToUserWindow;
 };

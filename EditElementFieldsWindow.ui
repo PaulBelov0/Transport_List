@@ -340,8 +340,8 @@
    </property>
    <property name="text">
     <string>Special fields for Space shuttle: 
-1) Fuel Type
-2) Max Flying Distance (in kilometers)</string>
+1) Max Flying Distance (in kilometers)
+2) Fuel type</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

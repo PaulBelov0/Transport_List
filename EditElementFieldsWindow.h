@@ -21,6 +21,7 @@ public:
 
     void setElementByID(const uint32_t& ID);
     void setActionForRealizationThisWnd(std::string action);
+    void menuInitialization(Menu& menu);
 
 private slots:
     void on_okButton_clicked();
@@ -30,6 +31,7 @@ private slots:
 private:
     Ui::EditElementFieldsWindow *ui;
 
+    Menu menu;
     TransportMap transportMap;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;

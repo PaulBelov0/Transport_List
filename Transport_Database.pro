@@ -1,5 +1,4 @@
-QT       += core gui
-QT       += sql
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,6 +14,7 @@ SOURCES += \
     EditElementFieldsWindow.cpp \
     MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
+    Transport/TransportCreator/TransportCreator.cpp \
     TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -37,6 +37,7 @@ HEADERS += \
     EditElementFieldsWindow.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
+    Transport/TransportCreator/TransportCreator.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \

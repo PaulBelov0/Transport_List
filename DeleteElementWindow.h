@@ -17,6 +17,7 @@ class DeleteElementWindow : public QDialog
 public:
     explicit DeleteElementWindow(QWidget *parent = nullptr);
     ~DeleteElementWindow();
+    uint32_t& getID();
 
 private slots:
     void on_deleteButton_clicked();

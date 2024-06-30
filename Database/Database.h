@@ -1,10 +1,13 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include <QVariant>
 #include <QtSql/QSqlDatabase>
-#include <QDebug>
 #include <QtSql/QSqlQuery>
+#include <QtSql/QSql>
+#include <QtSql/QSqlDriver>
 #include <TransportMap/transportmap.h>
+#include <Transport/TransportCreator/TransportCreator.h>
 
 class Database
 {
@@ -13,12 +16,13 @@ public:
     ~Database();
 
     TransportMap& download();
-    void upload();
-    QSqlDatabase* getDatabase();
+    void upload(TransportMap& inputMap);
+    QSqlDatabase& getDatabase();
 
 private:
+    TransportMap outputMap;
 
-    QSqlDatabase* db;
+    QSqlDatabase db;
     QSqlQuery* query;
 };
 

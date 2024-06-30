@@ -2,7 +2,7 @@
 
 //QT_Version
 
-Menu::Menu() : transportMap(loadDatabase()) {}
+Menu::Menu() {}
 
 Menu::~Menu() {}
 
@@ -21,7 +21,7 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type, const QString& 
 
         AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
 
-        transportMap.addNewElement(ID, airTransport);
+        transportMap->addNewElement(ID, airTransport);
 
         return 0;
     }
@@ -33,7 +33,7 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type, const QString& 
 
         Car car(ID, brand, model, year, weight, specialFieldFirst, spececialFieldSecondIntVersion);
 
-        transportMap.addNewElement(ID, car);
+        transportMap->addNewElement(ID, car);
 
         return 0;
     }
@@ -45,7 +45,7 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type, const QString& 
 
         Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecondIntVersion);
 
-        transportMap.addNewElement(ID, boat);
+        transportMap->addNewElement(ID, boat);
 
         return 0;
     }
@@ -53,7 +53,7 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type, const QString& 
     {
         Shuttle shuttle(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
 
-        transportMap.addNewElement(ID, shuttle);
+        transportMap->addNewElement(ID, shuttle);
 
         return 0;
     }
@@ -67,12 +67,12 @@ QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
     QString* result;
 
-    transportMap.findDatabaseElement(ID);
-    std::map<uint32_t, TransportBase&> map = transportMap.getMap();
+    transportMap->findDatabaseElement(ID);
+    std::map<uint32_t, TransportBase&> map = transportMap->getMap();
 
     if (map.count(ID) != NULL)
     {
-        transportMap.deleteElement(ID);
+        transportMap->deleteElement(ID);
         *result = "Element deleted successful!";
     }
     else
@@ -86,42 +86,9 @@ bool Menu::checkElementAvilable(uint32_t& ID)
 {
     bool result;
 
-    result = transportMap.findDatabaseElement(ID);
-    //TODO
+    result = transportMap->findDatabaseElement(ID);
 
-    // std::map<uint32_t, TransportBase&> map = transportMap.getMap();
-
-    // if (map.count(ID) != NULL)
-    // {
-    //     result = true;
-    // }
-    // else
-    // {
-    //     result = false;
-    // }
     return result;
-}
-
-void Menu::findElement()
-{
-
-}
-
-void Menu::saveDatabase()
-{
-    database.upload();
-}
-
-
-TransportMap& Menu::loadDatabase()
-{
-    Database database;
-    return database.download();
-}
-
-QSqlDatabase* Menu::getDatabaseFromSource()
-{
-    return database.getDatabase();
 }
 
 void Menu::editElement(const uint32_t& ID, const QString& type, const QString& brand,
@@ -130,7 +97,28 @@ void Menu::editElement(const uint32_t& ID, const QString& type, const QString& b
                        )
 {
 
-    transportMap.deleteElement(ID);
+    transportMap->deleteElement(ID);
     addNewElement(ID, type, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
 }
 
+
+TransportMap& Menu::getMap()
+{
+    return *transportMap;
+}
+
+void Menu::setMap(TransportMap& inputMap)
+{
+    transportMap = &inputMap;
+}
+
+void Menu::setID(uint32_t& ID)
+{
+    uniqueID = ID;
+}
+
+
+uint32_t& Menu::getID()
+{
+    return uniqueID;
+}

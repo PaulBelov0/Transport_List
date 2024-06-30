@@ -6,9 +6,6 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Menu menu;
-    menu.loadDatabase();
-
     MainWindow w;
     w.show();
 
