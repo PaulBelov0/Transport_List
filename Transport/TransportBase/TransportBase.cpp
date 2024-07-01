@@ -27,42 +27,45 @@ TransportBase::~TransportBase() {}
 	 this->weight = weight;
  }
 
- uint32_t& TransportBase::getID()
+ QVariant& TransportBase::getID()
  {
-     return uniqueID;
+     outputQstring = uniqueID;
+     return outputQstring;
  }
 
- QString& TransportBase::getType()
+ QVariant& TransportBase::getType()
  {
      outputQstring = QString::fromStdString(type);
      return outputQstring;
  }
 
- QString& TransportBase::getBrand()
+ QVariant& TransportBase::getBrand()
  {
      outputQstring = QString::fromStdString(brand);
      return outputQstring;
  }
 
- QString& TransportBase::getModel()
+ QVariant& TransportBase::getModel()
  {
      outputQstring = QString::fromStdString(model);
      return outputQstring;
  }
 
- uint32_t& TransportBase::getYear()
+ QVariant& TransportBase::getYear()
  {
-     return year;
+     outputQstring = year;
+     return outputQstring;
  }
 
- uint32_t& TransportBase::getWeight()
+ QVariant& TransportBase::getWeight()
  {
-     return weight;
+     outputQstring = weight;
+     return outputQstring;
  }
 
 
  void TransportBase::editSpecialFirst(const uint32_t& value) {}
  void TransportBase::editSpecialSecond(const QString& value) {}
 
- uint32_t& TransportBase::getSpecialFirst() {}
- QString& TransportBase::getSpecialSecond() {}
+ QVariant& TransportBase::getSpecialFirst() {}
+ QVariant& TransportBase::getSpecialSecond() {}

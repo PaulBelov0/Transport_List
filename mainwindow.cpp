@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     model = new QSqlTableModel(this, database.getDatabase());
     model->setTable("TransportDatabase");
     model->select();
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     ui->tableView->setModel(model);
 
@@ -25,12 +26,16 @@ void MainWindow::on_addNewElementButton_clicked()
 
     editElementFieldsWindow.show();
     editElementFieldsWindow.setActionForRealizationThisWnd("add");
+
+    reloadDatabase();
 }
 
 
 void MainWindow::on_editElementButton_clicked()
 {
     searchElementWindow.show();
+
+    reloadDatabase();
 }
 
 
@@ -39,6 +44,8 @@ void MainWindow::on_deleteElementButton_clicked()
     deleteElementWindow.show();
 
     model->removeRow(deleteElementWindow.getID());
+
+    reloadDatabase();
 }
 
 
@@ -56,7 +63,12 @@ void MainWindow::on_saveDataBaseButton_clicked()
 
 void MainWindow::on_exitButton_clicked()
 {
-    on_saveDataBaseButton_clicked();
+    database.upload(menu.getMap());
     this->close();
 }
 
+void MainWindow::reloadDatabase()
+{
+    database.upload(menu.getMap());
+    database.download();
+}

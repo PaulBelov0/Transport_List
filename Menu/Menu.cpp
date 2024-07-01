@@ -2,9 +2,9 @@
 
 //QT_Version
 
-Menu::Menu() {}
+Menu::Menu() { transportMap = new TransportMap; messageToUserWindow = new MessageToUserWindow; }
 
-Menu::~Menu() {}
+Menu::~Menu() { delete transportMap; delete messageToUserWindow; }
 
 int Menu::addNewElement(const uint32_t& ID, const QString& type,
                         const QString& brand, const QString& model,
@@ -17,37 +17,60 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
     if (type == "Air")
     {
         std::string* specialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
-        int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-        delete specialFieldSecond_tmp;
+        try
+        {
+            int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
+            delete specialFieldSecond_tmp;
 
-        AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
+            AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
 
-        transportMap->addNewElement(ID, airTransport);
-
+            transportMap->addNewElement(ID, airTransport);
+        }
+        catch (const std::invalid_argument& e)
+        {
+            messageToUserWindow->show();
+            messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+        }
         return 0;
     }
     else if (type == "Car")
     {
         std::string* spececialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
-        int spececialFieldSecondIntVersion = std::stoi(*spececialFieldSecond_tmp);
-        delete spececialFieldSecond_tmp;
 
-        Car car(ID, brand, model, year, weight, specialFieldFirst, spececialFieldSecondIntVersion);
+        try
+        {
+            int spececialFieldSecondIntVersion = std::stoi(*spececialFieldSecond_tmp);
+            delete spececialFieldSecond_tmp;
 
-        transportMap->addNewElement(ID, car);
+            Car car(ID, brand, model, year, weight, specialFieldFirst, spececialFieldSecondIntVersion);
 
+            transportMap->addNewElement(ID, car);
+        }
+        catch (const std::invalid_argument& e)
+        {
+            messageToUserWindow->show();
+            messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+        }
         return 0;
     }
     else if (type == "Boat")
     {
         std::string* specialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
-        int specialFieldSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-        delete specialFieldSecond_tmp;
 
-        Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecondIntVersion);
+        try
+        {
+            int specialFieldSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
+            delete specialFieldSecond_tmp;
 
-        transportMap->addNewElement(ID, boat);
+            Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecondIntVersion);
 
+            transportMap->addNewElement(ID, boat);
+        }
+        catch (const std::invalid_argument& e)
+        {
+            messageToUserWindow->show();
+            messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+        }
         return 0;
     }
     else if (type == "Shuttle")
@@ -66,21 +89,19 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 
 QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
-    QString* result;
-
     transportMap->findDatabaseElement(ID);
     std::map<uint32_t, TransportBase&> map = transportMap->getMap();
 
-    if (map.count(ID) != NULL)
+    if (map.count(ID) != 0)
     {
         transportMap->deleteElement(ID);
-        *result = "Element deleted successful!";
+        deletingResult = "Element deleted successful!";
     }
     else
     {
-        *result = "Error! No one element have this ID!";
+        deletingResult = "Error! No one element have this ID!";
     }
-    return *result;
+    return deletingResult;
 }
 
 bool Menu::checkElementAvilable(uint32_t& ID)

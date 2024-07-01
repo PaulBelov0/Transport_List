@@ -31,14 +31,14 @@ void Car::editSpecialSecond(const QString& ownersQuantity)
     this->ownersQuantity = ownersQuantity.toInt();
 }
 
-uint32_t& Car::getSpecialFirst()
+QVariant& Car::getSpecialFirst()
 {
-    return mileage;
+    outputQstring = mileage;
+    return outputQstring;
 }
 
-QString& Car::getSpecialSecond()
+QVariant& Car::getSpecialSecond()
 {
-    std::string tmp = std::to_string(ownersQuantity);
-    outputQstring = QString::fromStdString(tmp);
+    outputQstring = ownersQuantity;
     return outputQstring;
 }

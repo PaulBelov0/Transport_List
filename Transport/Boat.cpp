@@ -30,14 +30,14 @@ void Boat::editSpecialSecond(const QString& screwDepth)
     this->screwDepth = screwDepth.toInt();
 }
 
-uint32_t& Boat::getSpecialFirst()
+QVariant& Boat::getSpecialFirst()
 {
-    return displacement;
+    outputQstring = displacement;
+    return outputQstring;
 }
 
-QString& Boat::getSpecialSecond()
+QVariant& Boat::getSpecialSecond()
 {
-    std::string tmp = std::to_string(screwDepth);
-    outputQstring = QString::fromStdString(tmp);
+    outputQstring = screwDepth;
     return outputQstring;
 }

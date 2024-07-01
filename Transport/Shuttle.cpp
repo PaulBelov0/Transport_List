@@ -34,12 +34,13 @@ void Shuttle::editSpecialSecond(const QString& fuelType)
 }
 
 
-uint32_t& Shuttle::getSpecialFirst()
+QVariant& Shuttle::getSpecialFirst()
 {
-    return maxFlyingDistance;
+    outputQstring = maxFlyingDistance;
+    return outputQstring;
 }
 
-QString& Shuttle::getSpecialSecond()
+QVariant& Shuttle::getSpecialSecond()
 {
     outputQstring = QString::fromStdString(fuelType);
     return outputQstring;

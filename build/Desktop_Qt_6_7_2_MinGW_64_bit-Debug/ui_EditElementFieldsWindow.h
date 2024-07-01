@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPlainTextEdit>
@@ -40,11 +41,10 @@ public:
     QLabel *label_2;
     QLabel *label_3;
     QLabel *label_4;
-    QPlainTextEdit *typeTextBox;
     QLabel *labelType;
     QSpinBox *firstSpecialFieldSpinBox;
     QSpinBox *uinqueIDIntBox;
-    QLabel *label_5;
+    QComboBox *typeComboBox;
 
     void setupUi(QDialog *EditElementFieldsWindow)
     {
@@ -64,11 +64,13 @@ public:
         yearSpinBox = new QSpinBox(EditElementFieldsWindow);
         yearSpinBox->setObjectName("yearSpinBox");
         yearSpinBox->setGeometry(QRect(110, 250, 141, 29));
+        yearSpinBox->setFont(font);
         yearSpinBox->setMinimum(1860);
         yearSpinBox->setMaximum(2024);
         weightSpinBox = new QSpinBox(EditElementFieldsWindow);
         weightSpinBox->setObjectName("weightSpinBox");
         weightSpinBox->setGeometry(QRect(110, 290, 141, 29));
+        weightSpinBox->setFont(font);
         weightSpinBox->setMinimum(50);
         weightSpinBox->setMaximum(2000000);
         secondSpecialFieldTextBox = new QPlainTextEdit(EditElementFieldsWindow);
@@ -139,10 +141,6 @@ public:
         label_4->setGeometry(QRect(440, 180, 151, 121));
         label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_4->setWordWrap(true);
-        typeTextBox = new QPlainTextEdit(EditElementFieldsWindow);
-        typeTextBox->setObjectName("typeTextBox");
-        typeTextBox->setGeometry(QRect(110, 130, 141, 31));
-        typeTextBox->setFont(font);
         labelType = new QLabel(EditElementFieldsWindow);
         labelType->setObjectName("labelType");
         labelType->setGeometry(QRect(20, 130, 81, 31));
@@ -151,18 +149,23 @@ public:
         firstSpecialFieldSpinBox = new QSpinBox(EditElementFieldsWindow);
         firstSpecialFieldSpinBox->setObjectName("firstSpecialFieldSpinBox");
         firstSpecialFieldSpinBox->setGeometry(QRect(110, 330, 141, 29));
+        firstSpecialFieldSpinBox->setFont(font);
+        firstSpecialFieldSpinBox->setMaximum(99999);
         uinqueIDIntBox = new QSpinBox(EditElementFieldsWindow);
         uinqueIDIntBox->setObjectName("uinqueIDIntBox");
         uinqueIDIntBox->setGeometry(QRect(110, 90, 141, 29));
+        uinqueIDIntBox->setFont(font);
         uinqueIDIntBox->setMinimum(1);
         uinqueIDIntBox->setMaximum(99999);
-        label_5 = new QLabel(EditElementFieldsWindow);
-        label_5->setObjectName("label_5");
-        label_5->setGeometry(QRect(300, 310, 311, 71));
-        label_5->setFont(font1);
-        label_5->setFocusPolicy(Qt::NoFocus);
-        label_5->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
-        label_5->setWordWrap(true);
+        typeComboBox = new QComboBox(EditElementFieldsWindow);
+        typeComboBox->addItem(QString());
+        typeComboBox->addItem(QString());
+        typeComboBox->addItem(QString());
+        typeComboBox->addItem(QString());
+        typeComboBox->setObjectName("typeComboBox");
+        typeComboBox->setGeometry(QRect(110, 130, 141, 28));
+        typeComboBox->setFont(font);
+        typeComboBox->setMaxVisibleItems(4);
 
         retranslateUi(EditElementFieldsWindow);
 
@@ -194,8 +197,11 @@ public:
 "1) Max Flying Distance (in kilometers)\n"
 "2) Fuel type", nullptr));
         labelType->setText(QCoreApplication::translate("EditElementFieldsWindow", "Type:", nullptr));
-        label_5->setText(QCoreApplication::translate("EditElementFieldsWindow", "Available types: \n"
-"Car, Boat, Air, Shuttle.", nullptr));
+        typeComboBox->setItemText(0, QCoreApplication::translate("EditElementFieldsWindow", "Car", nullptr));
+        typeComboBox->setItemText(1, QCoreApplication::translate("EditElementFieldsWindow", "Air", nullptr));
+        typeComboBox->setItemText(2, QCoreApplication::translate("EditElementFieldsWindow", "Boat", nullptr));
+        typeComboBox->setItemText(3, QCoreApplication::translate("EditElementFieldsWindow", "Shuttle", nullptr));
+
     } // retranslateUi
 
 };

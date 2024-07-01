@@ -37,6 +37,10 @@ private slots:
     void on_exitButton_clicked();
 
 private:
+
+
+    void reloadDatabase();
+
     Ui::MainWindow *ui;
 
     Database database;

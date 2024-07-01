@@ -5,6 +5,7 @@
 #include <Transport/TransportBase/TransportBase.h>
 #include <Database/Database.h>
 #include <Transport/transport.h>
+#include <MessageToUserWindow.h>
 
 class Menu
 {
@@ -38,8 +39,10 @@ public:
 
 
 private:
+    MessageToUserWindow* messageToUserWindow;
     uint32_t uniqueID;
     TransportMap* transportMap;
+    QString deletingResult;
 };
 
 #endif //MENU_H

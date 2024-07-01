@@ -5,52 +5,54 @@ TransportCreator::TransportCreator(const uint32_t& ID, const QString& type,
                                    const uint32_t& year, const uint32_t& weight,
                                    const uint32_t& specialFirst, const QString& specialSecond)
 {
-    this->ID = ID;
-    this->brand = brand;
-    this->model = model;
-    this->year = year;
-    this->weight = weight;
-    this->specialFirst = specialFirst;
-    this->specialSecond = specialSecond;
+    if (type == "Air")
+    {
+        try
+        {
+            base = new AirTransport(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+        }
+        catch (const std::invalid_argument& e)
+        {
+            MessageToUserWindow message;
+            message.show();
+            message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
+        }
+    }
+    else if(type == "Car")
+    {
+        try
+        {
+            base = new Car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+        }
+        catch (const std::invalid_argument& e)
+        {
+            MessageToUserWindow message;
+            message.show();
+            message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
+        }
+    }
+    else if(type == "Boat")
+    {
+        try
+        {
+            base = new Boat(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+        }
+        catch (const std::invalid_argument& e)
+        {
+            MessageToUserWindow message;
+            message.show();
+            message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
+        }
+    }
+    else
+    {
+        base = new Shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
+    }
 }
 
+TransportCreator::~TransportCreator() { delete base; }
 
 TransportBase& TransportCreator::createTransportObject()
 {
-    if (type == "Air")
-    {
-        std::string* specialFieldSecond_tmp = new std::string(specialSecond.toStdString());
-        int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-        delete specialFieldSecond_tmp;
-
-        AirTransport airTransportLocal(ID, brand, model, year, weight, specialFirst, specialSecondIntVersion);
-
-        return airTransportLocal;
-    }
-    else if (type == "Boat")
-    {
-        std::string* specialFieldSecond_tmp = new std::string(specialSecond.toStdString());
-        int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-        delete specialFieldSecond_tmp;
-
-        Car carLocal(ID, brand, model, year, weight, specialFirst, specialSecondIntVersion);
-
-        return carLocal;
-    }
-    else if (type == "Car")
-    {
-        std::string* specialFieldSecond_tmp = new std::string(specialSecond.toStdString());
-        int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-        delete specialFieldSecond_tmp;
-
-        Boat boatLocal(ID, brand, model, year, weight, specialFirst, specialSecondIntVersion);
-
-        return boatLocal;
-    }
-    else if (type == "Shuttle")
-    {
-        Shuttle shuttleLocal(ID, brand, model, year, weight, specialFirst, specialSecond);
-
-        return shuttleLocal;
-    }
+    return *base;
 }

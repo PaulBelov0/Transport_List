@@ -19,8 +19,8 @@ public:
     void editSpecialFirst(const uint32_t& maxFlyingDistance) override;
     void editSpecialSecond(const QString& fuelType) override;
 
-    uint32_t& getSpecialFirst() override;
-    QString& getSpecialSecond() override;
+    QVariant& getSpecialFirst() override;
+    QVariant& getSpecialSecond() override;
 
 private:
     uint32_t maxFlyingDistance;

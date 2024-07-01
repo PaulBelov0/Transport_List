@@ -18,8 +18,8 @@ public:
     void editSpecialFirst(const uint32_t& mileage) override;
     void editSpecialSecond(const QString& ownersQuantity) override;
 
-    uint32_t& getSpecialFirst() override;
-    QString& getSpecialSecond() override;
+    QVariant& getSpecialFirst() override;
+    QVariant& getSpecialSecond() override;
 
 private:
 

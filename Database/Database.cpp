@@ -2,16 +2,17 @@
 
 Database::Database()
 {
-    db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("./TransportDatabase.db");
-    db.open();
+    db = new QSqlDatabase;
+    *db = QSqlDatabase::addDatabase("QSQLITE");
+    db->setDatabaseName("./TransportDatabase.db");
+    db->open();
 
     query = new QSqlQuery;
-    *query = QSqlQuery(db);
+    *query = QSqlQuery(*db);
     query->exec("CREATE TABLE TransportDatabase(ID INT, Type TEXT, Brand TEXT, Model TEXT, Year INT, Weight INT, SpecialFirst INT, SpecialSecond TEXT);");
 }
 
-Database::~Database() { delete query; }
+Database::~Database() { delete query; delete db; }
 
 TransportMap& Database::download()
 {
@@ -34,7 +35,6 @@ TransportMap& Database::download()
 
 void Database::upload(TransportMap& inputMap)
 {
-    query->exec("DELETE");
 
     for(const auto& element : inputMap.getMap())
     {
@@ -55,5 +55,10 @@ void Database::upload(TransportMap& inputMap)
 
 QSqlDatabase& Database::getDatabase()
 {
-    return db;
+    return *db;
+}
+
+QSqlQuery& Database::getQuery()
+{
+    return *query;
 }

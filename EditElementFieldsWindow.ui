@@ -52,6 +52,11 @@
      <height>29</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="minimum">
     <number>1860</number>
    </property>
@@ -67,6 +72,11 @@
      <width>141</width>
      <height>29</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="minimum">
     <number>50</number>
@@ -350,21 +360,6 @@
     <bool>true</bool>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="typeTextBox">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>130</y>
-     <width>141</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-  </widget>
   <widget class="QLabel" name="labelType">
    <property name="geometry">
     <rect>
@@ -395,6 +390,14 @@
      <height>29</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
   </widget>
   <widget class="QSpinBox" name="uinqueIDIntBox">
    <property name="geometry">
@@ -405,6 +408,11 @@
      <height>29</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="minimum">
     <number>1</number>
    </property>
@@ -412,33 +420,43 @@
     <number>99999</number>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QComboBox" name="typeComboBox">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>310</y>
-     <width>311</width>
-     <height>71</height>
+     <x>110</x>
+     <y>130</y>
+     <width>141</width>
+     <height>28</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+   <property name="maxVisibleItems">
+    <number>4</number>
    </property>
-   <property name="text">
-    <string>Available types: 
-Car, Boat, Air, Shuttle.</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
+   <item>
+    <property name="text">
+     <string>Car</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Air</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Boat</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Shuttle</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

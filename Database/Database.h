@@ -18,11 +18,12 @@ public:
     TransportMap& download();
     void upload(TransportMap& inputMap);
     QSqlDatabase& getDatabase();
+    QSqlQuery& getQuery();
 
 private:
     TransportMap outputMap;
 
-    QSqlDatabase db;
+    QSqlDatabase* db;
     QSqlQuery* query;
 };
 

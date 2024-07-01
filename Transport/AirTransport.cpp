@@ -32,14 +32,14 @@ void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 }
 
 
-uint32_t& AirTransport::getSpecialFirst()
+QVariant& AirTransport::getSpecialFirst()
 {
-    return wingspan;
+    outputQstring = wingspan;
+    return outputQstring;
 }
 
-QString& AirTransport::getSpecialSecond()
+QVariant& AirTransport::getSpecialSecond()
 {
-    std::string tmp = std::to_string(payloadCapacity);
-    outputQstring = QString::fromStdString(tmp);
+    outputQstring = payloadCapacity;
     return outputQstring;
 }

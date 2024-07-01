@@ -4,6 +4,7 @@
 #include <Transport/transport.h>
 #include <QString>
 #include <QVariant>
+#include <MessageToUserWindow.h>
 
 class TransportCreator
 {
@@ -12,18 +13,13 @@ public:
                      const QString& brand, const QString& model,
                      const uint32_t& year, const uint32_t& weight,
                      const uint32_t& specialFirst, const QString& specialSecond);
+    ~TransportCreator();
 
     TransportBase& createTransportObject();
 
 private:
-    uint32_t ID;
-    QString type;
-    QString brand;
-    QString model;
-    uint32_t year;
-    uint32_t weight;
-    uint32_t specialFirst;
-    QString specialSecond;
+
+    TransportBase* base;
 };
 
 #endif // TRANSPORTCREATOR_H
