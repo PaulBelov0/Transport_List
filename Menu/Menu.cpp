@@ -6,10 +6,11 @@ Menu::Menu() {}
 
 Menu::~Menu() {}
 
-int Menu::addNewElement(const uint32_t& ID, const QString& type, const QString& brand,
-                         const QString& model, const uint32_t& year, const uint32_t& weight,
-                         const uint32_t& specialFieldFirst, const QString& specialFieldSecond
-                         )
+int Menu::addNewElement(const uint32_t& ID, const QString& type,
+                        const QString& brand, const QString& model,
+                        const uint32_t& year, const uint32_t& weight,
+                        const uint32_t& specialFieldFirst, const QString& specialFieldSecond
+                        )
 {
 
 

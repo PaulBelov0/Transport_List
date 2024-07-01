@@ -48,7 +48,7 @@ void Database::upload(TransportMap& inputMap)
         query->bindValue(":Year", element.second.getYear());
         query->bindValue(":Weight", element.second.getWeight());
         query->bindValue(":SepcialFirst", element.second.getSpecialFirst());
-        query->bindValue(":", element.second.getSpecialSecond());
+        query->bindValue(":SpecialSecond", element.second.getSpecialSecond());
     }
     query->finish();
 }
