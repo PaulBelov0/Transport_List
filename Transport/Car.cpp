@@ -1,62 +1,44 @@
-#include "Car.h"
-
+#include <Transport/Car.h>
 //Realizatuion car type class:
 
-Car::Car(uint32_t ID)
+Car::Car(const int& ID, const QString& brand,
+         const QString& model, const int& year,
+         const int& weight, const int& mileage,
+         const int& owners
+         )
 {
 	uniqueID = ID;
 	type = "Car";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->mileage = mileage;
+    ownersQuantity = owners;
 }
 
 Car::~Car() {}
 
-void Car::editMileage(int mileage)
+
+void Car::editSpecialFirst(const uint32_t& mileage)
 {
-	this->mileage = mileage;
+    this->mileage = mileage;
 }
 
-void Car::editOwnersQuantity(int ownersQuantity)
+
+void Car::editSpecialSecond(const QString& ownersQuantity)
 {
-	this->ownersQuantity = ownersQuantity;
+    this->ownersQuantity = ownersQuantity.toInt();
 }
 
-QString* Car::print()
+QVariant& Car::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = "Mileage: ";
-    outputString[5] += mileage;
-    outputString[6] = "Owners quantity: ";
-    outputString[6] += ownersQuantity;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    outputQstring = mileage;
+    return outputQstring;
 }
 
-std::string Car::finderOnValueType(char typeOfValue)
+QVariant& Car::getSpecialSecond()
 {
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = std::to_string(mileage);
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(ownersQuantity);
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
+    outputQstring = ownersQuantity;
+    return outputQstring;
 }

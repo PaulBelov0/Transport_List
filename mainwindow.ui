@@ -1,119 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QDialog</class>
- <widget class="QDialog" name="QDialog">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>1081</width>
     <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Transport Database</string>
   </property>
-  <widget class="QTextBrowser" name="textBrowser">
+  <property name="locale">
+   <locale language="English" country="UnitedKingdom"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="addNewElementButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>90</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add new element</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="editElementButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>130</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit element</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteElementButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>170</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete element</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loadDatabaseButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>270</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load database</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveDataBaseButton">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>310</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save database</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="exitButton">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>490</y>
+      <width>141</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Exit</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>821</width>
+      <height>501</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>371</width>
-     <height>501</height>
+     <x>0</x>
+     <y>0</y>
+     <width>1081</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPushButton" name="addNewElementButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>70</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add new element</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="deleteElementButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>100</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Delete element</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="editElementButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>130</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Edit element</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="showElementButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>160</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Show element</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="saveDatabaseButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>340</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Save to database</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="loadDatabaseButton">
-   <property name="geometry">
-    <rect>
-     <x>570</x>
-     <y>380</y>
-     <width>171</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Load database</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="exitButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>520</y>
-     <width>111</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Exit</string>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

@@ -9,8 +9,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    Menu menu;
-    menu.mainMenu();
-
     return a.exec();
 }

@@ -1,69 +1,74 @@
 #include <mainwindow.h>
 #include <ui_mainwindow.h>
-#include <QString>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::QDialog)
+    , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    connect(ui->addNewElementButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->deleteElementButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->editElementButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->showElementButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->saveDatabaseButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->loadDatabaseButton, SIGNAL(clicked()), this, SLOT(startPressed()));
-    connect(ui->exitButton, SIGNAL(clicked()), this, SLOT(startPressed()));
+    model = new QSqlTableModel(this, database.getDatabase());
+    model->setTable("TransportDatabase");
+    model->select();
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+    ui->tableView->setModel(model);
+
+    menu.setMap(database.download());
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
+MainWindow::~MainWindow() { delete model;  delete ui; }
 
-void MainWindow::showElement(TransportMap& databaseElement, uint32_t index)
-{
-    ui->textBrowser->setText(*databaseElement.print(index));
-}
-
-void MainWindow::showElement(std::string& output)
-{
-    const QString& text = QString::fromStdString(output);
-    ui->textBrowser->setText(text);
-}
 
 void MainWindow::on_addNewElementButton_clicked()
 {
+    model->insertRow(model->rowCount());
 
+    editElementFieldsWindow.show();
+    editElementFieldsWindow.setActionForRealizationThisWnd("add");
+
+    reloadDatabase();
 }
 
-void MainWindow::on_deleteElementButton_clicked()
-{
-
-}
 
 void MainWindow::on_editElementButton_clicked()
 {
+    searchElementWindow.show();
 
+    reloadDatabase();
 }
 
-void MainWindow::on_showElementButton_clicked()
+
+void MainWindow::on_deleteElementButton_clicked()
 {
+    deleteElementWindow.show();
 
+    model->removeRow(deleteElementWindow.getID());
+
+    reloadDatabase();
 }
 
-void MainWindow::on_saveDatabaseButton_clicked()
+
+void MainWindow::on_loadDatabaseButton_clicked()
 {
-
+    menu.setMap(database.download());
 }
 
-void MainWindow::on_loadDatabaseButton_clicked(){
 
+void MainWindow::on_saveDataBaseButton_clicked()
+{
+    database.upload(menu.getMap());
 }
+
 
 void MainWindow::on_exitButton_clicked()
 {
-
+    database.upload(menu.getMap());
+    this->close();
 }
 
+void MainWindow::reloadDatabase()
+{
+    database.upload(menu.getMap());
+    database.download();
+}

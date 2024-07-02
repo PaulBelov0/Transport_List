@@ -8,17 +8,22 @@
 class AirTransport : public TransportBase
 {
 public:
-	AirTransport(uint32_t ID);
+    AirTransport(const int& ID, const QString& brand,
+                 const QString& model, const int& year,
+                 const int& weight, const int& wingspan,
+                 const int& payloadCapacity
+                 );
 	~AirTransport();
 
-    void editWingspan(int wingspan);
-    void editPayloadCapacity(int payloadCapacity);
-    QString* print() override;
-    std::string finderOnValueType(char typeOfValue) override;
+    void editSpecialFirst(const uint32_t& wingspan) override;
+    void editSpecialSecond(const QString& payloadCapacity) override;
+
+    QVariant& getSpecialFirst() override;
+    QVariant& getSpecialSecond() override;
 
 private:
-	int wingspan;
-	int payloadCapacity;
+    uint32_t wingspan;
+    uint32_t payloadCapacity;
 };
 
 #endif //AIRTRANPORT_H

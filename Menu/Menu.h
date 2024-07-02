@@ -2,31 +2,47 @@
 #define MENU_H
 
 #include <TransportMap/transportmap.h>
-#include <map>
 #include <Transport/TransportBase/TransportBase.h>
+#include <Database/Database.h>
+#include <Transport/transport.h>
+#include <MessageToUserWindow.h>
 
 class Menu
 {
 public:
 
-	Menu();
+    Menu();
 	~Menu();
 
-	int mainMenu();
-	void addNewElement(uint32_t ID);
-    void deleteElement(const uint32_t ID);
-	void showDatabase();
-	void findElement();
-    void saveDatabase();
-    void loadDataBase();
+    int addNewElement(const uint32_t& ID, const QString& type,
+                      const QString& brand, const QString& model,
+                      const uint32_t& year, const uint32_t& weight,
+                      const uint32_t& specialFirst, const QString& specialSecond
+                      );
+    void editElement(const uint32_t& ID, const QString& type,
+                     const QString& brand, const QString& model,
+                     const uint32_t& year, const uint32_t& weight,
+                     const uint32_t& specialFirst, const QString& specialSecond
+                     );
 
-protected:
+    QString& deleteDatabaseElement(const uint32_t& ID);
 
-    void createElement(uint32_t ID, char* type);
+    bool checkElementAvilable(uint32_t& ID);
+
+    TransportMap& getMap();
+
+    void setMap(TransportMap& inputMap);
+
+    void setID(uint32_t& ID);
+
+    uint32_t& getID();
+
 
 private:
-    static uint32_t uniqueID;
-    TransportMap transportDB(uint32_t uniqueID);
+    MessageToUserWindow* messageToUserWindow;
+    uint32_t uniqueID;
+    TransportMap* transportMap;
+    QString deletingResult;
 };
 
 #endif //MENU_H

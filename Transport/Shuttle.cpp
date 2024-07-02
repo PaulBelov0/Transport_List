@@ -1,64 +1,47 @@
-#include "Shuttle.h"
-#include <ostream>
+#include <Transport/Shuttle.h>
 
 //Realization Space shuttle class:
 
-Shuttle::Shuttle(uint32_t ID)
+Shuttle::Shuttle(const int& ID, const QString& brand,
+                 const QString& model, const int& year,
+                 const int& weight,
+                 const int& maxFlyingDistance,
+                 const QString& fuelType
+                 )
 {
-	uniqueID = ID;
-	type = "Space Shuttle";
+    uniqueID = ID;
+    type = "Shuttle";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->maxFlyingDistance = maxFlyingDistance;
+    this->fuelType = fuelType.toStdString();
 }
 
 Shuttle::~Shuttle() {}
 
-void Shuttle::editFuelType(std::string fuelType)
+
+void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {
-	this->fuelType = fuelType;
+    this->maxFlyingDistance = maxFlyingDisatnce;
 }
 
-void Shuttle::editMaxFlyingDistance(int maxFlyingDistance)
+
+void Shuttle::editSpecialSecond(const QString& fuelType)
 {
-	this->maxFlyingDistance = maxFlyingDistance;
+    this->fuelType = fuelType.toStdString();
 }
 
-QString* Shuttle::print()
+
+QVariant& Shuttle::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = "Fuel type: ";
-    outputString[5] += fuelType;
-    outputString[6] = "Max flying distance: ";
-    outputString[6] += maxFlyingDistance;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    outputQstring = maxFlyingDistance;
+    return outputQstring;
 }
 
-std::string Shuttle::finderOnValueType(char typeOfValue)
+QVariant& Shuttle::getSpecialSecond()
 {
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = fuelType;
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(maxFlyingDistance);
-			return returningValue;
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
+    outputQstring = QString::fromStdString(fuelType);
+    return outputQstring;
 }

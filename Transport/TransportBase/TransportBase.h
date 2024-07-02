@@ -4,6 +4,7 @@
 #include <QString>
 #include <string>
 #include <cstdint>
+#include <QVariant>
 
 class TransportBase
 {
@@ -12,24 +13,33 @@ public:
 	TransportBase();
 	virtual ~TransportBase() = 0;
 
-	void editBrand(std::string brand);
-	void editModel(std::string model);
-	void editYear(int year);
-	void editWeight(int weight);
+    void editBrand(const std::string& brand);
+    void editModel(const std::string& model);
+    void editYear(const int& year);
+    void editWeight(const int& weight);
+    virtual void editSpecialFirst(const uint32_t& inputValue);
+    virtual void editSpecialSecond(const QString& inputValue);
 
-    std::string virtual finderOnValueType(char typeOfValue);
-    virtual QString* print();
+    QVariant& getID();
+    QVariant& getType();
+    QVariant& getBrand();
+    QVariant& getModel();
+    QVariant& getYear();
+    QVariant& getWeight();
+    virtual QVariant& getSpecialFirst();
+    virtual QVariant& getSpecialSecond();
+
 
 protected:
 
 	uint32_t uniqueID;
-	std::string type;
-	std::string brand;
-	std::string model;
-	int year;
-	int weight;
+    std::string type;
+    std::string brand;
+    std::string model;
+    uint32_t year;
+    uint32_t weight;
 
-    std::string outputString[7];
+    QVariant outputQstring;
 };
 
 #endif //TRANSPORTBASE_H

@@ -1,62 +1,43 @@
-#include "Boat.h"
+#include <Transport/Boat.h>
 //Realization boat class:
 
-Boat::Boat(uint32_t ID)
+Boat::Boat(const int& ID, const QString& brand,
+           const QString& model, const int& year,
+           const int& weight, const int& displacement,
+           const int& screwDepth
+           )
 {
-	uniqueID = ID;
-	type = "Water Transport";
+    uniqueID = ID;
+    type = "Boat";
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+    this->displacement = displacement;
+    this->screwDepth = screwDepth;
 }
 
 Boat::~Boat() {}
 
-void Boat::editDisplacement(int displacement)
+void Boat::editSpecialFirst(const uint32_t& displacement)
 {
-	this->displacement = displacement;
+    this->displacement = displacement;
 }
 
-void Boat::editScrewDepth(int screwDepth)
+
+void Boat::editSpecialSecond(const QString& screwDepth)
 {
-	this->screwDepth = screwDepth;
+    this->screwDepth = screwDepth.toInt();
 }
 
-QString* Boat::print()
+QVariant& Boat::getSpecialFirst()
 {
-    QString* output = new QString [7];
-
-    TransportBase::print();
-
-    outputString[5] = "Displacement: ";
-    outputString[5] += displacement;
-    outputString[6] = "Screw depth: ";
-    outputString[6] += screwDepth;
-
-    for (int i = 5; i < 7; i++)
-    {
-        output[7] = QString::fromStdString(outputString[i]);
-    }
-
-    return output;
+    outputQstring = displacement;
+    return outputQstring;
 }
 
-std::string Boat::finderOnValueType(char typeOfValue)
+QVariant& Boat::getSpecialSecond()
 {
-	std::string returningValue = TransportBase::finderOnValueType(typeOfValue);
-
-	if (returningValue == std::to_string(NULL))
-	{
-		if (typeOfValue == '6')
-		{
-			returningValue = std::to_string(displacement);
-			return returningValue;
-		}
-		else if (typeOfValue == '7')
-		{
-			returningValue = std::to_string(screwDepth);
-			return returningValue;
-		}
-	}
-	else
-	{
-		return returningValue;
-	}
+    outputQstring = screwDepth;
+    return outputQstring;
 }
