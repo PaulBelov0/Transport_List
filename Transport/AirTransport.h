@@ -20,10 +20,6 @@ public:
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;
-
-private:
-    uint32_t wingspan;
-    uint32_t payloadCapacity;
 };
 
 #endif //AIRTRANPORT_H

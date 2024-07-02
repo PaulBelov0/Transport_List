@@ -14,32 +14,32 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
     this->model = model.toStdString();
     this->year = year;
     this->weight = weight;
-    this->wingspan = wingspan;
-    this->payloadCapacity = payloadCapacity;
+    specialFirst = wingspan;
+    specialSecond = std::to_string(payloadCapacity);
 }
 
 AirTransport::~AirTransport() {}
 
 void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {
-    this->wingspan = wingspan;
+    this->specialFirst = wingspan;
 }
 
 
 void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 {
-    this->payloadCapacity = payloadCapacity.toInt();
+    this->specialSecond = payloadCapacity.toInt();
 }
 
 
 QVariant& AirTransport::getSpecialFirst()
 {
-    outputQstring = wingspan;
+    outputQstring = specialFirst;
     return outputQstring;
 }
 
 QVariant& AirTransport::getSpecialSecond()
 {
-    outputQstring = payloadCapacity;
+    outputQstring = QString::fromStdString(specialSecond);
     return outputQstring;
 }

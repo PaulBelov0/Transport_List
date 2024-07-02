@@ -2,42 +2,58 @@
 #include <Transport/TransportBase/TransportBase.h>
 
 
-TransportMap::TransportMap() { transportDB = new std::map<uint32_t, TransportBase&>; }
-TransportMap::~TransportMap() { delete transportDB; }
+TransportMap::TransportMap() {}
+
+TransportMap::TransportMap(TransportMap& map)
+{
+    setMap(map.getMap());
+}
+TransportMap::~TransportMap() {}
 
 bool TransportMap::findDatabaseElement(const uint32_t& index)
 {
-    bool output;
-    if (transportDB->count(index) == true)
+    if (transportDB->empty() != true)
     {
-        output = true;
+        bool output;
+        if (transportDB->count(index) == true)
+        {
+            output = true;
+        }
+        else
+        {
+            output = false;
+            messageToUserWindow.show();
+            messageToUserWindow.setTextMessage("Error! No one element have this ID!");
+        }
+        return output;
     }
     else
     {
-        output = false;
-        messageToUserWindow.show();
-        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
+        return false;
     }
-    return output;
 }
 
-void TransportMap::addNewElement(uint32_t index, TransportBase& data)
+void TransportMap::addNewElement(uint32_t key, TransportBase& element)
 {
-    if (transportDB->count(index) == false)
+    const auto& iterator = transportDB->find(key);
+    if (iterator != transportDB->end())
     {
-        transportDB->insert(std::pair<uint32_t, TransportBase&>(index, data));
+        const auto& iter = transportDB->end();
+        transportDB->insert(iter, std::pair<uint32_t, TransportBase&>(key, element));
     }
     else
     {
         messageToUserWindow.show();
+        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
     }
 }
 
 void TransportMap::deleteElement(const uint32_t& index)
 {
-    if (transportDB->count(index) == true)
+    const auto& iterator = transportDB->find(index);
+    if (iterator != transportDB->end())
     {
-        transportDB->erase(index);
+        transportDB->erase(iterator);
     }
 }
 
@@ -46,11 +62,10 @@ std::map<uint32_t, TransportBase&>& TransportMap::getMap()
     return *transportDB;
 }
 
-void TransportMap::setMap(std::map<uint32_t, TransportBase&> inputMap)
+void TransportMap::setMap(std::map<uint32_t, TransportBase&>& inputMap)
 {
-    for (const auto& element : inputMap)
-    {
-        transportDB->insert(element);
-    }
+    transportDB->clear();
+
+    *transportDB = inputMap;
 }
 

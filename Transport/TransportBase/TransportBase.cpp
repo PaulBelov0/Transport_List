@@ -64,8 +64,8 @@ TransportBase::~TransportBase() {}
  }
 
 
- void TransportBase::editSpecialFirst(const uint32_t& value) {}
- void TransportBase::editSpecialSecond(const QString& value) {}
+ void TransportBase::editSpecialFirst(const uint32_t& value) { specialFirst = value; }
+ void TransportBase::editSpecialSecond(const QString& value) { specialSecond = value.toStdString(); }
 
- QVariant& TransportBase::getSpecialFirst() {}
- QVariant& TransportBase::getSpecialSecond() {}
+ QVariant& TransportBase::getSpecialFirst() { outputQstring = specialFirst; return outputQstring; }
+ QVariant& TransportBase::getSpecialSecond() { outputQstring = QString::fromStdString(specialSecond); return outputQstring; }

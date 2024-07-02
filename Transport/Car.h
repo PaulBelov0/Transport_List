@@ -20,11 +20,6 @@ public:
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;
-
-private:
-
-    uint32_t mileage;
-    uint32_t ownersQuantity;
 };
 
 #endif //CAR_H

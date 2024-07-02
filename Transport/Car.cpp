@@ -13,8 +13,8 @@ Car::Car(const int& ID, const QString& brand,
     this->model = model.toStdString();
     this->year = year;
     this->weight = weight;
-    this->mileage = mileage;
-    ownersQuantity = owners;
+    specialFirst = mileage;
+    specialSecond = std::to_string(owners);
 }
 
 Car::~Car() {}
@@ -22,23 +22,23 @@ Car::~Car() {}
 
 void Car::editSpecialFirst(const uint32_t& mileage)
 {
-    this->mileage = mileage;
+    this->specialFirst = mileage;
 }
 
 
 void Car::editSpecialSecond(const QString& ownersQuantity)
 {
-    this->ownersQuantity = ownersQuantity.toInt();
+    specialSecond = ownersQuantity.toInt();
 }
 
 QVariant& Car::getSpecialFirst()
 {
-    outputQstring = mileage;
+    outputQstring = specialFirst;
     return outputQstring;
 }
 
 QVariant& Car::getSpecialSecond()
 {
-    outputQstring = ownersQuantity;
+    outputQstring = QString::fromStdString(specialSecond);
     return outputQstring;
 }

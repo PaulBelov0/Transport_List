@@ -2,6 +2,7 @@
 #define TRANSPORTMAP_H
 
 #include <QString>
+#include <QPair>
 #include <map>
 #include <cstdint>
 #include <memory>
@@ -13,17 +14,18 @@ class TransportMap
 {
 public:
     TransportMap();
+    TransportMap(TransportMap& map);
     ~TransportMap();
 
     bool findDatabaseElement(const uint32_t& index);
-    void addNewElement(uint32_t index, TransportBase& data);
+    void addNewElement(uint32_t key, TransportBase& element);
     void deleteElement(const uint32_t& index);
 
     std::map<uint32_t, TransportBase&>& getMap();
-    void setMap(std::map<uint32_t, TransportBase&> inputMap);
+    void setMap(std::map<uint32_t, TransportBase&>& inputMap);
 
 private:
-    std::map<uint32_t, TransportBase&>* transportDB;
+    std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
 
     MessageToUserWindow messageToUserWindow;
 };

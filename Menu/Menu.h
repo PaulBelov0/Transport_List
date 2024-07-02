@@ -6,7 +6,8 @@
 #include <Database/Database.h>
 #include <Transport/transport.h>
 #include <MessageToUserWindow.h>
-
+#include <memory>
+#include <QMap>
 class Menu
 {
 public:
@@ -41,7 +42,7 @@ public:
 private:
     MessageToUserWindow* messageToUserWindow;
     uint32_t uniqueID;
-    TransportMap* transportMap;
+    std::unique_ptr<TransportMap> transportMap;
     QString deletingResult;
 };
 

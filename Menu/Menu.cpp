@@ -2,9 +2,9 @@
 
 //QT_Version
 
-Menu::Menu() { transportMap = new TransportMap; messageToUserWindow = new MessageToUserWindow; }
+Menu::Menu() { messageToUserWindow = new MessageToUserWindow(); }
 
-Menu::~Menu() { delete transportMap; delete messageToUserWindow; }
+Menu::~Menu() { delete messageToUserWindow; }
 
 int Menu::addNewElement(const uint32_t& ID, const QString& type,
                         const QString& brand, const QString& model,
@@ -16,14 +16,11 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 
     if (type == "Air")
     {
-        std::string* specialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
         try
         {
-            int specialSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-            delete specialFieldSecond_tmp;
+            int specialSecondIntVersion = specialFieldSecond.toUInt();
 
             AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
-
             transportMap->addNewElement(ID, airTransport);
         }
         catch (const std::invalid_argument& e)
@@ -35,15 +32,12 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
     }
     else if (type == "Car")
     {
-        std::string* spececialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
-
         try
         {
-            int spececialFieldSecondIntVersion = std::stoi(*spececialFieldSecond_tmp);
-            delete spececialFieldSecond_tmp;
+            int spececialFieldSecondIntVersion = specialFieldSecond.toUInt();
 
             Car car(ID, brand, model, year, weight, specialFieldFirst, spececialFieldSecondIntVersion);
-
+            std::pair <uint32_t, TransportBase&> pair(ID, car);
             transportMap->addNewElement(ID, car);
         }
         catch (const std::invalid_argument& e)
@@ -55,15 +49,11 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
     }
     else if (type == "Boat")
     {
-        std::string* specialFieldSecond_tmp = new std::string(specialFieldSecond.toStdString());
-
         try
         {
-            int specialFieldSecondIntVersion = std::stoi(*specialFieldSecond_tmp);
-            delete specialFieldSecond_tmp;
+            int specialFieldSecondIntVersion = specialFieldSecond.toUInt();
 
             Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecondIntVersion);
-
             transportMap->addNewElement(ID, boat);
         }
         catch (const std::invalid_argument& e)
@@ -73,17 +63,12 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
         }
         return 0;
     }
-    else if (type == "Shuttle")
+    else
     {
         Shuttle shuttle(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
-
         transportMap->addNewElement(ID, shuttle);
 
         return 0;
-    }
-    else
-    {
-        return 1;
     }
 }
 
@@ -131,7 +116,8 @@ TransportMap& Menu::getMap()
 
 void Menu::setMap(TransportMap& inputMap)
 {
-    transportMap = &inputMap;
+    std::unique_ptr<TransportMap> transportDB = std::make_unique<TransportMap>(inputMap);
+    transportMap = std::make_unique<TransportMap>(*transportDB);
 }
 
 void Menu::setID(uint32_t& ID)

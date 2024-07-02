@@ -15,8 +15,8 @@ Shuttle::Shuttle(const int& ID, const QString& brand,
     this->model = model.toStdString();
     this->year = year;
     this->weight = weight;
-    this->maxFlyingDistance = maxFlyingDistance;
-    this->fuelType = fuelType.toStdString();
+    specialFirst = maxFlyingDistance;
+    specialSecond = fuelType.toStdString();
 }
 
 Shuttle::~Shuttle() {}
@@ -24,24 +24,24 @@ Shuttle::~Shuttle() {}
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {
-    this->maxFlyingDistance = maxFlyingDisatnce;
+    this->specialFirst = maxFlyingDisatnce;
 }
 
 
 void Shuttle::editSpecialSecond(const QString& fuelType)
 {
-    this->fuelType = fuelType.toStdString();
+    this->specialSecond = fuelType.toStdString();
 }
 
 
 QVariant& Shuttle::getSpecialFirst()
 {
-    outputQstring = maxFlyingDistance;
+    outputQstring = specialFirst;
     return outputQstring;
 }
 
 QVariant& Shuttle::getSpecialSecond()
 {
-    outputQstring = QString::fromStdString(fuelType);
+    outputQstring = QString::fromStdString(specialSecond);
     return outputQstring;
 }

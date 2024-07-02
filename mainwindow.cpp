@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setModel(model);
 
-    menu.setMap(database.download());
+    //menu.setMap(database.download());
 }
 
 MainWindow::~MainWindow() { delete model;  delete ui; }
@@ -22,12 +22,12 @@ MainWindow::~MainWindow() { delete model;  delete ui; }
 
 void MainWindow::on_addNewElementButton_clicked()
 {
-    model->insertRow(model->rowCount());
-
     editElementFieldsWindow.show();
     editElementFieldsWindow.setActionForRealizationThisWnd("add");
 
-    reloadDatabase();
+    model->insertRow(model->rowCount());
+
+    //reloadDatabase();
 }
 
 

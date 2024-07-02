@@ -21,10 +21,6 @@ public:
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;
-
-private:
-    uint32_t maxFlyingDistance;
-    std::string fuelType;
 };
 
 #endif //SHUTTLE_H

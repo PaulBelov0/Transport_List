@@ -38,9 +38,8 @@ void Database::upload(TransportMap& inputMap)
 
     for(const auto& element : inputMap.getMap())
     {
-        query->exec("INSERT INTO TransportDatabase(ID, Type, Brand, Model, Year, Weight, Specialfirst, SpecialSecond)"
-                    "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :Specialfirst, :SpecialSecond)");
-
+        query->prepare("INSERT INTO TransportDatabase(ID, Type, Brand, Model, Year, Weight, Specialfirst, SpecialSecond)"
+                       "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :Specialfirst, :SpecialSecond)");
         query->bindValue(":ID", element.second.getID());
         query->bindValue(":Type", element.second.getType());
         query->bindValue(":Brand", element.second.getBrand());
@@ -49,6 +48,7 @@ void Database::upload(TransportMap& inputMap)
         query->bindValue(":Weight", element.second.getWeight());
         query->bindValue(":SepcialFirst", element.second.getSpecialFirst());
         query->bindValue(":SpecialSecond", element.second.getSpecialSecond());
+
     }
     query->finish();
 }

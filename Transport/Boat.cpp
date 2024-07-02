@@ -13,31 +13,31 @@ Boat::Boat(const int& ID, const QString& brand,
     this->model = model.toStdString();
     this->year = year;
     this->weight = weight;
-    this->displacement = displacement;
-    this->screwDepth = screwDepth;
+    specialFirst = displacement;
+    specialSecond = std::to_string(screwDepth);
 }
 
 Boat::~Boat() {}
 
 void Boat::editSpecialFirst(const uint32_t& displacement)
 {
-    this->displacement = displacement;
+    specialFirst = displacement;
 }
 
 
 void Boat::editSpecialSecond(const QString& screwDepth)
 {
-    this->screwDepth = screwDepth.toInt();
+    specialSecond = screwDepth.toInt();
 }
 
 QVariant& Boat::getSpecialFirst()
 {
-    outputQstring = displacement;
+    outputQstring = specialFirst;
     return outputQstring;
 }
 
 QVariant& Boat::getSpecialSecond()
 {
-    outputQstring = screwDepth;
+    outputQstring = QString::fromStdString(specialSecond);
     return outputQstring;
 }

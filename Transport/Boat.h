@@ -20,10 +20,6 @@ public:
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;
-
-private:
-    uint32_t displacement;
-    uint32_t screwDepth;
 };
 
 #endif //BOAT_H

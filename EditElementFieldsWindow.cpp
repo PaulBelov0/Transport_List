@@ -43,29 +43,29 @@ void EditElementFieldsWindow::setElementByID(const uint32_t& ID)
 
     QVariant converter;
 
-    converter = map.find(ID)->second.getID();
+    converter = map.at(ID).getID();
+    ui->uinqueIDIntBox->setDisplayIntegerBase(converter.toInt());
+
+    converter = map.at(ID).getType();
+    ui->typeComboBox->setCurrentText(converter.toString());
+
+    converter = map.at(ID).getBrand();;
+    ui->brandTextBox->setPlainText(converter.toString());
+
+    converter = map.at(ID).getModel();
+    ui->modelTextBox->setPlainText(converter.toString());
+
+    converter = map.at(ID).getYear();
+    ui->yearSpinBox->setDisplayIntegerBase(converter.toInt());
+
+    converter = map.at(ID).getWeight();
     ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.find(ID)->second.getType();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
+    converter = map.at(ID).getSpecialFirst();
+    ui->firstSpecialFieldSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.find(ID)->second.getBrand();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
-
-    converter = map.find(ID)->second.getModel();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
-
-    converter = map.find(ID)->second.getYear();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
-
-    converter = map.find(ID)->second.getWeight();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
-
-    converter = map.find(ID)->second.getSpecialFirst();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
-
-    converter = map.find(ID)->second.getSpecialSecond();
-    ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
+    converter = map.at(ID).getSpecialSecond();
+    ui->secondSpecialFieldTextBox->setPlainText(converter.toString());
 }
 
 void EditElementFieldsWindow::setActionForRealizationThisWnd(std::string action)

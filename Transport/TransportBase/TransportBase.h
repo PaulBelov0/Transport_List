@@ -10,7 +10,7 @@ class TransportBase
 {
 public:
 
-	TransportBase();
+    TransportBase();
 	virtual ~TransportBase() = 0;
 
     void editBrand(const std::string& brand);
@@ -38,6 +38,8 @@ protected:
     std::string model;
     uint32_t year;
     uint32_t weight;
+    uint32_t specialFirst;
+    std::string specialSecond;
 
     QVariant outputQstring;
 };
