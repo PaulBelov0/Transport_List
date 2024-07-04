@@ -11,7 +11,7 @@ class TransportBase
 public:
 
     TransportBase();
-	virtual ~TransportBase() = 0;
+    virtual ~TransportBase() = 0;
 
     void editBrand(const std::string& brand);
     void editModel(const std::string& model);

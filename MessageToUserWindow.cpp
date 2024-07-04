@@ -13,7 +13,7 @@ MessageToUserWindow::~MessageToUserWindow()
     delete ui;
 }
 
-void MessageToUserWindow::setTextMessage(const QString& textMessage)
+void MessageToUserWindow::setTextMessage(const QString &textMessage)
 {
     ui->textMessage->setText(textMessage);
 }
@@ -22,4 +22,3 @@ void MessageToUserWindow::on_okButton_clicked()
 {
     this->close();
 }
-

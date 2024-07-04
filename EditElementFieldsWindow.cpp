@@ -15,8 +15,6 @@ EditElementFieldsWindow::~EditElementFieldsWindow()
 
 void EditElementFieldsWindow::on_okButton_clicked()
 {
-    Menu menu;
-
     uint32_t ID = ui->uinqueIDIntBox->value();
     QString type = ui->typeComboBox->currentText();
     QString brand = ui->brandTextBox->toPlainText();
@@ -28,18 +26,20 @@ void EditElementFieldsWindow::on_okButton_clicked()
 
     if (actionWithDB == "add" || "Add")
     {
-        menu.addNewElement(ID, type, brand, model, year, weight, firstSpecialField, secondSpecialField);
+        menu.addNewElement(ID,type, brand, model,year, weight,
+                           firstSpecialField, secondSpecialField);
     }
     else if (actionWithDB == "edit" || "Edit")
     {
-        menu.editElement(ID, type, brand, model, year, weight, firstSpecialField, secondSpecialField);
+        menu.editElement(ID, type, brand, model, year, weight,
+                         firstSpecialField, secondSpecialField);
     }
     this->close();
 }
 
-void EditElementFieldsWindow::setElementByID(const uint32_t& ID)
+void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
 {
-    std::map<uint32_t, TransportBase&> map = transportMap.getMap();
+    std::map<uint32_t, TransportBase &> map = transportMap.getMap();
 
     QVariant converter;
 
@@ -49,7 +49,8 @@ void EditElementFieldsWindow::setElementByID(const uint32_t& ID)
     converter = map.at(ID).getType();
     ui->typeComboBox->setCurrentText(converter.toString());
 
-    converter = map.at(ID).getBrand();;
+    converter = map.at(ID).getBrand();
+    ;
     ui->brandTextBox->setPlainText(converter.toString());
 
     converter = map.at(ID).getModel();
@@ -70,19 +71,15 @@ void EditElementFieldsWindow::setElementByID(const uint32_t& ID)
 
 void EditElementFieldsWindow::setActionForRealizationThisWnd(std::string action)
 {
-    if (action == "add" || "Add")
-    {
+    if (action == "add" || "Add") {
         actionWithDB = action;
-    }
-    else if (action == "edit" || "Edit")
-    {
+    } else if (action == "edit" || "Edit") {
         actionWithDB = action;
+    } else {
     }
-    else {}
 }
 
 void EditElementFieldsWindow::on_cancelButton_clicked()
 {
     this->close();
 }
-

@@ -16,6 +16,7 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
     this->weight = weight;
     specialFirst = wingspan;
     specialSecond = std::to_string(payloadCapacity);
+    outputQstring = "Q";
 }
 
 AirTransport::~AirTransport() {}

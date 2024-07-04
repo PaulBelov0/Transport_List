@@ -12,10 +12,10 @@ TransportMap::~TransportMap() {}
 
 bool TransportMap::findDatabaseElement(const uint32_t& index)
 {
-    if (transportDB->empty() != true)
+    if (!transportDB.empty())
     {
         bool output;
-        if (transportDB->count(index) == true)
+        if (transportDB.count(index))
         {
             output = true;
         }
@@ -35,37 +35,28 @@ bool TransportMap::findDatabaseElement(const uint32_t& index)
 
 void TransportMap::addNewElement(uint32_t key, TransportBase& element)
 {
-    const auto& iterator = transportDB->find(key);
-    if (iterator != transportDB->end())
-    {
-        const auto& iter = transportDB->end();
-        transportDB->insert(iter, std::pair<uint32_t, TransportBase&>(key, element));
-    }
-    else
-    {
-        messageToUserWindow.show();
-        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
-    }
+    std::initializer_list<std::pair<const uint32_t, TransportBase&>> list = {std::pair<const uint32_t, TransportBase&>(key, element)};
+    transportDB.insert(list);
 }
 
 void TransportMap::deleteElement(const uint32_t& index)
 {
-    const auto& iterator = transportDB->find(index);
-    if (iterator != transportDB->end())
+    const auto& iterator = transportDB.find(index);
+    if (iterator != transportDB.end())
     {
-        transportDB->erase(iterator);
+        transportDB.erase(iterator);
     }
 }
 
 std::map<uint32_t, TransportBase&>& TransportMap::getMap()
 {
-    return *transportDB;
+    return transportDB;
 }
 
 void TransportMap::setMap(std::map<uint32_t, TransportBase&>& inputMap)
 {
-    transportDB->clear();
+    transportDB.clear();
 
-    *transportDB = inputMap;
+    transportDB = inputMap;
 }
 

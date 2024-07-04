@@ -3,8 +3,8 @@
 
 #include <QDialog>
 #include <QException>
-#include <MessageToUserWindow.h>
 #include <Menu/Menu.h>
+#include <MessageToUserWindow.h>
 
 namespace Ui {
 class DeleteElementWindow;
@@ -17,7 +17,7 @@ class DeleteElementWindow : public QDialog
 public:
     explicit DeleteElementWindow(QWidget *parent = nullptr);
     ~DeleteElementWindow();
-    uint32_t& getID();
+    uint32_t &getID();
 
 private slots:
     void on_deleteButton_clicked();

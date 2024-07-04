@@ -5,10 +5,10 @@
 #include <QPair>
 #include <map>
 #include <cstdint>
-#include <memory>
 #include <Transport/transport.h>
 #include <Transport/TransportBase/TransportBase.h>
 #include <MessageToUserWindow.h>
+#include <initializer_list>
 
 class TransportMap
 {
@@ -25,7 +25,7 @@ public:
     void setMap(std::map<uint32_t, TransportBase&>& inputMap);
 
 private:
-    std::unique_ptr<std::map<uint32_t, TransportBase&>> transportDB;
+    std::map<uint32_t, TransportBase&> transportDB;
 
     MessageToUserWindow messageToUserWindow;
 };

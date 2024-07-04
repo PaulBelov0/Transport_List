@@ -17,6 +17,7 @@ Shuttle::Shuttle(const int& ID, const QString& brand,
     this->weight = weight;
     specialFirst = maxFlyingDistance;
     specialSecond = fuelType.toStdString();
+    outputQstring = "Q";
 }
 
 Shuttle::~Shuttle() {}

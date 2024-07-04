@@ -15,7 +15,7 @@ public:
     explicit MessageToUserWindow(QWidget *parent = nullptr);
     ~MessageToUserWindow();
 
-    void setTextMessage(const QString& textMessage);
+    void setTextMessage(const QString &textMessage);
 
 private slots:
     void on_okButton_clicked();

@@ -44,6 +44,7 @@ private:
     uint32_t uniqueID;
     std::unique_ptr<TransportMap> transportMap;
     QString deletingResult;
+
 };
 
 #endif //MENU_H

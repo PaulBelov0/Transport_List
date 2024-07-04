@@ -15,6 +15,7 @@ Boat::Boat(const int& ID, const QString& brand,
     this->weight = weight;
     specialFirst = displacement;
     specialSecond = std::to_string(screwDepth);
+    outputQstring = "Q";
 }
 
 Boat::~Boat() {}

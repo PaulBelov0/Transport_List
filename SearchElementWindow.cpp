@@ -18,50 +18,42 @@ void SearchElementWindow::on_exitButton_clicked()
     this->close();
 }
 
-
 void SearchElementWindow::on_okButton_clicked()
 {
-    if(ui->plainTextEdit != NULL)
-    {
+    if (ui->plainTextEdit != NULL) {
         uint32_t index;
         QString qString = ui->plainTextEdit->toPlainText();
         std::string text = qString.toStdString();
         try {
             index = std::stoi(text);
-        }
-        catch(QException& e){
+        } catch (QException &e) {
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
         Menu menu;
         bool resultChecking = menu.checkElementAvilable(index);
 
-        if (resultChecking == true)
-        {
+        if (resultChecking == true) {
             editElementFieldsWindow.show();
             editElementFieldsWindow.setActionForRealizationThisWnd("edit");
             editElementFieldsWindow.setElementByID(index);
-        }
-        else
-        {
+        } else {
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! \nNo one element have this ID!");
         }
-    }
-    else
-    {
+    } else {
         messageToUserWindow.show();
         messageToUserWindow.setTextMessage("Error! Wrong input data!");
     }
 }
 
-QString& SearchElementWindow::getElement()
+QString &SearchElementWindow::getElement()
 {
     std::unique_ptr<QString> text;
-    for (int i = 0; i< 7; i++){
+    for (int i = 0; i < 7; i++) {
         *text += outputText[i];
         *text += "\n";
     }
-    QString& output = *text;
+    QString &output = *text;
     return output;
 }

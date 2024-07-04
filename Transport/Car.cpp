@@ -15,6 +15,7 @@ Car::Car(const int& ID, const QString& brand,
     this->weight = weight;
     specialFirst = mileage;
     specialSecond = std::to_string(owners);
+    outputQstring = "Q";
 }
 
 Car::~Car() {}

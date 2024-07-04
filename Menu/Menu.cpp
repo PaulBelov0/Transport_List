@@ -12,22 +12,22 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
                         const uint32_t& specialFieldFirst, const QString& specialFieldSecond
                         )
 {
-
+    int specialSecondIntVersion;
 
     if (type == "Air")
     {
         try
         {
-            int specialSecondIntVersion = specialFieldSecond.toUInt();
-
-            AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
-            transportMap->addNewElement(ID, airTransport);
+            specialSecondIntVersion = specialFieldSecond.toUInt();
         }
         catch (const std::invalid_argument& e)
         {
             messageToUserWindow->show();
             messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
         }
+
+        AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
+        transportMap->addNewElement(ID, airTransport);
         return 0;
     }
     else if (type == "Car")

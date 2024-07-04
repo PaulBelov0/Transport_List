@@ -2,10 +2,10 @@
 #define SEARCHELEMENTWINDOW_H
 
 #include <QDialog>
-#include <MessageToUserWindow.h>
 #include <QException>
-#include <Menu/Menu.h>
 #include <EditElementFieldsWindow.h>
+#include <Menu/Menu.h>
+#include <MessageToUserWindow.h>
 
 namespace Ui {
 class SearchElementWindow;
@@ -19,7 +19,7 @@ public:
     explicit SearchElementWindow(QWidget *parent = nullptr);
     ~SearchElementWindow();
 
-    QString& getElement();
+    QString &getElement();
 
 private slots:
     void on_exitButton_clicked();

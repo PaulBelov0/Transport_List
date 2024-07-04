@@ -17,8 +17,11 @@ MainWindow::MainWindow(QWidget *parent)
     //menu.setMap(database.download());
 }
 
-MainWindow::~MainWindow() { delete model;  delete ui; }
-
+MainWindow::~MainWindow()
+{
+    delete model;
+    delete ui;
+}
 
 void MainWindow::on_addNewElementButton_clicked()
 {
@@ -30,14 +33,12 @@ void MainWindow::on_addNewElementButton_clicked()
     //reloadDatabase();
 }
 
-
 void MainWindow::on_editElementButton_clicked()
 {
     searchElementWindow.show();
 
     reloadDatabase();
 }
-
 
 void MainWindow::on_deleteElementButton_clicked()
 {
@@ -48,18 +49,15 @@ void MainWindow::on_deleteElementButton_clicked()
     reloadDatabase();
 }
 
-
 void MainWindow::on_loadDatabaseButton_clicked()
 {
     menu.setMap(database.download());
 }
 
-
 void MainWindow::on_saveDataBaseButton_clicked()
 {
     database.upload(menu.getMap());
 }
-
 
 void MainWindow::on_exitButton_clicked()
 {
