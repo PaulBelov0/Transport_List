@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setModel(model);
 
-    //menu.setMap(database.download());
+    menu.setMap(database.download());
 }
 
 MainWindow::~MainWindow()
@@ -37,7 +37,7 @@ void MainWindow::on_editElementButton_clicked()
 {
     searchElementWindow.show();
 
-    reloadDatabase();
+    //reloadDatabase();
 }
 
 void MainWindow::on_deleteElementButton_clicked()
@@ -46,7 +46,7 @@ void MainWindow::on_deleteElementButton_clicked()
 
     model->removeRow(deleteElementWindow.getID());
 
-    reloadDatabase();
+    //reloadDatabase();
 }
 
 void MainWindow::on_loadDatabaseButton_clicked()

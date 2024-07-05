@@ -22,6 +22,11 @@ Shuttle::Shuttle(const int& ID, const QString& brand,
 
 Shuttle::~Shuttle() {}
 
+std::unique_ptr<TransportBase> Shuttle::clone() const
+{
+    return std::make_unique<Shuttle>(*this);
+}
+
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {

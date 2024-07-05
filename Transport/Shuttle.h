@@ -18,6 +18,7 @@ public:
 
     void editSpecialFirst(const uint32_t& maxFlyingDistance) override;
     void editSpecialSecond(const QString& fuelType) override;
+    std::unique_ptr<TransportBase> clone() const override;
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;

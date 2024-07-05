@@ -17,6 +17,7 @@ public:
 
     void editSpecialFirst(const uint32_t& mileage) override;
     void editSpecialSecond(const QString& ownersQuantity) override;
+    std::unique_ptr<TransportBase> clone() const override;
 
     QVariant& getSpecialFirst() override;
     QVariant& getSpecialSecond() override;

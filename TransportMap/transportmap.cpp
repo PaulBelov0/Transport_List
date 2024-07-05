@@ -2,7 +2,12 @@
 #include <Transport/TransportBase/TransportBase.h>
 
 
-TransportMap::TransportMap() {}
+TransportMap::TransportMap()
+{
+    Car* car = new Car(0, "Test", "Test", 1860, 1000, 100, 12);
+    transportDB[0] = car->clone();
+    delete car;
+}
 
 TransportMap::TransportMap(TransportMap& map)
 {
@@ -33,9 +38,14 @@ bool TransportMap::findDatabaseElement(const uint32_t& index)
     }
 }
 
-void TransportMap::addNewElement(uint32_t key, TransportBase& element)
+void TransportMap::addNewElement(std::unique_ptr<TransportBase> element)
 {
-    std::initializer_list<std::pair<const uint32_t, TransportBase&>> list = {std::pair<const uint32_t, TransportBase&>(key, element)};
+    std::unique_ptr<TransportBase> value = element->clone();
+    uint32_t key = value->getID().toInt();
+
+    std::initializer_list<std::pair<const uint32_t, std::unique_ptr<TransportBase>>> list =
+        {std::pair<const uint32_t, std::unique_ptr<TransportBase>>(key, value->clone())};
+
     transportDB.insert(list);
 }
 
@@ -48,12 +58,12 @@ void TransportMap::deleteElement(const uint32_t& index)
     }
 }
 
-std::map<uint32_t, TransportBase&>& TransportMap::getMap()
+std::map<uint32_t, std::unique_ptr<TransportBase>>& TransportMap::getMap()
 {
     return transportDB;
 }
 
-void TransportMap::setMap(std::map<uint32_t, TransportBase&>& inputMap)
+void TransportMap::setMap(std::map<uint32_t, std::unique_ptr<TransportBase>>& inputMap)
 {
     transportDB.clear();
 

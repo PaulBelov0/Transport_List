@@ -21,6 +21,11 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
 
 AirTransport::~AirTransport() {}
 
+std::unique_ptr<TransportBase> AirTransport::clone() const
+{
+    return std::make_unique<AirTransport>(*this);
+}
+
 void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {
     this->specialFirst = wingspan;

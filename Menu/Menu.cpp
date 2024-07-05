@@ -6,76 +6,85 @@ Menu::Menu() { messageToUserWindow = new MessageToUserWindow(); }
 
 Menu::~Menu() { delete messageToUserWindow; }
 
-int Menu::addNewElement(const uint32_t& ID, const QString& type,
-                        const QString& brand, const QString& model,
-                        const uint32_t& year, const uint32_t& weight,
-                        const uint32_t& specialFieldFirst, const QString& specialFieldSecond
+// int Menu::addNewElement(const uint32_t& ID, const QString& type,
+//                         const QString& brand, const QString& model,
+//                         const uint32_t& year, const uint32_t& weight,
+//                         const uint32_t& specialFieldFirst, const QString& specialFieldSecond
+//                         )
+
+int Menu::addNewElement(const uint32_t ID, const QString type,
+                        const QString brand, const QString model,
+                        const uint32_t year, const uint32_t weight,
+                        const uint32_t specialFieldFirst, const QString specialFieldSecond
                         )
+
 {
-    int specialSecondIntVersion;
+    int specialSecondFieldIntVersion;
 
     if (type == "Air")
     {
         try
         {
-            specialSecondIntVersion = specialFieldSecond.toUInt();
+            specialSecondFieldIntVersion = specialFieldSecond.toUInt();
+
+            AirTransport air(ID, brand, model, year, weight, specialFieldFirst, specialSecondFieldIntVersion);
+
+            transportMap->addNewElement(air.clone());
         }
         catch (const std::invalid_argument& e)
         {
             messageToUserWindow->show();
             messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+            while (messageToUserWindow->isEnabled()) {}
         }
-
-        AirTransport airTransport(ID, brand, model, year, weight, specialFieldFirst, specialSecondIntVersion);
-        transportMap->addNewElement(ID, airTransport);
-        return 0;
     }
     else if (type == "Car")
     {
         try
         {
-            int spececialFieldSecondIntVersion = specialFieldSecond.toUInt();
+            specialSecondFieldIntVersion = specialFieldSecond.toUInt();
 
-            Car car(ID, brand, model, year, weight, specialFieldFirst, spececialFieldSecondIntVersion);
-            std::pair <uint32_t, TransportBase&> pair(ID, car);
-            transportMap->addNewElement(ID, car);
+            Car car(ID, brand, model,year, weight, specialFieldFirst, specialSecondFieldIntVersion);
+
+            transportMap->addNewElement(car.clone());
+
         }
         catch (const std::invalid_argument& e)
         {
             messageToUserWindow->show();
             messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+            while (messageToUserWindow->isEnabled()) {}
         }
-        return 0;
+
+
     }
     else if (type == "Boat")
     {
         try
         {
-            int specialFieldSecondIntVersion = specialFieldSecond.toUInt();
-
-            Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecondIntVersion);
-            transportMap->addNewElement(ID, boat);
+            specialSecondFieldIntVersion = specialFieldSecond.toUInt();
+            Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialSecondFieldIntVersion);
+            transportMap->addNewElement(boat.clone());
         }
         catch (const std::invalid_argument& e)
         {
             messageToUserWindow->show();
             messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
+            while (messageToUserWindow->isEnabled()) {}
         }
-        return 0;
     }
     else
     {
         Shuttle shuttle(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
-        transportMap->addNewElement(ID, shuttle);
-
-        return 0;
+        transportMap->addNewElement(shuttle.clone());
     }
+    return 0;
 }
 
 QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
     transportMap->findDatabaseElement(ID);
-    std::map<uint32_t, TransportBase&> map = transportMap->getMap();
+    std::map<uint32_t, std::unique_ptr<TransportBase>> map = transportMap->getMap();
 
     if (map.count(ID) != 0)
     {

@@ -8,6 +8,7 @@
 #include <MessageToUserWindow.h>
 #include <memory>
 #include <QMap>
+
 class Menu
 {
 public:
@@ -15,11 +16,18 @@ public:
     Menu();
 	~Menu();
 
-    int addNewElement(const uint32_t& ID, const QString& type,
-                      const QString& brand, const QString& model,
-                      const uint32_t& year, const uint32_t& weight,
-                      const uint32_t& specialFirst, const QString& specialSecond
-                      );
+    // int addNewElement(const uint32_t& ID, const QString& type,
+    //                   const QString& brand, const QString& model,
+    //                   const uint32_t& year, const uint32_t& weight,
+    //                   const uint32_t& specialFirst, const QString& specialSecond
+    //                   );
+
+    int addNewElement(const uint32_t ID, const QString type,
+                            const QString brand, const QString model,
+                            const uint32_t year, const uint32_t weight,
+                            const uint32_t specialFieldFirst, const QString specialFieldSecond
+                            );
+
     void editElement(const uint32_t& ID, const QString& type,
                      const QString& brand, const QString& model,
                      const uint32_t& year, const uint32_t& weight,
@@ -44,7 +52,6 @@ private:
     uint32_t uniqueID;
     std::unique_ptr<TransportMap> transportMap;
     QString deletingResult;
-
 };
 
 #endif //MENU_H

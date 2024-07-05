@@ -20,6 +20,11 @@ Car::Car(const int& ID, const QString& brand,
 
 Car::~Car() {}
 
+std::unique_ptr<TransportBase> Car::clone() const
+{
+    return std::make_unique<Car>(*this);
+}
+
 
 void Car::editSpecialFirst(const uint32_t& mileage)
 {

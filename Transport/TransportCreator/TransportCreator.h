@@ -15,11 +15,11 @@ public:
                      const uint32_t& specialFirst, const QString& specialSecond);
     ~TransportCreator();
 
-    TransportBase& createTransportObject();
+    std::unique_ptr<TransportBase> createTransportObject();
 
 private:
 
-    TransportBase* base;
+    std::unique_ptr<TransportBase> base;
 };
 
 #endif // TRANSPORTCREATOR_H

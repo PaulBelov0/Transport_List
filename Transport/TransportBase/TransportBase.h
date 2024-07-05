@@ -19,6 +19,7 @@ public:
     void editWeight(const int& weight);
     virtual void editSpecialFirst(const uint32_t& inputValue);
     virtual void editSpecialSecond(const QString& inputValue);
+    virtual std::unique_ptr<TransportBase> clone() const = 0;
 
     QVariant& getID();
     QVariant& getType();

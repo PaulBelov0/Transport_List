@@ -8,7 +8,6 @@
 #include <Transport/transport.h>
 #include <Transport/TransportBase/TransportBase.h>
 #include <MessageToUserWindow.h>
-#include <initializer_list>
 
 class TransportMap
 {
@@ -18,14 +17,14 @@ public:
     ~TransportMap();
 
     bool findDatabaseElement(const uint32_t& index);
-    void addNewElement(uint32_t key, TransportBase& element);
+    void addNewElement(std::unique_ptr<TransportBase> element);
     void deleteElement(const uint32_t& index);
 
-    std::map<uint32_t, TransportBase&>& getMap();
-    void setMap(std::map<uint32_t, TransportBase&>& inputMap);
+    std::map<uint32_t, std::unique_ptr<TransportBase>>& getMap();
+    void setMap(std::map<uint32_t, std::unique_ptr<TransportBase>>& inputMap);
 
 private:
-    std::map<uint32_t, TransportBase&> transportDB;
+    std::map<uint32_t, std::unique_ptr<TransportBase>> transportDB;
 
     MessageToUserWindow messageToUserWindow;
 };

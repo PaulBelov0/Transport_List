@@ -9,7 +9,8 @@ TransportCreator::TransportCreator(const uint32_t& ID, const QString& type,
     {
         try
         {
-            base = new AirTransport(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            AirTransport air(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            base = air.clone();
         }
         catch (const std::invalid_argument& e)
         {
@@ -22,7 +23,8 @@ TransportCreator::TransportCreator(const uint32_t& ID, const QString& type,
     {
         try
         {
-            base = new Car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            Car car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            base = car.clone();
         }
         catch (const std::invalid_argument& e)
         {
@@ -35,7 +37,8 @@ TransportCreator::TransportCreator(const uint32_t& ID, const QString& type,
     {
         try
         {
-            base = new Boat(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            Boat boat(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
+            base = boat.clone();
         }
         catch (const std::invalid_argument& e)
         {
@@ -46,13 +49,14 @@ TransportCreator::TransportCreator(const uint32_t& ID, const QString& type,
     }
     else
     {
-        base = new Shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
+        Shuttle shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
+        base = shuttle.clone();
     }
 }
 
-TransportCreator::~TransportCreator() { delete base; }
+TransportCreator::~TransportCreator() {}
 
-TransportBase& TransportCreator::createTransportObject()
+std::unique_ptr<TransportBase> TransportCreator::createTransportObject()
 {
-    return *base;
+    return base->clone();
 }

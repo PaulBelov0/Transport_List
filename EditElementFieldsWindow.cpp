@@ -39,44 +39,46 @@ void EditElementFieldsWindow::on_okButton_clicked()
 
 void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
 {
-    std::map<uint32_t, TransportBase &> map = transportMap.getMap();
+    std::map<uint32_t, std::unique_ptr<TransportBase>> map = transportMap.getMap();
 
     QVariant converter;
 
-    converter = map.at(ID).getID();
+    converter = map.at(ID)->getID();
     ui->uinqueIDIntBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID).getType();
+    converter = map.at(ID)->getType();
     ui->typeComboBox->setCurrentText(converter.toString());
 
-    converter = map.at(ID).getBrand();
-    ;
+    converter = map.at(ID)->getBrand();
     ui->brandTextBox->setPlainText(converter.toString());
 
-    converter = map.at(ID).getModel();
+    converter = map.at(ID)->getModel();
     ui->modelTextBox->setPlainText(converter.toString());
 
-    converter = map.at(ID).getYear();
+    converter = map.at(ID)->getYear();
     ui->yearSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID).getWeight();
+    converter = map.at(ID)->getWeight();
     ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID).getSpecialFirst();
+    converter = map.at(ID)->getSpecialFirst();
     ui->firstSpecialFieldSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID).getSpecialSecond();
+    converter = map.at(ID)->getSpecialSecond();
     ui->secondSpecialFieldTextBox->setPlainText(converter.toString());
 }
 
 void EditElementFieldsWindow::setActionForRealizationThisWnd(std::string action)
 {
-    if (action == "add" || "Add") {
+    if (action == "add" || "Add")
+    {
         actionWithDB = action;
-    } else if (action == "edit" || "Edit") {
-        actionWithDB = action;
-    } else {
     }
+    else if (action == "edit" || "Edit")
+    {
+        actionWithDB = action;
+    }
+    else {}
 }
 
 void EditElementFieldsWindow::on_cancelButton_clicked()

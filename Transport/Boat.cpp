@@ -20,6 +20,11 @@ Boat::Boat(const int& ID, const QString& brand,
 
 Boat::~Boat() {}
 
+std::unique_ptr<TransportBase> Boat::clone() const
+{
+    return std::make_unique<Boat>(*this);
+}
+
 void Boat::editSpecialFirst(const uint32_t& displacement)
 {
     specialFirst = displacement;
