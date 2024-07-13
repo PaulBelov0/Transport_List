@@ -12,21 +12,24 @@
 class TransportMap
 {
 public:
-    TransportMap();
+    TransportMap(std::map<uint32_t, std::unique_ptr<TransportBase>> map);
     TransportMap(TransportMap& map);
     ~TransportMap();
 
     bool findDatabaseElement(const uint32_t& index);
-    void addNewElement(std::unique_ptr<TransportBase> element);
+    void addNewElement(const std::unique_ptr<TransportBase> object);
     void deleteElement(const uint32_t& index);
 
-    std::map<uint32_t, std::unique_ptr<TransportBase>>& getMap();
-    void setMap(std::map<uint32_t, std::unique_ptr<TransportBase>>& inputMap);
+    std::map<uint32_t, std::unique_ptr<TransportBase>> getMap();
+
+    void insertPair(const std::unique_ptr<TransportBase> object);
 
 private:
-    std::map<uint32_t, std::unique_ptr<TransportBase>> transportDB;
+    std::map<uint32_t, std::unique_ptr<TransportBase>> transportDatabase;
 
     MessageToUserWindow messageToUserWindow;
+
+    std::map<uint32_t, std::unique_ptr<TransportBase>>::iterator iter;
 };
 
 #endif // TRANSPORTMAP_H

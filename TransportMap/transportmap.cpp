@@ -1,72 +1,65 @@
 #include <TransportMap/transportmap.h>
 #include <Transport/TransportBase/TransportBase.h>
 
-
-TransportMap::TransportMap()
+TransportMap::TransportMap(std::map<uint32_t, std::unique_ptr<TransportBase>> map)
 {
-    Car* car = new Car(0, "Test", "Test", 1860, 1000, 100, 12);
-    transportDB[0] = car->clone();
-    delete car;
+    for (auto& element : map)
+    {
+        transportDatabase.insert({element.second->clone()->getID().toUInt(), element.second->clone()});
+    }
 }
 
 TransportMap::TransportMap(TransportMap& map)
 {
-    setMap(map.getMap());
+    for (auto& mapElement : map.getMap())
+    {
+        transportDatabase.insert({mapElement.second.get()->clone()->getID().toUInt(), mapElement.second.get()->clone()});
+    }
 }
+
 TransportMap::~TransportMap() {}
 
 bool TransportMap::findDatabaseElement(const uint32_t& index)
 {
-    if (!transportDB.empty())
+    bool output;
+    if (transportDatabase.count(index))
     {
-        bool output;
-        if (transportDB.count(index))
-        {
-            output = true;
-        }
-        else
-        {
-            output = false;
-            messageToUserWindow.show();
-            messageToUserWindow.setTextMessage("Error! No one element have this ID!");
-        }
-        return output;
+        output = true;
     }
     else
     {
-        return false;
+        output = false;
+        messageToUserWindow.show();
+        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
     }
+    return output;
 }
 
-void TransportMap::addNewElement(std::unique_ptr<TransportBase> element)
+void TransportMap::addNewElement(const std::unique_ptr<TransportBase> object)
 {
-    std::unique_ptr<TransportBase> value = element->clone();
-    uint32_t key = value->getID().toInt();
-
-    std::initializer_list<std::pair<const uint32_t, std::unique_ptr<TransportBase>>> list =
-        {std::pair<const uint32_t, std::unique_ptr<TransportBase>>(key, value->clone())};
-
-    transportDB.insert(list);
+    transportDatabase.insert({object->clone()->getID().toUInt(), object->clone()});
 }
 
 void TransportMap::deleteElement(const uint32_t& index)
 {
-    const auto& iterator = transportDB.find(index);
-    if (iterator != transportDB.end())
+    if (transportDatabase.count(index) > 0 && !transportDatabase.empty())
     {
-        transportDB.erase(iterator);
+        const auto& iterator = transportDatabase.find(index);
+
+        if (iterator != transportDatabase.end() && iterator != transportDatabase.begin())
+        {
+            transportDatabase.erase(iterator);
+        }
     }
 }
 
-std::map<uint32_t, std::unique_ptr<TransportBase>>& TransportMap::getMap()
+std::map<uint32_t, std::unique_ptr<TransportBase>> TransportMap::getMap()
 {
-    return transportDB;
+    std::map<uint32_t, std::unique_ptr<TransportBase>> outputMap;
+    return outputMap;
 }
 
-void TransportMap::setMap(std::map<uint32_t, std::unique_ptr<TransportBase>>& inputMap)
+void TransportMap::insertPair(const std::unique_ptr<TransportBase> object)
 {
-    transportDB.clear();
-
-    transportDB = inputMap;
+    transportDatabase.insert({object->clone()->getID().toUInt(), object->clone()});
 }
-

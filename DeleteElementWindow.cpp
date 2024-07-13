@@ -15,18 +15,16 @@ DeleteElementWindow::~DeleteElementWindow()
 
 void DeleteElementWindow::on_deleteButton_clicked()
 {
-    uint32_t index;
-    QString qString = ui->plainTextEdit->toPlainText();
 
     if (ui->plainTextEdit != NULL) {
-        std::string text = qString.toStdString();
+        userInput = ui->plainTextEdit->toPlainText().toStdString();
         try {
-            index = std::stoi(text);
+            index = std::stoi(userInput);
         } catch (QException &e) {
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
-        qString = menu.deleteDatabaseElement(index);
+        QString qString = menu.deleteDatabaseElement(index);
         messageToUserWindow.setTextMessage(qString);
     } else {
         messageToUserWindow.show();
@@ -39,7 +37,7 @@ void DeleteElementWindow::on_exitButton_clicked()
     this->close();
 }
 
-uint32_t &DeleteElementWindow::getID()
+uint32_t& DeleteElementWindow::getID()
 {
     return menu.getID();
 }

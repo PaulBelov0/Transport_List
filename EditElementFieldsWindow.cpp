@@ -5,6 +5,8 @@ EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::EditElementFieldsWindow)
 {
+    transportMap.reset(new TransportMap(*db.download()));
+
     ui->setupUi(this);
 }
 
@@ -15,14 +17,14 @@ EditElementFieldsWindow::~EditElementFieldsWindow()
 
 void EditElementFieldsWindow::on_okButton_clicked()
 {
-    uint32_t ID = ui->uinqueIDIntBox->value();
-    QString type = ui->typeComboBox->currentText();
-    QString brand = ui->brandTextBox->toPlainText();
-    QString model = ui->modelTextBox->toPlainText();
-    uint32_t year = ui->yearSpinBox->value();
-    uint32_t weight = ui->weightSpinBox->value();
-    uint32_t firstSpecialField = ui->firstSpecialFieldSpinBox->value();
-    QString secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText();
+    ID = ui->uinqueIDIntBox->value();
+    type = ui->typeComboBox->currentText();
+    brand = ui->brandTextBox->toPlainText();
+    model = ui->modelTextBox->toPlainText();
+    year = ui->yearSpinBox->value();
+    weight = ui->weightSpinBox->value();
+    firstSpecialField = ui->firstSpecialFieldSpinBox->value();
+    secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText();
 
     if (actionWithDB == "add" || "Add")
     {
@@ -39,32 +41,30 @@ void EditElementFieldsWindow::on_okButton_clicked()
 
 void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
 {
-    std::map<uint32_t, std::unique_ptr<TransportBase>> map = transportMap.getMap();
-
     QVariant converter;
 
-    converter = map.at(ID)->getID();
+    converter = transportMap->getMap().at(ID)->getID();
     ui->uinqueIDIntBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID)->getType();
+    converter = transportMap->getMap().at(ID)->getType();
     ui->typeComboBox->setCurrentText(converter.toString());
 
-    converter = map.at(ID)->getBrand();
+    converter = transportMap->getMap().at(ID)->getBrand();
     ui->brandTextBox->setPlainText(converter.toString());
 
-    converter = map.at(ID)->getModel();
+    converter = transportMap->getMap().at(ID)->getModel();
     ui->modelTextBox->setPlainText(converter.toString());
 
-    converter = map.at(ID)->getYear();
+    converter = transportMap->getMap().at(ID)->getYear();
     ui->yearSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID)->getWeight();
+    converter = transportMap->getMap().at(ID)->getWeight();
     ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID)->getSpecialFirst();
+    converter = transportMap->getMap().at(ID)->getSpecialFirst();
     ui->firstSpecialFieldSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = map.at(ID)->getSpecialSecond();
+    converter = transportMap->getMap().at(ID)->getSpecialSecond();
     ui->secondSpecialFieldTextBox->setPlainText(converter.toString());
 }
 

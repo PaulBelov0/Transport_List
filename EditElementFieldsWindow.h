@@ -5,6 +5,7 @@
 #include <Menu/Menu.h>
 #include <MessageToUserWindow.h>
 #include <TransportMap/transportmap.h>
+#include <Database/Database.h>
 
 namespace Ui {
 class EditElementFieldsWindow;
@@ -31,9 +32,19 @@ private:
     Ui::EditElementFieldsWindow *ui;
 
     Menu menu;
-    TransportMap transportMap;
+    std::unique_ptr<TransportMap> transportMap;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
+    Database db;
+
+    uint32_t ID;
+    QString type;
+    QString brand;
+    QString model;
+    uint32_t year;
+    uint32_t weight;
+    uint32_t firstSpecialField;
+    QString secondSpecialField;
 };
 
 #endif // EDITELEMENTFIELDSWINDOW_H

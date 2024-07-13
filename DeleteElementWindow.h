@@ -29,6 +29,9 @@ private:
 
     MessageToUserWindow messageToUserWindow;
     Menu menu;
+
+    uint32_t index;
+    std::string userInput;
 };
 
 #endif // DELETEELEMENTWINDOW_H

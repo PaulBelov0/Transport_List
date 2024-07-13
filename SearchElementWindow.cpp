@@ -31,9 +31,9 @@ void SearchElementWindow::on_okButton_clicked()
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
         Menu menu;
-        bool resultChecking = menu.checkElementAvilable(index);
+        bool checkResult = menu.checkElementAvilable(index);
 
-        if (resultChecking == true) {
+        if (checkResult == true) {
             editElementFieldsWindow.show();
             editElementFieldsWindow.setActionForRealizationThisWnd("edit");
             editElementFieldsWindow.setElementByID(index);

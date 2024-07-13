@@ -6,18 +6,11 @@ Menu::Menu() { messageToUserWindow = new MessageToUserWindow(); }
 
 Menu::~Menu() { delete messageToUserWindow; }
 
-// int Menu::addNewElement(const uint32_t& ID, const QString& type,
-//                         const QString& brand, const QString& model,
-//                         const uint32_t& year, const uint32_t& weight,
-//                         const uint32_t& specialFieldFirst, const QString& specialFieldSecond
-//                         )
-
-int Menu::addNewElement(const uint32_t ID, const QString type,
-                        const QString brand, const QString model,
-                        const uint32_t year, const uint32_t weight,
-                        const uint32_t specialFieldFirst, const QString specialFieldSecond
+int Menu::addNewElement(const uint32_t& ID, const QString& type,
+                        const QString& brand, const QString& model,
+                        const uint32_t& year, const uint32_t& weight,
+                        const uint32_t& specialFieldFirst, const QString& specialFieldSecond
                         )
-
 {
     int specialSecondFieldIntVersion;
 
@@ -84,7 +77,8 @@ int Menu::addNewElement(const uint32_t ID, const QString type,
 QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
     transportMap->findDatabaseElement(ID);
-    std::map<uint32_t, std::unique_ptr<TransportBase>> map = transportMap->getMap();
+    std::map<uint32_t, std::unique_ptr<TransportBase>> map;
+    map = transportMap->getMap();
 
     if (map.count(ID) != 0)
     {
@@ -98,7 +92,7 @@ QString& Menu::deleteDatabaseElement(const uint32_t& ID)
     return deletingResult;
 }
 
-bool Menu::checkElementAvilable(uint32_t& ID)
+bool Menu::checkElementAvilable(const uint32_t& ID)
 {
     bool result;
 
@@ -125,11 +119,11 @@ TransportMap& Menu::getMap()
 
 void Menu::setMap(TransportMap& inputMap)
 {
-    std::unique_ptr<TransportMap> transportDB = std::make_unique<TransportMap>(inputMap);
+    std::unique_ptr<TransportMap> transportDB(new TransportMap(inputMap));
     transportMap = std::make_unique<TransportMap>(*transportDB);
 }
 
-void Menu::setID(uint32_t& ID)
+void Menu::setID(const uint32_t& ID)
 {
     uniqueID = ID;
 }

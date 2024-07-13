@@ -16,17 +16,11 @@ public:
     Menu();
 	~Menu();
 
-    // int addNewElement(const uint32_t& ID, const QString& type,
-    //                   const QString& brand, const QString& model,
-    //                   const uint32_t& year, const uint32_t& weight,
-    //                   const uint32_t& specialFirst, const QString& specialSecond
-    //                   );
-
-    int addNewElement(const uint32_t ID, const QString type,
-                            const QString brand, const QString model,
-                            const uint32_t year, const uint32_t weight,
-                            const uint32_t specialFieldFirst, const QString specialFieldSecond
-                            );
+    int addNewElement(const uint32_t& ID, const QString& type,
+                      const QString& brand, const QString& model,
+                      const uint32_t& year, const uint32_t& weight,
+                      const uint32_t& specialFirst, const QString& specialSecond
+                      );
 
     void editElement(const uint32_t& ID, const QString& type,
                      const QString& brand, const QString& model,
@@ -36,13 +30,13 @@ public:
 
     QString& deleteDatabaseElement(const uint32_t& ID);
 
-    bool checkElementAvilable(uint32_t& ID);
+    bool checkElementAvilable(const uint32_t& ID);
 
     TransportMap& getMap();
 
     void setMap(TransportMap& inputMap);
 
-    void setID(uint32_t& ID);
+    void setID(const uint32_t& ID);
 
     uint32_t& getID();
 

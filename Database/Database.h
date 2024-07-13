@@ -15,13 +15,13 @@ public:
     Database();
     ~Database();
 
-    TransportMap& download();
+    std::unique_ptr<TransportMap> download();
     void upload(TransportMap& inputMap);
     QSqlDatabase& getDatabase();
     QSqlQuery& getQuery();
 
 private:
-    TransportMap outputMap;
+    std::unique_ptr<TransportMap> outputMap;
 
     QSqlDatabase* db;
     QSqlQuery* query;
