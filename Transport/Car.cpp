@@ -20,6 +20,13 @@ Car::Car(const int& ID, const QString& brand,
 
 Car::~Car() {}
 
+void Car::operator=(TransportBase& object)
+{
+    TransportBase::operator=(object);
+    specialFirst = object.getSpecialFirst().toUInt();
+    specialSecond = object.getSpecialSecond().toUInt();
+}
+
 std::unique_ptr<TransportBase> Car::clone() const
 {
     return std::make_unique<Car>(*this);
@@ -37,14 +44,12 @@ void Car::editSpecialSecond(const QString& ownersQuantity)
     specialSecond = ownersQuantity.toInt();
 }
 
-QVariant& Car::getSpecialFirst()
+QVariant Car::getSpecialFirst()
 {
-    outputQstring = specialFirst;
-    return outputQstring;
+    return QString::fromStdString(std::to_string(specialFirst));
 }
 
-QVariant& Car::getSpecialSecond()
+QVariant Car::getSpecialSecond()
 {
-    outputQstring = QString::fromStdString(specialSecond);
-    return outputQstring;
+    return QString::fromStdString(specialSecond);
 }

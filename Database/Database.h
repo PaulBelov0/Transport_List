@@ -7,7 +7,7 @@
 #include <QtSql/QSql>
 #include <QtSql/QSqlDriver>
 #include <TransportMap/transportmap.h>
-#include <Transport/TransportCreator/TransportCreator.h>
+#include <Transport/TransportCreator/TransportObjectCreator.h>
 
 class Database
 {

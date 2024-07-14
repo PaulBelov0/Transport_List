@@ -15,12 +15,13 @@ public:
          );
 	~Boat();
 
+    void operator=(TransportBase& object) override;
     void editSpecialFirst(const uint32_t& displacement) override;
     void editSpecialSecond(const QString& screwDepth) override;
     std::unique_ptr<TransportBase> clone() const override;
 
-    QVariant& getSpecialFirst() override;
-    QVariant& getSpecialSecond() override;
+    QVariant getSpecialFirst() override;
+    QVariant getSpecialSecond() override;
 };
 
 #endif //BOAT_H

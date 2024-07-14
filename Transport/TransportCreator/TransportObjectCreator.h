@@ -1,25 +1,26 @@
-#ifndef TRANSPORTCREATOR_H
-#define TRANSPORTCREATOR_H
+#ifndef TRANSPORTOBJECTCREATOR_H
+#define TRANSPORTOBJECTCREATOR_H
 
 #include <Transport/transport.h>
 #include <QString>
 #include <QVariant>
 #include <MessageToUserWindow.h>
 
-class TransportCreator
+class TransportObjectCreator
 {
 public:
-    TransportCreator(const uint32_t& ID, const QString& type,
+    TransportObjectCreator(const uint32_t& ID, const QString& type,
                      const QString& brand, const QString& model,
                      const uint32_t& year, const uint32_t& weight,
                      const uint32_t& specialFirst, const QString& specialSecond);
-    ~TransportCreator();
+    ~TransportObjectCreator();
 
-    std::unique_ptr<TransportBase> createTransportObject();
+    std::unique_ptr<TransportBase> getTransportObject();
 
 private:
+    void showDataErrorMessage();
 
     std::unique_ptr<TransportBase> base;
 };
 
-#endif // TRANSPORTCREATOR_H
+#endif // TRANSPORTOBJECTCREATOR_H

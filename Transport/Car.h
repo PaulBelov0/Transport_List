@@ -15,12 +15,13 @@ public:
         );
 	~Car();
 
+    void operator=(TransportBase& object) override;
     void editSpecialFirst(const uint32_t& mileage) override;
     void editSpecialSecond(const QString& ownersQuantity) override;
     std::unique_ptr<TransportBase> clone() const override;
 
-    QVariant& getSpecialFirst() override;
-    QVariant& getSpecialSecond() override;
+    QVariant getSpecialFirst() override;
+    QVariant getSpecialSecond() override;
 };
 
 #endif //CAR_H

@@ -22,11 +22,17 @@ Shuttle::Shuttle(const int& ID, const QString& brand,
 
 Shuttle::~Shuttle() {}
 
+void Shuttle::operator=(TransportBase& object)
+{
+    TransportBase::operator=(object);
+    specialFirst = object.getSpecialFirst().toUInt();
+    specialSecond = object.getSpecialSecond().toString().toStdString();
+}
+
 std::unique_ptr<TransportBase> Shuttle::clone() const
 {
     return std::make_unique<Shuttle>(*this);
 }
-
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {
@@ -40,14 +46,12 @@ void Shuttle::editSpecialSecond(const QString& fuelType)
 }
 
 
-QVariant& Shuttle::getSpecialFirst()
+QVariant Shuttle::getSpecialFirst()
 {
-    outputQstring = specialFirst;
-    return outputQstring;
+    return QString::fromStdString(std::to_string(specialFirst));
 }
 
-QVariant& Shuttle::getSpecialSecond()
+QVariant Shuttle::getSpecialSecond()
 {
-    outputQstring = QString::fromStdString(specialSecond);
-    return outputQstring;
+    return QString::fromStdString(specialSecond);
 }

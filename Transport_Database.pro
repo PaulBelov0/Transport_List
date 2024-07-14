@@ -14,7 +14,7 @@ SOURCES += \
     EditElementFieldsWindow.cpp \
     MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
-    Transport/TransportCreator/TransportCreator.cpp \
+    Transport/TransportCreator/TransportObjectCreator.cpp \
     TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -37,7 +37,7 @@ HEADERS += \
     EditElementFieldsWindow.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
-    Transport/TransportCreator/TransportCreator.h \
+    Transport/TransportCreator/TransportObjectCreator.h \
     TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \

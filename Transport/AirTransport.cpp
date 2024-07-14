@@ -21,6 +21,13 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
 
 AirTransport::~AirTransport() {}
 
+void AirTransport::operator=(TransportBase& object)
+{
+    TransportBase::operator=(object);
+    specialFirst = object.getSpecialFirst().toUInt();
+    specialSecond = object.getSpecialSecond().toUInt();
+}
+
 std::unique_ptr<TransportBase> AirTransport::clone() const
 {
     return std::make_unique<AirTransport>(*this);
@@ -38,14 +45,12 @@ void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 }
 
 
-QVariant& AirTransport::getSpecialFirst()
+QVariant AirTransport::getSpecialFirst()
 {
-    outputQstring = specialFirst;
-    return outputQstring;
+    return QString::fromStdString(std::to_string(specialFirst));
 }
 
-QVariant& AirTransport::getSpecialSecond()
+QVariant AirTransport::getSpecialSecond()
 {
-    outputQstring = QString::fromStdString(specialSecond);
-    return outputQstring;
+    return QString::fromStdString(specialSecond);
 }

@@ -16,12 +16,13 @@ public:
             );
 	~Shuttle();
 
+    void operator=(TransportBase& object) override;
     void editSpecialFirst(const uint32_t& maxFlyingDistance) override;
     void editSpecialSecond(const QString& fuelType) override;
     std::unique_ptr<TransportBase> clone() const override;
 
-    QVariant& getSpecialFirst() override;
-    QVariant& getSpecialSecond() override;
+    QVariant getSpecialFirst() override;
+    QVariant getSpecialSecond() override;
 };
 
 #endif //SHUTTLE_H

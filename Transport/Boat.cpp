@@ -20,6 +20,13 @@ Boat::Boat(const int& ID, const QString& brand,
 
 Boat::~Boat() {}
 
+void Boat::operator=(TransportBase& object)
+{
+    TransportBase::operator=(object);
+    specialFirst = object.getSpecialFirst().toUInt();
+    specialSecond = object.getSpecialSecond().toUInt();
+}
+
 std::unique_ptr<TransportBase> Boat::clone() const
 {
     return std::make_unique<Boat>(*this);
@@ -36,14 +43,12 @@ void Boat::editSpecialSecond(const QString& screwDepth)
     specialSecond = screwDepth.toInt();
 }
 
-QVariant& Boat::getSpecialFirst()
+QVariant Boat::getSpecialFirst()
 {
-    outputQstring = specialFirst;
-    return outputQstring;
+    return QString::fromStdString(std::to_string(specialFirst));
 }
 
-QVariant& Boat::getSpecialSecond()
+QVariant Boat::getSpecialSecond()
 {
-    outputQstring = QString::fromStdString(specialSecond);
-    return outputQstring;
+    return QString::fromStdString(specialSecond);
 }

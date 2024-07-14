@@ -23,12 +23,12 @@ std::unique_ptr<TransportMap> Database::download()
     std::unique_ptr<TransportMap> outputMap;
     while (query->next())
     {
-        std::unique_ptr<TransportCreator> creator = std::make_unique<TransportCreator>(query->value("ID").toUInt(), query->value("Type").toString(),
+        std::unique_ptr<TransportObjectCreator> creator = std::make_unique<TransportObjectCreator>(query->value("ID").toUInt(), query->value("Type").toString(),
                                                                                        query->value("Brand").toString(), query->value("Model").toString(),
                                                                                        query->value("Year").toUInt(), query->value("weight").toUInt(),
                                                                                        query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString());
 
-        outputMap->insertPair(creator->createTransportObject());
+        outputMap->insertPair(creator->getTransportObject());
     }
 
     return outputMap;
