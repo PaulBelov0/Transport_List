@@ -1,21 +1,28 @@
 #include <Transport/Car.h>
+
 //Realizatuion car type class:
 
 Car::Car(const int& ID, const QString& brand,
          const QString& model, const int& year,
          const int& weight, const int& mileage,
-         const int& owners
+         const int& ownersQuantity
          )
+    : TransportBase(ID, brand, model, year, weight)
 {
-	uniqueID = ID;
-	type = "Car";
-    this->brand = brand.toStdString();
-    this->model = model.toStdString();
-    this->year = year;
-    this->weight = weight;
-    specialFirst = mileage;
-    specialSecond = std::to_string(owners);
-    outputQstring = "Q";
+    type = "Car";
+    this->mileage = mileage;
+    this->ownersQuantity = std::stoi(std::to_string(ownersQuantity));
+}
+
+Car::Car(TransportBase* transportObject)
+    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
+                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
+                    transportObject->getWeight().toUInt()
+                    )
+{
+    type = "Car";
+    mileage = transportObject->getSpecialFirst().toUInt();
+    ownersQuantity = transportObject->getSpecialSecond().toUInt();
 }
 
 Car::~Car() {}
@@ -23,8 +30,8 @@ Car::~Car() {}
 void Car::operator=(TransportBase& object)
 {
     TransportBase::operator=(object);
-    specialFirst = object.getSpecialFirst().toUInt();
-    specialSecond = object.getSpecialSecond().toUInt();
+    mileage = object.getSpecialFirst().toUInt();
+    ownersQuantity = object.getSpecialSecond().toUInt();
 }
 
 std::unique_ptr<TransportBase> Car::clone() const
@@ -35,21 +42,21 @@ std::unique_ptr<TransportBase> Car::clone() const
 
 void Car::editSpecialFirst(const uint32_t& mileage)
 {
-    this->specialFirst = mileage;
+    this->mileage = mileage;
 }
 
 
 void Car::editSpecialSecond(const QString& ownersQuantity)
 {
-    specialSecond = ownersQuantity.toInt();
+    this->ownersQuantity = ownersQuantity.toInt();
 }
 
 QVariant Car::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(specialFirst));
+    return QString::fromStdString(std::to_string(mileage));
 }
 
 QVariant Car::getSpecialSecond()
 {
-    return QString::fromStdString(specialSecond);
+    return QString::fromStdString(std::to_string(ownersQuantity));
 }

@@ -59,7 +59,7 @@ std::map<uint32_t, std::unique_ptr<TransportBase>> TransportMap::getMap()
     return outputMap;
 }
 
-void TransportMap::insertPair(const std::unique_ptr<TransportBase> object)
+void TransportMap::insertPair(const TransportBase* object)
 {
     transportDatabase.insert({object->clone()->getID().toUInt(), object->clone()});
 }

@@ -13,15 +13,24 @@ public:
                  const int& weight, const int& wingspan,
                  const int& payloadCapacity
                  );
+
+    AirTransport(TransportBase* transportObject);
+
 	~AirTransport();
 
     void operator=(TransportBase& object) override;
-    void editSpecialFirst(const uint32_t& wingspan) override;
-    void editSpecialSecond(const QString& payloadCapacity) override;
+
+    void editSpecialFirst(const uint32_t& wingspan);
+
+    void editSpecialSecond(const QString& payloadCapacity);
+
     std::unique_ptr<TransportBase> clone() const override;
 
     QVariant getSpecialFirst() override;
     QVariant getSpecialSecond() override;
+private:
+    uint32_t wingspan;
+    uint64_t payloadCapacity;
 };
 
 #endif //AIRTRANPORT_H

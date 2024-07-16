@@ -7,16 +7,22 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
                            const int& weight, const int& wingspan,
                            const int& payloadCapacity
                            )
+    : TransportBase(ID, brand, model, year, weight)
 {
-    uniqueID = ID;
     type = "Air";
-    this->brand = brand.toStdString();
-    this->model = model.toStdString();
-    this->year = year;
-    this->weight = weight;
-    specialFirst = wingspan;
-    specialSecond = std::to_string(payloadCapacity);
-    outputQstring = "Q";
+    this->wingspan = wingspan;
+    this->payloadCapacity = std::stoul(std::to_string(payloadCapacity));
+}
+
+AirTransport::AirTransport(TransportBase* transportObject)
+    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
+                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
+                    transportObject->getWeight().toUInt()
+                    )
+{
+    type = "Air";
+    wingspan = transportObject->getSpecialFirst().toUInt();
+    payloadCapacity = transportObject->getSpecialSecond().toUInt();
 }
 
 AirTransport::~AirTransport() {}
@@ -24,8 +30,8 @@ AirTransport::~AirTransport() {}
 void AirTransport::operator=(TransportBase& object)
 {
     TransportBase::operator=(object);
-    specialFirst = object.getSpecialFirst().toUInt();
-    specialSecond = object.getSpecialSecond().toUInt();
+    wingspan = object.getSpecialFirst().toUInt();
+    payloadCapacity = object.getSpecialSecond().toUInt();
 }
 
 std::unique_ptr<TransportBase> AirTransport::clone() const
@@ -35,22 +41,22 @@ std::unique_ptr<TransportBase> AirTransport::clone() const
 
 void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {
-    this->specialFirst = wingspan;
+    this->wingspan = wingspan;
 }
 
 
 void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 {
-    this->specialSecond = payloadCapacity.toInt();
+    this->payloadCapacity = payloadCapacity.toInt();
 }
 
 
 QVariant AirTransport::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(specialFirst));
+    return QString::fromStdString(std::to_string(wingspan));
 }
 
 QVariant AirTransport::getSpecialSecond()
 {
-    return QString::fromStdString(specialSecond);
+    return QString::fromStdString(std::to_string(payloadCapacity));
 }

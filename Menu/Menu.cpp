@@ -18,69 +18,26 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
                         const uint32_t& specialFieldFirst, const QString& specialFieldSecond
                         )
 {
-    // int specialSecondFieldIntVersion;
 
-    // if (type == "Air")
-    // {
-    //     try
-    //     {
-    //         specialSecondFieldIntVersion = specialFieldSecond.toUInt();
-
-    //         AirTransport air(ID, brand, model, year, weight, specialFieldFirst, specialSecondFieldIntVersion);
-
-    //         transportMap->addNewElement(air.clone());
-    //     }
-    //     catch (const std::invalid_argument& e)
-    //     {
-    //         messageToUserWindow->show();
-    //         messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
-    //         while (messageToUserWindow->isEnabled()) {}
-    //     }
-    // }
-    // else if (type == "Car")
-    // {
-    //     try
-    //     {
-    //         specialSecondFieldIntVersion = specialFieldSecond.toUInt();
-
-    //         Car car(ID, brand, model,year, weight, specialFieldFirst, specialSecondFieldIntVersion);
-
-    //         transportMap->addNewElement(car.clone());
-
-    //     }
-    //     catch (const std::invalid_argument& e)
-    //     {
-    //         messageToUserWindow->show();
-    //         messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
-    //         while (messageToUserWindow->isEnabled()) {}
-    //     }
-
-
-    // }
-    // else if (type == "Boat")
-    // {
-    //     try
-    //     {
-    //         specialSecondFieldIntVersion = specialFieldSecond.toUInt();
-    //         Boat boat(ID, brand, model, year, weight, specialFieldFirst, specialSecondFieldIntVersion);
-    //         transportMap->addNewElement(boat.clone());
-    //     }
-    //     catch (const std::invalid_argument& e)
-    //     {
-    //         messageToUserWindow->show();
-    //         messageToUserWindow->setTextMessage("ERROR!\nWrong data in <Special 2> field!");
-    //         while (messageToUserWindow->isEnabled()) {}
-    //     }
-    // }
-    // else
-    // {
-    //     Shuttle shuttle(ID, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
-    //     transportMap->addNewElement(shuttle.clone());
-    // }
 
     TransportObjectCreator transportObject(ID, type, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
 
-    transportMap->addNewElement(transportObject.getTransportObject());
+    if (transportObject.getTransportObject()->getType().toString().toStdString() == "Air")
+    {
+        transportMap->addNewElement(std::make_unique<AirTransport>(transportObject.getTransportObject()));
+    }
+    else if(transportObject.getTransportObject()->getType().toString().toStdString() == "Car")
+    {
+        transportMap->addNewElement(std::make_unique<Car>(transportObject.getTransportObject()));
+    }
+    else if(transportObject.getTransportObject()->getType().toString().toStdString() == "Boat")
+    {
+        transportMap->addNewElement(std::make_unique<Boat>(transportObject.getTransportObject()));
+    }
+    else if (transportObject.getTransportObject()->getType().toString().toStdString() == "Shuttle")
+    {
+        transportMap->addNewElement(std::make_unique<Shuttle>(transportObject.getTransportObject()));
+    }
 
     return 0;
 }

@@ -2,7 +2,17 @@
 
 #include "TransportBase.h"
 
-TransportBase::TransportBase() {}
+TransportBase::TransportBase(const int& ID, const QString& brand,
+                             const QString& model, const int& year,
+                             const int& weight
+                             )
+{
+    uniqueID = ID;
+    this->brand = brand.toStdString();
+    this->model = model.toStdString();
+    this->year = year;
+    this->weight = weight;
+}
 TransportBase::~TransportBase() {}
 
 void TransportBase::operator=(TransportBase& object)
@@ -13,9 +23,9 @@ void TransportBase::operator=(TransportBase& object)
     model = object.getModel().toString().toStdString();
     year = object.getYear().toUInt();
     weight = object.getWeight().toUInt();
-    specialFirst = object.getSpecialFirst().toInt();
-    specialSecond = object.getSpecialSecond().toString().toStdString();
 }
+
+// Setters / editors :
 
  void TransportBase::editBrand(const std::string& brand)
 {
@@ -38,6 +48,8 @@ void TransportBase::operator=(TransportBase& object)
  {
 	 this->weight = weight;
  }
+
+ // Getters :
 
  QVariant TransportBase::getID()
  {
@@ -69,23 +81,7 @@ void TransportBase::operator=(TransportBase& object)
      return QString::fromStdString(std::to_string(weight));
  }
 
+ QVariant TransportBase::getSpecialFirst() { return " ";}
 
- void TransportBase::editSpecialFirst(const uint32_t& value)
- {
-     specialFirst = value;
- }
+ QVariant TransportBase::getSpecialSecond() { return " "; }
 
- void TransportBase::editSpecialSecond(const QString& value)
- {
-     specialSecond = value.toStdString();
- }
-
- QVariant TransportBase::getSpecialFirst()
- {
-     return QString::fromStdString(std::to_string(specialFirst));
- }
-
- QVariant TransportBase::getSpecialSecond()
- {
-     return QString::fromStdString(specialSecond);
- }

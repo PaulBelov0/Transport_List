@@ -23,7 +23,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const QString
         try
         {
             Car car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
-            *base = car;
+            std::unique_ptr<TransportBase> base = std::make_unique<Car>(car);
         }
         catch (const std::invalid_argument& e)
         {
@@ -58,7 +58,7 @@ void TransportObjectCreator::showDataErrorMessage()
     message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
 }
 
-std::unique_ptr<TransportBase> TransportObjectCreator::getTransportObject()
+TransportBase* TransportObjectCreator::getTransportObject()
 {
-    return base->clone();
+    return base.get();
 }

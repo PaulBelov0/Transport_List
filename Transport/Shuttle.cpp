@@ -8,16 +8,22 @@ Shuttle::Shuttle(const int& ID, const QString& brand,
                  const int& maxFlyingDistance,
                  const QString& fuelType
                  )
+    : TransportBase(ID, brand, model, year, weight)
 {
-    uniqueID = ID;
     type = "Shuttle";
-    this->brand = brand.toStdString();
-    this->model = model.toStdString();
-    this->year = year;
-    this->weight = weight;
-    specialFirst = maxFlyingDistance;
-    specialSecond = fuelType.toStdString();
-    outputQstring = "Q";
+    this->maxFlyingDistance = maxFlyingDistance;
+    this->fuelType = fuelType.toStdString();
+}
+
+Shuttle::Shuttle(TransportBase* transportObject)
+    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
+                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
+                    transportObject->getWeight().toUInt()
+                    )
+{
+    type = "Shuttle";
+    maxFlyingDistance = transportObject->getSpecialFirst().toUInt();
+    fuelType = transportObject->getSpecialSecond().toString().toStdString();
 }
 
 Shuttle::~Shuttle() {}
@@ -25,8 +31,8 @@ Shuttle::~Shuttle() {}
 void Shuttle::operator=(TransportBase& object)
 {
     TransportBase::operator=(object);
-    specialFirst = object.getSpecialFirst().toUInt();
-    specialSecond = object.getSpecialSecond().toString().toStdString();
+    maxFlyingDistance = object.getSpecialFirst().toUInt();
+    fuelType = object.getSpecialSecond().toString().toStdString();
 }
 
 std::unique_ptr<TransportBase> Shuttle::clone() const
@@ -36,22 +42,22 @@ std::unique_ptr<TransportBase> Shuttle::clone() const
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {
-    this->specialFirst = maxFlyingDisatnce;
+    this->maxFlyingDistance = maxFlyingDisatnce;
 }
 
 
 void Shuttle::editSpecialSecond(const QString& fuelType)
 {
-    this->specialSecond = fuelType.toStdString();
+    this->fuelType = fuelType.toStdString();
 }
 
 
 QVariant Shuttle::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(specialFirst));
+    return QString::fromStdString(std::to_string(maxFlyingDistance));
 }
 
 QVariant Shuttle::getSpecialSecond()
 {
-    return QString::fromStdString(specialSecond);
+    return QString::fromStdString(fuelType);
 }

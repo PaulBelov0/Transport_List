@@ -5,6 +5,7 @@
 #include <QString>
 #include <QVariant>
 #include <MessageToUserWindow.h>
+#include <memory>
 
 class TransportObjectCreator
 {
@@ -15,7 +16,7 @@ public:
                      const uint32_t& specialFirst, const QString& specialSecond);
     ~TransportObjectCreator();
 
-    std::unique_ptr<TransportBase> getTransportObject();
+    TransportBase* getTransportObject();
 
 private:
     void showDataErrorMessage();

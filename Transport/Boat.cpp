@@ -6,16 +6,22 @@ Boat::Boat(const int& ID, const QString& brand,
            const int& weight, const int& displacement,
            const int& screwDepth
            )
+    : TransportBase(ID, brand, model, year, weight)
 {
-    uniqueID = ID;
     type = "Boat";
-    this->brand = brand.toStdString();
-    this->model = model.toStdString();
-    this->year = year;
-    this->weight = weight;
-    specialFirst = displacement;
-    specialSecond = std::to_string(screwDepth);
-    outputQstring = "Q";
+    this->displacement = displacement;
+    this->screwDepth = std::stoi(std::to_string(screwDepth));
+}
+
+Boat::Boat(TransportBase* transportObject)
+    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
+                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
+                    transportObject->getWeight().toUInt()
+                    )
+{
+    type = "Boat";
+    this->displacement = transportObject->getSpecialFirst().toUInt();
+    this->screwDepth = transportObject->getSpecialSecond().toUInt();
 }
 
 Boat::~Boat() {}
@@ -23,8 +29,8 @@ Boat::~Boat() {}
 void Boat::operator=(TransportBase& object)
 {
     TransportBase::operator=(object);
-    specialFirst = object.getSpecialFirst().toUInt();
-    specialSecond = object.getSpecialSecond().toUInt();
+    displacement = object.getSpecialFirst().toUInt();
+    screwDepth = object.getSpecialSecond().toUInt();
 }
 
 std::unique_ptr<TransportBase> Boat::clone() const
@@ -34,21 +40,21 @@ std::unique_ptr<TransportBase> Boat::clone() const
 
 void Boat::editSpecialFirst(const uint32_t& displacement)
 {
-    specialFirst = displacement;
+    this->displacement = displacement;
 }
 
 
 void Boat::editSpecialSecond(const QString& screwDepth)
 {
-    specialSecond = screwDepth.toInt();
+    this->screwDepth = screwDepth.toInt();
 }
 
 QVariant Boat::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(specialFirst));
+    return QString::fromStdString(std::to_string(displacement));
 }
 
 QVariant Boat::getSpecialSecond()
 {
-    return QString::fromStdString(specialSecond);
+    return QString::fromStdString(std::to_string(screwDepth));
 }

@@ -13,15 +13,22 @@ public:
          const int& weight, const int& displacement,
          const int& screwDepth
          );
+
+    Boat(TransportBase* transportObject);
+
 	~Boat();
 
     void operator=(TransportBase& object) override;
-    void editSpecialFirst(const uint32_t& displacement) override;
-    void editSpecialSecond(const QString& screwDepth) override;
+    void editSpecialFirst(const uint32_t& displacement);
+    void editSpecialSecond(const QString& screwDepth);
     std::unique_ptr<TransportBase> clone() const override;
 
     QVariant getSpecialFirst() override;
     QVariant getSpecialSecond() override;
+
+private:
+    uint32_t displacement;
+    uint32_t screwDepth;
 };
 
 #endif //BOAT_H

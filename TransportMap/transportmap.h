@@ -22,7 +22,7 @@ public:
 
     std::map<uint32_t, std::unique_ptr<TransportBase>> getMap();
 
-    void insertPair(const std::unique_ptr<TransportBase> object);
+    void insertPair(const TransportBase* object);
 
 private:
     std::map<uint32_t, std::unique_ptr<TransportBase>> transportDatabase;

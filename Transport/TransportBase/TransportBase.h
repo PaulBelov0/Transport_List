@@ -10,7 +10,10 @@ class TransportBase
 {
 public:
 
-    TransportBase();
+    TransportBase(const int& ID, const QString& brand,
+                  const QString& model, const int& year,
+                  const int& weight
+                  );
     virtual ~TransportBase() = 0;
     virtual void operator=(TransportBase& object);
 
@@ -18,8 +21,6 @@ public:
     void editModel(const std::string& model);
     void editYear(const int& year);
     void editWeight(const int& weight);
-    virtual void editSpecialFirst(const uint32_t& inputValue);
-    virtual void editSpecialSecond(const QString& inputValue);
     virtual std::unique_ptr<TransportBase> clone() const = 0;
 
     QVariant getID();
@@ -40,10 +41,6 @@ protected:
     std::string model;
     uint32_t year;
     uint32_t weight;
-    uint32_t specialFirst;
-    std::string specialSecond;
-
-    QVariant outputQstring;
 };
 
 #endif //TRANSPORTBASE_H
