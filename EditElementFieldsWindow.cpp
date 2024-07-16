@@ -5,7 +5,8 @@ EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::EditElementFieldsWindow)
 {
-    transportMap.reset(new TransportMap(*db.download()));
+    if (!db.getQuery().value(0).isNull())
+        transportMap.reset(new TransportMap(*db.download()));
 
     ui->setupUi(this);
 }
@@ -78,7 +79,6 @@ void EditElementFieldsWindow::setActionForRealizationThisWnd(std::string action)
     {
         actionWithDB = action;
     }
-    else {}
 }
 
 void EditElementFieldsWindow::on_cancelButton_clicked()

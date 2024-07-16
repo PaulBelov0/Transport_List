@@ -11,26 +11,26 @@ Database::Database()
     *query = QSqlQuery(*db);
     query->exec("CREATE TABLE TransportDatabase(ID INT, Type TEXT, Brand TEXT, Model TEXT, Year INT, Weight INT, SpecialFirst INT, SpecialSecond TEXT);");
 
-    outputMap = download();
-
-    download();
+    outputMap.reset(download().get());
 }
 
 Database::~Database() { delete query; delete db; }
 
 std::unique_ptr<TransportMap> Database::download()
 {
-    std::unique_ptr<TransportMap> outputMap;
-    while (query->next())
-    {
-        std::unique_ptr<TransportObjectCreator> creator = std::make_unique<TransportObjectCreator>(query->value("ID").toUInt(), query->value("Type").toString(),
-                                                                                       query->value("Brand").toString(), query->value("Model").toString(),
-                                                                                       query->value("Year").toUInt(), query->value("weight").toUInt(),
-                                                                                       query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString());
+    std::map<uint32_t, TransportBase*> map;
+    if (db->isValid())
+        while (query->next())
+        {
+            TransportObjectCreator creator(query->value("ID").toUInt(), query->value("Type").toString(),
+                                           query->value("Brand").toString(), query->value("Model").toString(),
+                                           query->value("Year").toUInt(), query->value("weight").toUInt(),
+                                           query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString());
 
-        outputMap->insertPair(creator->getTransportObject());
-    }
+            map.insert({creator.getTransportObject()->getID().toUInt(), creator.getTransportObject()});
+        }
 
+    std::unique_ptr<TransportMap> outputMap(new TransportMap(map));
     return outputMap;
 
 }

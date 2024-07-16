@@ -1,21 +1,20 @@
 #include <TransportMap/transportmap.h>
-#include <Transport/TransportBase/TransportBase.h>
 
-TransportMap::TransportMap(std::map<uint32_t, std::unique_ptr<TransportBase>> map)
+TransportMap::TransportMap(std::map<uint32_t, TransportBase*> map)
 {
     for (auto& element : map)
     {
-        transportDatabase.insert({element.second->getID().toUInt(), element.second.get()});
+        transportDatabase.insert({element.second->getID().toUInt(), element.second});
     }
 }
 
 TransportMap::TransportMap(TransportMap& map)
 {
-    for (auto& mapElement : map.getMap())
-    {
-        uint32_t uniqueIdentifier = mapElement.second->getID().toUInt();
-        transportDatabase.insert({uniqueIdentifier, mapElement.second.get()});
-    }
+    if (map.getMap().end() != map.getMap().begin())
+        for (auto& element : map.getMap())
+        {
+            transportDatabase.insert({element.second->getID().toUInt(), element.second});
+        }
 }
 
 TransportMap::~TransportMap() {}
@@ -38,8 +37,7 @@ bool TransportMap::findDatabaseElement(const uint32_t& index)
 
 void TransportMap::addNewElement(const std::unique_ptr<TransportBase> object)
 {
-    uint32_t uniqueIdentifier = object->getID().toUInt();
-    transportDatabase.insert({uniqueIdentifier, object.get()});
+    transportDatabase.insert({object->getID().toUInt(), object.get()});
 }
 
 void TransportMap::deleteElement(const uint32_t& index)
@@ -55,14 +53,12 @@ void TransportMap::deleteElement(const uint32_t& index)
     }
 }
 
-std::map<uint32_t, std::unique_ptr<TransportBase>> TransportMap::getMap()
+std::map<uint32_t, TransportBase*> TransportMap::getMap()
 {
-    std::map<uint32_t, std::unique_ptr<TransportBase>> outputMap;
-    return outputMap;
+    return transportDatabase;
 }
 
 void TransportMap::insertPair(TransportBase* object)
 {
-    uint32_t uniqueIdentifier = object->getID().toUInt();
-    transportDatabase.insert({uniqueIdentifier, object});
+    transportDatabase.insert({object->getID().toUInt(), object});
 }

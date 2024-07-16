@@ -1,7 +1,5 @@
 #include <Menu/Menu.h>
 
-//QT_Version
-
 Menu::Menu()
 {
     messageToUserWindow = new MessageToUserWindow();
@@ -45,10 +43,8 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
     transportMap->findDatabaseElement(ID);
-    std::map<uint32_t, std::unique_ptr<TransportBase>> map;
-    map = transportMap->getMap();
 
-    if (map.count(ID) != 0)
+    if (transportMap->getMap().count(ID) != 0)
     {
         transportMap->deleteElement(ID);
         deletingResult = "Element deleted successful!";
@@ -87,8 +83,8 @@ TransportMap& Menu::getMap()
 
 void Menu::setMap(TransportMap& inputMap)
 {
-    std::unique_ptr<TransportMap> transportDB(new TransportMap(inputMap));
-    transportMap = std::make_unique<TransportMap>(*transportDB);
+        TransportMap transportDB(inputMap);
+        transportMap = std::make_unique<TransportMap>(transportDB);
 }
 
 void Menu::setID(const uint32_t& ID)

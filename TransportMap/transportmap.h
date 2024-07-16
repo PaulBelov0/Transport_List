@@ -12,7 +12,7 @@
 class TransportMap
 {
 public:
-    TransportMap(std::map<uint32_t, std::unique_ptr<TransportBase>> map);
+    TransportMap(std::map<uint32_t, TransportBase*> map);
     TransportMap(TransportMap& map);
     ~TransportMap();
 
@@ -20,7 +20,7 @@ public:
     void addNewElement(const std::unique_ptr<TransportBase> object);
     void deleteElement(const uint32_t& index);
 
-    std::map<uint32_t, std::unique_ptr<TransportBase>> getMap();
+    std::map<uint32_t, TransportBase*> getMap();
 
     void insertPair(TransportBase* object);
 

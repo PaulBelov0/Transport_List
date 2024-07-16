@@ -29,15 +29,12 @@ void MainWindow::on_addNewElementButton_clicked()
     editElementFieldsWindow.setActionForRealizationThisWnd("add");
 
     model->insertRow(model->rowCount());
-
-    reloadDatabase();
 }
 
 void MainWindow::on_editElementButton_clicked()
 {
     searchElementWindow.show();
-
-    reloadDatabase();
+    //editElementFieldsWindow.setActionForRealizationThisWnd("edit");
 }
 
 void MainWindow::on_deleteElementButton_clicked()
@@ -45,8 +42,6 @@ void MainWindow::on_deleteElementButton_clicked()
     deleteElementWindow.show();
 
     model->removeRow(deleteElementWindow.getID());
-
-    reloadDatabase();
 }
 
 void MainWindow::on_loadDatabaseButton_clicked()
@@ -67,6 +62,6 @@ void MainWindow::on_exitButton_clicked()
 
 void MainWindow::reloadDatabase()
 {
-    database.upload(menu.getMap());
-    database.download();
+    //database.upload(menu.getMap());
+    //database.download();
 }
