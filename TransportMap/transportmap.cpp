@@ -5,7 +5,7 @@ TransportMap::TransportMap(std::map<uint32_t, std::unique_ptr<TransportBase>> ma
 {
     for (auto& element : map)
     {
-        transportDatabase.insert({element.second->clone()->getID().toUInt(), element.second->clone()});
+        transportDatabase.insert({element.second->getID().toUInt(), element.second.get()});
     }
 }
 
@@ -13,7 +13,8 @@ TransportMap::TransportMap(TransportMap& map)
 {
     for (auto& mapElement : map.getMap())
     {
-        transportDatabase.insert({mapElement.second.get()->clone()->getID().toUInt(), mapElement.second.get()->clone()});
+        uint32_t uniqueIdentifier = mapElement.second->getID().toUInt();
+        transportDatabase.insert({uniqueIdentifier, mapElement.second.get()});
     }
 }
 
@@ -37,7 +38,8 @@ bool TransportMap::findDatabaseElement(const uint32_t& index)
 
 void TransportMap::addNewElement(const std::unique_ptr<TransportBase> object)
 {
-    transportDatabase.insert({object->clone()->getID().toUInt(), object->clone()});
+    uint32_t uniqueIdentifier = object->getID().toUInt();
+    transportDatabase.insert({uniqueIdentifier, object.get()});
 }
 
 void TransportMap::deleteElement(const uint32_t& index)
@@ -59,7 +61,8 @@ std::map<uint32_t, std::unique_ptr<TransportBase>> TransportMap::getMap()
     return outputMap;
 }
 
-void TransportMap::insertPair(const TransportBase* object)
+void TransportMap::insertPair(TransportBase* object)
 {
-    transportDatabase.insert({object->clone()->getID().toUInt(), object->clone()});
+    uint32_t uniqueIdentifier = object->getID().toUInt();
+    transportDatabase.insert({uniqueIdentifier, object});
 }

@@ -22,14 +22,14 @@ public:
 
     std::map<uint32_t, std::unique_ptr<TransportBase>> getMap();
 
-    void insertPair(const TransportBase* object);
+    void insertPair(TransportBase* object);
 
 private:
-    std::map<uint32_t, std::unique_ptr<TransportBase>> transportDatabase;
+    std::map<uint32_t, TransportBase*> transportDatabase;
 
     MessageToUserWindow messageToUserWindow;
 
-    std::map<uint32_t, std::unique_ptr<TransportBase>>::iterator iter;
+    std::map<uint32_t, TransportBase*>::iterator iter;
 };
 
 #endif // TRANSPORTMAP_H

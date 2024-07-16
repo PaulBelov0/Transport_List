@@ -15,15 +15,6 @@ TransportBase::TransportBase(const int& ID, const QString& brand,
 }
 TransportBase::~TransportBase() {}
 
-void TransportBase::operator=(TransportBase& object)
-{
-    uniqueID = object.getID().toUInt();
-    type = object.getType().toString().toStdString();
-    brand = object.getBrand().toString().toStdString();
-    model = object.getModel().toString().toStdString();
-    year = object.getYear().toUInt();
-    weight = object.getWeight().toUInt();
-}
 
 // Setters / editors :
 
@@ -54,11 +45,6 @@ void TransportBase::operator=(TransportBase& object)
  QVariant TransportBase::getID()
  {
      return QString::fromStdString(std::to_string(uniqueID));
- }
-
- QVariant TransportBase::getType()
- {
-     return QString::fromStdString(type);
  }
 
  QVariant TransportBase::getBrand()

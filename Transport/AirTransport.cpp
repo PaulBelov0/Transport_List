@@ -27,17 +27,6 @@ AirTransport::AirTransport(TransportBase* transportObject)
 
 AirTransport::~AirTransport() {}
 
-void AirTransport::operator=(TransportBase& object)
-{
-    TransportBase::operator=(object);
-    wingspan = object.getSpecialFirst().toUInt();
-    payloadCapacity = object.getSpecialSecond().toUInt();
-}
-
-std::unique_ptr<TransportBase> AirTransport::clone() const
-{
-    return std::make_unique<AirTransport>(*this);
-}
 
 void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {
@@ -50,6 +39,12 @@ void AirTransport::editSpecialSecond (const QString& payloadCapacity)
     this->payloadCapacity = payloadCapacity.toInt();
 }
 
+// Getters:
+
+QVariant AirTransport::getType()
+{
+    return QString::fromStdString(type);
+}
 
 QVariant AirTransport::getSpecialFirst()
 {

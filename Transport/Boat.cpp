@@ -26,18 +26,6 @@ Boat::Boat(TransportBase* transportObject)
 
 Boat::~Boat() {}
 
-void Boat::operator=(TransportBase& object)
-{
-    TransportBase::operator=(object);
-    displacement = object.getSpecialFirst().toUInt();
-    screwDepth = object.getSpecialSecond().toUInt();
-}
-
-std::unique_ptr<TransportBase> Boat::clone() const
-{
-    return std::make_unique<Boat>(*this);
-}
-
 void Boat::editSpecialFirst(const uint32_t& displacement)
 {
     this->displacement = displacement;
@@ -47,6 +35,13 @@ void Boat::editSpecialFirst(const uint32_t& displacement)
 void Boat::editSpecialSecond(const QString& screwDepth)
 {
     this->screwDepth = screwDepth.toInt();
+}
+
+// Getters:
+
+QVariant Boat::getType()
+{
+    return QString::fromStdString(type);
 }
 
 QVariant Boat::getSpecialFirst()

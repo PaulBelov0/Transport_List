@@ -27,19 +27,6 @@ Car::Car(TransportBase* transportObject)
 
 Car::~Car() {}
 
-void Car::operator=(TransportBase& object)
-{
-    TransportBase::operator=(object);
-    mileage = object.getSpecialFirst().toUInt();
-    ownersQuantity = object.getSpecialSecond().toUInt();
-}
-
-std::unique_ptr<TransportBase> Car::clone() const
-{
-    return std::make_unique<Car>(*this);
-}
-
-
 void Car::editSpecialFirst(const uint32_t& mileage)
 {
     this->mileage = mileage;
@@ -49,6 +36,13 @@ void Car::editSpecialFirst(const uint32_t& mileage)
 void Car::editSpecialSecond(const QString& ownersQuantity)
 {
     this->ownersQuantity = ownersQuantity.toInt();
+}
+
+// Getters:
+
+QVariant Car::getType()
+{
+    return QString::fromStdString(type);
 }
 
 QVariant Car::getSpecialFirst()

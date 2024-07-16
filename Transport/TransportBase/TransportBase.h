@@ -15,16 +15,14 @@ public:
                   const int& weight
                   );
     virtual ~TransportBase() = 0;
-    virtual void operator=(TransportBase& object);
 
     void editBrand(const std::string& brand);
     void editModel(const std::string& model);
     void editYear(const int& year);
     void editWeight(const int& weight);
-    virtual std::unique_ptr<TransportBase> clone() const = 0;
 
     QVariant getID();
-    QVariant getType();
+    virtual QVariant getType() = 0;
     QVariant getBrand();
     QVariant getModel();
     QVariant getYear();
@@ -35,7 +33,7 @@ public:
 
 protected:
 
-	uint32_t uniqueID;
+    uint32_t uniqueID;
     std::string type;
     std::string brand;
     std::string model;

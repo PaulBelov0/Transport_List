@@ -11,7 +11,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const QString
         try
         {
             AirTransport air(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
-            *base = air;
+            base = std::make_unique<AirTransport>(air);
         }
         catch (const std::invalid_argument& e)
         {
@@ -23,7 +23,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const QString
         try
         {
             Car car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
-            std::unique_ptr<TransportBase> base = std::make_unique<Car>(car);
+            base = std::make_unique<Car>(car);
         }
         catch (const std::invalid_argument& e)
         {
@@ -35,7 +35,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const QString
         try
         {
             Boat boat(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
-            *base = boat;
+            base = std::make_unique<Boat>(boat);
         }
         catch (const std::invalid_argument& e)
         {
@@ -45,7 +45,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const QString
     else
     {
         Shuttle shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
-        *base = shuttle;
+        base = std::make_unique<Shuttle>(shuttle);
     }
 }
 
