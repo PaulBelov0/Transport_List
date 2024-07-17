@@ -3,8 +3,9 @@
 
 #include <QDialog>
 #include <QException>
-#include <Menu/Menu.h>
-#include <MessageToUserWindow.h>
+
+#include "Menu/Menu.h"
+#include "MessageToUserWindow.h"
 
 namespace Ui {
 class DeleteElementWindow;

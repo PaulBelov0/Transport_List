@@ -6,10 +6,11 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSqlTableModel>
 #include <QtSql/QtSql>
-#include <DeleteElementWindow.h>
-#include <EditElementFieldsWindow.h>
-#include <Menu/Menu.h>
-#include <SearchElementWindow.h>
+
+#include "DeleteElementWindow.h"
+#include "EditElementFieldsWindow.h"
+#include "Menu/Menu.h"
+#include "SearchElementWindow.h"
 
 namespace Ui {
 class MainWindow;

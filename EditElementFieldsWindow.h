@@ -2,10 +2,11 @@
 #define EDITELEMENTFIELDSWINDOW_H
 
 #include <QDialog>
-#include <Menu/Menu.h>
-#include <MessageToUserWindow.h>
-#include <TransportMap/transportmap.h>
-#include <Database/Database.h>
+
+#include "Database/Database.h"
+#include "Menu/Menu.h"
+#include "MessageToUserWindow.h"
+#include "TransportStorage/TransportStorage.h"
 
 namespace Ui {
 class EditElementFieldsWindow;

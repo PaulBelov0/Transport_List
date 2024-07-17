@@ -27,15 +27,17 @@ void EditElementFieldsWindow::on_okButton_clicked()
     firstSpecialField = ui->firstSpecialFieldSpinBox->value();
     secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText();
 
-    if (actionWithDB == "add" || "Add")
-    {
-        menu.addNewElement(ID,type, brand, model,year, weight,
-                           firstSpecialField, secondSpecialField);
-    }
-    else if (actionWithDB == "edit" || "Edit")
-    {
-        menu.editElement(ID, type, brand, model, year, weight,
-                         firstSpecialField, secondSpecialField);
+    if (actionWithDB == "add" || "Add") {
+        menu.addNewElement(ID,
+                           type,
+                           brand,
+                           model,
+                           year,
+                           weight,
+                           firstSpecialField,
+                           secondSpecialField);
+    } else if (actionWithDB == "edit" || "Edit") {
+        menu.editElement(ID, type, brand, model, year, weight, firstSpecialField, secondSpecialField);
     }
     this->close();
 }
@@ -71,12 +73,9 @@ void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
 
 void EditElementFieldsWindow::setActionForRealizationThisWnd(std::string action)
 {
-    if (action == "add" || "Add")
-    {
+    if (action == "add" || "Add") {
         actionWithDB = action;
-    }
-    else if (action == "edit" || "Edit")
-    {
+    } else if (action == "edit" || "Edit") {
         actionWithDB = action;
     }
 }

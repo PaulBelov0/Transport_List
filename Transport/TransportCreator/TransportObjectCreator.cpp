@@ -1,5 +1,7 @@
 #include "TransportObjectCreator.h"
 
+TransportObjectCreator::TransportObjectCreator() {}
+
 TransportObjectCreator::TransportObjectCreator(const uint32_t ID, const QString type,
                                                const QString brand, const QString model,
                                                const uint32_t year, const uint32_t weight,

@@ -1,4 +1,4 @@
-#include <Transport/AirTransport.h>
+#include "Transport/AirTransport.h"
 
 //Realizaton air transport class:
 
@@ -46,12 +46,12 @@ QVariant AirTransport::getType()
     return QString::fromStdString(type);
 }
 
-QVariant AirTransport::getSpecialFirst()
+uint32_t AirTransport::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(wingspan));
+    return wingspan;
 }
 
-QVariant AirTransport::getSpecialSecond()
+uint32_t AirTransport::getSpecialSecond()
 {
-    return QString::fromStdString(std::to_string(payloadCapacity));
+    return payloadCapacity;
 }

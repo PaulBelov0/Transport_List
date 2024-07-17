@@ -1,9 +1,8 @@
-#pragma once
 
 #ifndef CAR_H
 #define CAR_H
 
-#include <Transport/TransportBase/TransportBase.h>
+#include "Transport/TransportBase/TransportBase.h"
 
 class Car : public TransportBase
 {
@@ -22,9 +21,9 @@ public:
     void editSpecialSecond(const QString& ownersQuantity);
     //std::unique_ptr<TransportBase> clone() const override;
 
-    QVariant getSpecialFirst() override;
-    QVariant getSpecialSecond() override;
-    QVariant getType() override;
+    uint32_t getSpecialFirst() override;
+    uint32_t getSpecialSecond() override;
+    std::string getType() override;
 
 private:
     uint32_t mileage;

@@ -1,4 +1,4 @@
-#include <Transport/Car.h>
+#include "Transport/Car.h"
 
 //Realizatuion car type class:
 
@@ -40,17 +40,17 @@ void Car::editSpecialSecond(const QString& ownersQuantity)
 
 // Getters:
 
-QVariant Car::getType()
+std::string Car::getType()
 {
-    return QString::fromStdString(type);
+    return type;
 }
 
-QVariant Car::getSpecialFirst()
+uint32_t Car::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(mileage));
+    return mileage;
 }
 
-QVariant Car::getSpecialSecond()
+uint32_t Car::getSpecialSecond()
 {
-    return QString::fromStdString(std::to_string(ownersQuantity));
+    return ownersQuantity;
 }

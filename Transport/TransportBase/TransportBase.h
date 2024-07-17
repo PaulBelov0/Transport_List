@@ -14,7 +14,7 @@ public:
                   const QString& model, const int& year,
                   const int& weight
                   );
-    virtual ~TransportBase() = 0;
+    virtual ~TransportBase();
 
     void editBrand(const std::string& brand);
     void editModel(const std::string& model);

@@ -1,4 +1,4 @@
-#include <Transport/Shuttle.h>
+#include "Transport/Shuttle.h"
 
 //Realization Space shuttle class:
 
@@ -42,17 +42,17 @@ void Shuttle::editSpecialSecond(const QString& fuelType)
 
 // Getters:
 
-QVariant Shuttle::getType()
+std::string Shuttle::getType()
 {
-    return QString::fromStdString(type);
+    return type;
 }
 
-QVariant Shuttle::getSpecialFirst()
+uint32_t Shuttle::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(maxFlyingDistance));
+    return maxFlyingDistance;
 }
 
-QVariant Shuttle::getSpecialSecond()
+std::string Shuttle::getSpecialSecond()
 {
-    return QString::fromStdString(fuelType);
+    return fuelType;
 }

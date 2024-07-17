@@ -1,4 +1,5 @@
-#include <Transport/Boat.h>
+#include "Transport/Boat.h"
+
 //Realization boat class:
 
 Boat::Boat(const int& ID, const QString& brand,
@@ -24,8 +25,6 @@ Boat::Boat(TransportBase* transportObject)
     this->screwDepth = transportObject->getSpecialSecond().toUInt();
 }
 
-Boat::~Boat() {}
-
 void Boat::editSpecialFirst(const uint32_t& displacement)
 {
     this->displacement = displacement;
@@ -39,17 +38,17 @@ void Boat::editSpecialSecond(const QString& screwDepth)
 
 // Getters:
 
-QVariant Boat::getType()
+std::string Boat::getType()
 {
-    return QString::fromStdString(type);
+    return type;
 }
 
-QVariant Boat::getSpecialFirst()
+uint32_t Boat::getSpecialFirst()
 {
-    return QString::fromStdString(std::to_string(displacement));
+    return displacement;
 }
 
-QVariant Boat::getSpecialSecond()
+uint32_t Boat::getSpecialSecond()
 {
-    return QString::fromStdString(std::to_string(screwDepth));
+    return screwDepth;
 }

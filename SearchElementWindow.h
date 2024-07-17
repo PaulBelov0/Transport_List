@@ -3,9 +3,10 @@
 
 #include <QDialog>
 #include <QException>
-#include <EditElementFieldsWindow.h>
-#include <Menu/Menu.h>
-#include <MessageToUserWindow.h>
+
+#include "EditElementFieldsWindow.h"
+#include "Menu/Menu.h"
+#include "MessageToUserWindow.h"
 
 namespace Ui {
 class SearchElementWindow;

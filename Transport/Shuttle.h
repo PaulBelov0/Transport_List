@@ -1,9 +1,8 @@
-#pragma once
 
 #ifndef SHUTTLE_H
 #define SHUTTLE_H
 
-#include <Transport/TransportBase/TransportBase.h>
+#include "Transport/TransportBase/TransportBase.h"
 
 class Shuttle : public TransportBase
 {
@@ -17,17 +16,15 @@ public:
 
     Shuttle(TransportBase* transportObject);
 
-	~Shuttle();
-
     void editSpecialFirst(const uint32_t& maxFlyingDistance);
 
     void editSpecialSecond(const QString& fuelType);
 
-    QVariant getSpecialFirst() override;
+    uint32_t getSpecialFirst() override;
 
-    QVariant getSpecialSecond() override;
+    std::string getSpecialSecond() override;
 
-    QVariant getType() override;
+    std::string getType() override;
 
 private:
     uint32_t maxFlyingDistance;

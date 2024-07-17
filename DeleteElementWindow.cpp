@@ -15,7 +15,6 @@ DeleteElementWindow::~DeleteElementWindow()
 
 void DeleteElementWindow::on_deleteButton_clicked()
 {
-
     if (ui->plainTextEdit != NULL) {
         userInput = ui->plainTextEdit->toPlainText().toStdString();
         try {
@@ -37,7 +36,7 @@ void DeleteElementWindow::on_exitButton_clicked()
     this->close();
 }
 
-uint32_t& DeleteElementWindow::getID()
+uint32_t &DeleteElementWindow::getID()
 {
     return menu.getID();
 }

@@ -12,18 +12,18 @@ SOURCES += \
     Database/Database.cpp \
     DeleteElementWindow.cpp \
     EditElementFieldsWindow.cpp \
+    MainWindow.cpp \
     MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
     Transport/TransportCreator/TransportObjectCreator.cpp \
-    TransportMap/transportmap.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
     Transport/Boat.cpp \
     Transport/Car.cpp \
     Transport/Shuttle.cpp \
     Transport/TransportBase/TransportBase.cpp \
-    main.cpp \
-    mainwindow.cpp
+    TransportStorage/TransportStorage.cpp \
+    main.cpp
     Menu.cpp
     TransportBase.cpp
     Car.cpp
@@ -35,19 +35,18 @@ HEADERS += \
     Database/Database.h \
     DeleteElementWindow.h \
     EditElementFieldsWindow.h \
+    MainWindow.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
+    Transport/Transport.h \
     Transport/TransportCreator/TransportObjectCreator.h \
-    TransportMap/transportmap.h \
     Menu/Menu.h \
     Transport/AirTransport.h \
     Transport/Boat.h \
     Transport/Car.h \
     Transport/Shuttle.h \
     Transport/TransportBase/TransportBase.h \
-    Transport/transport.h \
-    TransportMap/transportmap.h \
-    mainwindow.h \
+    TransportStorage/TransportStorage.h \
     transport.h
     TransportBase.h
     Boat.h
@@ -59,9 +58,46 @@ HEADERS += \
 FORMS += \
     DeleteElementWindow.ui \
     EditElementFieldsWindow.ui \
+    MainWindow.ui \
     MessageToUserWindow.ui \
-    SearchElementWindow.ui \
-    mainwindow.ui
+    SearchElementWindow.ui
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
+
+
+HEADERS += \
+    Database/Database.h \
+    DeleteElementWindow.h \
+    EditElementFieldsWindow.h \
+    MainWindow.h \
+    MessageToUserWindow.h \
+    SearchElementWindow.h \
+    Transport/Transport.h \
+    Transport/TransportCreator/TransportObjectCreator.h \
+    Menu/Menu.h \
+    Transport/AirTransport.h \
+    Transport/Boat.h \
+    Transport/Car.h \
+    Transport/Shuttle.h \
+    Transport/TransportBase/TransportBase.h \
+    TransportStorage/TransportStorage.h \
+    transport.h
+    TransportBase.h
+    Boat.h
+    Car.h
+    Shuttle.h
+    AirTransport.h
+    Menu.h
+
+FORMS += \
+    DeleteElementWindow.ui \
+    EditElementFieldsWindow.ui \
+    MainWindow.ui \
+    MessageToUserWindow.ui \
+    SearchElementWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

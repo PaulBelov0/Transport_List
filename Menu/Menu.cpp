@@ -1,4 +1,4 @@
-#include <Menu/Menu.h>
+#include "Menu/Menu.h"
 
 Menu::Menu()
 {
@@ -18,23 +18,26 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 {
 
 
-    TransportObjectCreator transportObject(ID, type, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
+    TransportObjectCreator* transportObject(ID, type, brand, model, 
+                                            year, weight, specialFieldFirst, 
+                                            specialFieldSecond
+                                            );
 
-    if (transportObject.getTransportObject()->getType().toString().toStdString() == "Air")
+    if (type == "Air")
     {
-        transportMap->addNewElement(std::make_unique<AirTransport>(transportObject.getTransportObject()));
+        transportMap->addNewElement(transportObject.getTransportObject());
     }
-    else if(transportObject.getTransportObject()->getType().toString().toStdString() == "Car")
+    else if(type == "Car")
     {
-        transportMap->addNewElement(std::make_unique<Car>(transportObject.getTransportObject()));
+        transportMap->addNewElement(transportObject.getTransportObject());
     }
-    else if(transportObject.getTransportObject()->getType().toString().toStdString() == "Boat")
+    else if(type == "Boat")
     {
-        transportMap->addNewElement(std::make_unique<Boat>(transportObject.getTransportObject()));
+        transportMap->addNewElement(transportObject.getTransportObject());
     }
-    else if (transportObject.getTransportObject()->getType().toString().toStdString() == "Shuttle")
+    else if (type == "Shuttle")
     {
-        transportMap->addNewElement(std::make_unique<Shuttle>(transportObject.getTransportObject()));
+        transportMap->addNewElement(transportObject.getTransportObject());
     }
 
     return 0;
