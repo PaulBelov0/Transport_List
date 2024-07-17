@@ -26,8 +26,6 @@ Shuttle::Shuttle(TransportBase* transportObject)
     fuelType = transportObject->getSpecialSecond().toString().toStdString();
 }
 
-Shuttle::~Shuttle() {}
-
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {

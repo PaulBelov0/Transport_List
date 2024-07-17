@@ -25,8 +25,6 @@ AirTransport::AirTransport(TransportBase* transportObject)
     payloadCapacity = transportObject->getSpecialSecond().toUInt();
 }
 
-AirTransport::~AirTransport() {}
-
 
 void AirTransport::editSpecialFirst(const uint32_t& wingspan)
 {

@@ -11,12 +11,12 @@ Database::Database()
     *query = QSqlQuery(*db);
     query->exec("CREATE TABLE TransportDatabase(ID INT, Type TEXT, Brand TEXT, Model TEXT, Year INT, Weight INT, SpecialFirst INT, SpecialSecond TEXT);");
 
-    outputMap.reset(download().get());
+    outputStorage.reset(download().get());
 }
 
 Database::~Database() { delete query; delete db; }
 
-std::unique_ptr<TransportMap> Database::download()
+std::unique_ptr<TransportStorage> Database::download()
 {
     std::map<uint32_t, TransportBase*> map;
     if (db->isValid())
@@ -30,15 +30,15 @@ std::unique_ptr<TransportMap> Database::download()
             map.insert({creator.getTransportObject()->getID().toUInt(), creator.getTransportObject()});
         }
 
-    std::unique_ptr<TransportMap> outputMap(new TransportMap(map));
-    return outputMap;
+    std::unique_ptr<TransportStorage> outputStorage(new TransportStorage(map));
+    return outputStorage;
 
 }
 
-void Database::upload(TransportMap& inputMap)
+void Database::upload(TransportStorage& inputStorage)
 {
 
-    for(const auto& element : inputMap.getMap())
+    for(const auto& element : inputStorage.getMap())
     {
         query->prepare("INSERT INTO TransportDatabase(ID, Type, Brand, Model, Year, Weight, Specialfirst, SpecialSecond)"
                        "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :Specialfirst, :SpecialSecond)");

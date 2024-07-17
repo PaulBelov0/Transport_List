@@ -34,9 +34,9 @@ public:
 
     bool checkElementAvilable(const uint32_t& ID);
 
-    TransportMap& getMap();
+    TransportStorage& getStorage();
 
-    void setMap(TransportMap& inputMap);
+    void setMap(TransportStorage& inputStorage);
 
     void setID(const uint32_t& ID);
 
@@ -46,7 +46,7 @@ public:
 private:
     MessageToUserWindow* messageToUserWindow;
     uint32_t uniqueID;
-    std::unique_ptr<TransportMap> transportMap;
+    std::unique_ptr<TransportStorage> transportStorage;
     QString deletingResult;
 };
 

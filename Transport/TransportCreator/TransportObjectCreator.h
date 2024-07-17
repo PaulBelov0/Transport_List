@@ -6,7 +6,9 @@
 
 #include <QString>
 #include <QVariant>
+#include <QSignalMapper>
 #include <memory>
+
 
 class TransportObjectCreator
 {
@@ -16,7 +18,6 @@ public:
                      const QString brand, const QString model,
                      const uint32_t year, const uint32_t weight,
                      const uint32_t specialFirst, const QString specialSecond);
-    ~TransportObjectCreator();
 
     TransportBase* getTransportObject();
 

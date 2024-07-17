@@ -33,7 +33,7 @@ private:
     Ui::EditElementFieldsWindow *ui;
 
     Menu menu;
-    std::unique_ptr<TransportMap> transportMap;
+    std::unique_ptr<TransportStorage> transportStorage;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
     Database db;

@@ -15,8 +15,6 @@ public:
 
     Car(TransportBase* transportObject);
 
-	~Car();
-
     void editSpecialFirst(const uint32_t& mileage);
     void editSpecialSecond(const QString& ownersQuantity);
     //std::unique_ptr<TransportBase> clone() const override;

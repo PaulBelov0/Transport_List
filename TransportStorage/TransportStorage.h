@@ -5,16 +5,18 @@
 #include <map>
 #include <cstdint>
 
+#include <QSignalMapper>
+
 #include "Transport/TransportBase/TransportBase.h"
 #include "MessageToUserWindow.h"
 #include "Transport/Transport.h"
 
-class TransportMap
+class TransportStorage
 {
+    Q_OBJECT
 public:
-    TransportMap(std::map<uint32_t, TransportBase*> map);
-    TransportMap(TransportMap& map);
-    ~TransportMap();
+    TransportStorage(std::map<uint32_t, TransportBase*> map);
+    TransportStorage(TransportStorage& map);
 
     bool findDatabaseElement(const uint32_t& index);
     void addNewElement(const TransportBase* object);
@@ -23,7 +25,8 @@ public:
     std::map<uint32_t, TransportBase*> getMap();
 
     void insertPair(TransportBase* object);
-
+signals:
+    QSignalMapper error();
 private:
     std::map<uint32_t, TransportBase*> transportDatabase;
 

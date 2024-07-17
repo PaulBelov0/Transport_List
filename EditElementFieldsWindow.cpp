@@ -6,7 +6,7 @@ EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
     , ui(new Ui::EditElementFieldsWindow)
 {
     if (!db.getQuery().value(0).isNull())
-        transportMap.reset(new TransportMap(*db.download()));
+        transportStorage.reset(new TransportStorage(*db.download()));
 
     ui->setupUi(this);
 }
@@ -46,28 +46,28 @@ void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
 {
     QVariant converter;
 
-    converter = transportMap->getMap().at(ID)->getID();
+    converter = transportStorage->getMap().at(ID)->getID();
     ui->uinqueIDIntBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportMap->getMap().at(ID)->getType();
+    converter = transportStorage->getMap().at(ID)->getType();
     ui->typeComboBox->setCurrentText(converter.toString());
 
-    converter = transportMap->getMap().at(ID)->getBrand();
+    converter = transportStorage->getMap().at(ID)->getBrand();
     ui->brandTextBox->setPlainText(converter.toString());
 
-    converter = transportMap->getMap().at(ID)->getModel();
+    converter = transportStorage->getMap().at(ID)->getModel();
     ui->modelTextBox->setPlainText(converter.toString());
 
-    converter = transportMap->getMap().at(ID)->getYear();
+    converter = transportStorage->getMap().at(ID)->getYear();
     ui->yearSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportMap->getMap().at(ID)->getWeight();
+    converter = transportStorage->getMap().at(ID)->getWeight();
     ui->weightSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportMap->getMap().at(ID)->getSpecialFirst();
+    converter = transportStorage->getMap().at(ID)->getSpecialFirst();
     ui->firstSpecialFieldSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportMap->getMap().at(ID)->getSpecialSecond();
+    converter = transportStorage->getMap().at(ID)->getSpecialSecond();
     ui->secondSpecialFieldTextBox->setPlainText(converter.toString());
 }
 

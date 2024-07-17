@@ -1,6 +1,6 @@
-#include "TransportMap/TransportStorage.h"
+#include "TransportStorage/TransportStorage.h"
 
-TransportMap::TransportMap(std::map<uint32_t, TransportBase*> map)
+TransportStorage::TransportStorage(std::map<uint32_t, TransportBase*> map)
 {
     for (auto& element : map)
     {
@@ -8,14 +8,12 @@ TransportMap::TransportMap(std::map<uint32_t, TransportBase*> map)
     }
 }
 
-TransportMap::TransportMap(TransportMap& map)
+TransportStorage::TransportStorage(TransportStorage& map)
 {
     transportDatabase = map.tanspotDatabase;
 }
 
-TransportMap::~TransportMap() {}
-
-bool TransportMap::findDatabaseElement(const uint32_t& index)
+bool TransportStorage::findDatabaseElement(const uint32_t& index)
 {
     bool output;
     if (transportDatabase.count(index))
@@ -31,12 +29,12 @@ bool TransportMap::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportMap::addNewElement(const TransportBase* object)
+void TransportStorage::addNewElement(const TransportBase* object)
 {
     transportDatabase.insert({object->getID().toUInt(), object});
 }
 
-void TransportMap::deleteElement(const uint32_t& index)
+void TransportStorage::deleteElement(const uint32_t& index)
 {
     if (transportDatabase.count(index) > 0 && !transportDatabase.empty())
     {
@@ -49,12 +47,12 @@ void TransportMap::deleteElement(const uint32_t& index)
     }
 }
 
-std::map<uint32_t, TransportBase*> TransportMap::getMap()
+std::map<uint32_t, TransportBase*> TransportStorage::getMap()
 {
     return transportDatabase;
 }
 
-void TransportMap::insertPair(TransportBase* object)
+void TransportStorage::insertPair(TransportBase* object)
 {
     transportDatabase.insert({object->getID().toUInt(), object});
 }

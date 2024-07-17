@@ -25,19 +25,19 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 
     if (type == "Air")
     {
-        transportMap->addNewElement(transportObject.getTransportObject());
+        transportStorage->addNewElement(transportObject->getTransportObject());
     }
     else if(type == "Car")
     {
-        transportMap->addNewElement(transportObject.getTransportObject());
+        transportStorage->addNewElement(transportObject->getTransportObject());
     }
     else if(type == "Boat")
     {
-        transportMap->addNewElement(transportObject.getTransportObject());
+        transportStorage->addNewElement(transportObject->getTransportObject());
     }
     else if (type == "Shuttle")
     {
-        transportMap->addNewElement(transportObject.getTransportObject());
+        transportStorage->addNewElement(transportObject->getTransportObject());
     }
 
     return 0;
@@ -45,11 +45,11 @@ int Menu::addNewElement(const uint32_t& ID, const QString& type,
 
 QString& Menu::deleteDatabaseElement(const uint32_t& ID)
 {
-    transportMap->findDatabaseElement(ID);
+    transportStorage->findDatabaseElement(ID);
 
-    if (transportMap->getMap().count(ID) != 0)
+    if (transportStorage->getMap().count(ID) != 0)
     {
-        transportMap->deleteElement(ID);
+        transportStorage->deleteElement(ID);
         deletingResult = "Element deleted successful!";
     }
     else
@@ -63,7 +63,7 @@ bool Menu::checkElementAvilable(const uint32_t& ID)
 {
     bool result;
 
-    result = transportMap->findDatabaseElement(ID);
+    result = transportStorage->findDatabaseElement(ID);
 
     return result;
 }
@@ -74,20 +74,20 @@ void Menu::editElement(const uint32_t& ID, const QString& type, const QString& b
                        )
 {
 
-    transportMap->deleteElement(ID);
+    transportStorage->deleteElement(ID);
     addNewElement(ID, type, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
 }
 
 
-TransportMap& Menu::getMap()
+TransportStorage& Menu::getMap()
 {
-    return *transportMap;
+    return *transportStorage;
 }
 
-void Menu::setMap(TransportMap& inputMap)
+void Menu::setMap(TransportStorage& inputStorage)
 {
-        TransportMap transportDB(inputMap);
-        transportMap = std::make_unique<TransportMap>(transportDB);
+        TransportStorage transportDatabase(inputStorage);
+        transportStorage = std::make_unique<TransportStorage>(transportDatabase);
 }
 
 void Menu::setID(const uint32_t& ID)

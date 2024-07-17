@@ -8,50 +8,37 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t ID, const QString 
                                                const uint32_t specialFirst, const QString specialSecond
                                                )
 {
-    if (type == "Air")
+    try
     {
-        try
+        if (type == "Air")
         {
             AirTransport air(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
             base = std::make_unique<AirTransport>(air);
+
         }
-        catch (const std::invalid_argument& e)
-        {
-            showDataErrorMessage();
-        }
-    }
-    else if(type == "Car")
-    {
-        try
+        else if(type == "Car")
         {
             Car car(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
             base = std::make_unique<Car>(car);
+
         }
-        catch (const std::invalid_argument& e)
-        {
-            showDataErrorMessage();
-        }
-    }
-    else if(type == "Boat")
-    {
-        try
+        else if(type == "Boat")
         {
             Boat boat(ID, brand, model, year, weight, specialFirst, specialSecond.toUInt());
             base = std::make_unique<Boat>(boat);
+
         }
-        catch (const std::invalid_argument& e)
+        else
         {
-            showDataErrorMessage();
+            Shuttle shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
+            base = std::make_unique<Shuttle>(shuttle);
         }
     }
-    else
+    catch (const std::invalid_argument &e)
     {
-        Shuttle shuttle(ID, brand, model, year, weight, specialFirst, specialSecond);
-        base = std::make_unique<Shuttle>(shuttle);
+        showDataErrorMessage();
     }
 }
-
-TransportObjectCreator::~TransportObjectCreator() {}
 
 void TransportObjectCreator::showDataErrorMessage()
 {

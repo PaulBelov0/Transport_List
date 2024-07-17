@@ -25,8 +25,6 @@ Car::Car(TransportBase* transportObject)
     ownersQuantity = transportObject->getSpecialSecond().toUInt();
 }
 
-Car::~Car() {}
-
 void Car::editSpecialFirst(const uint32_t& mileage)
 {
     this->mileage = mileage;
