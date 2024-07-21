@@ -1,14 +1,13 @@
-#include <QApplication>
+//#include <QApplication>
 
 #include "Menu/Menu.h"
-#include "MainWindow.h"
 
-int main(int argc, char *argv[])
+int main(/*int argc, char *argv[]*/)
 {
-    QApplication a(argc, argv);
+    Menu* menu = new Menu();
 
-    MainWindow w;
-    w.show();
+    menu->mainProcedure();
 
-    return a.exec();
+    delete menu;
+    return 0;
 }

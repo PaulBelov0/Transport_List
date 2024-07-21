@@ -42,9 +42,7 @@ TransportObjectCreator::TransportObjectCreator(const uint32_t& ID, const std::st
 
 void TransportObjectCreator::showDataErrorMessage()
 {
-    MessageToUserWindow message;
-    message.show();
-    message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
+    std::cout << "Error!" << std::endl;
 }
 
 std::shared_ptr<TransportBase> TransportObjectCreator::getTransportObject()

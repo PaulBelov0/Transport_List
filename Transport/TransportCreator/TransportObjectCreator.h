@@ -2,11 +2,12 @@
 #define TRANSPORTOBJECTCREATOR_H
 
 #include "Transport/Transport.h"
-#include "MessageToUserWindow.h"
 
 #include <QString>
 #include <QVariant>
 #include <QSignalMapper>
+
+#include <iostream>
 #include <memory>
 
 

@@ -13,6 +13,8 @@ TransportStorage::TransportStorage(TransportStorage& map)
     transportDatabase = map.transportDatabase;
 }
 
+TransportStorage::TransportStorage() {}
+
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
 {
     bool output;
@@ -23,8 +25,6 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     else
     {
         output = false;
-        messageToUserWindow.show();
-        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
     }
     return output;
 }
@@ -50,6 +50,18 @@ void TransportStorage::deleteElement(const uint32_t& index)
 std::map<uint32_t, std::shared_ptr<TransportBase>> TransportStorage::getMap()
 {
     return transportDatabase;
+}
+
+bool TransportStorage::checkMapEmpty()
+{
+    if (transportDatabase.size() == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void TransportStorage::insertPair(std::shared_ptr<TransportBase> object)
