@@ -18,7 +18,7 @@ Database::~Database() { delete query; delete db; }
 
 std::unique_ptr<TransportStorage> Database::download()
 {
-    std::map<uint32_t, TransportBase*> map;
+    std::map<uint32_t, std::shared_ptr<TransportBase>> map;
     if (db->isValid())
         while (query->next())
         {

@@ -47,7 +47,7 @@ void TransportObjectCreator::showDataErrorMessage()
     message.setTextMessage("ERROR!\nWorng input data in <Special 2> field!");
 }
 
-TransportBase* TransportObjectCreator::getTransportObject()
+std::shared_ptr<TransportBase> TransportObjectCreator::getTransportObject()
 {
-    return base.get();
+    return base;
 }

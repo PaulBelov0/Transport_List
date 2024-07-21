@@ -19,9 +19,9 @@ int Menu::addNewElement(const uint32_t& ID, const std::string& type,
 
 
     transportObjectCreator.reset(new TransportObjectCreator(ID, type, brand, model,
-                                            year, weight, specialFieldFirst, 
-                                            specialFieldSecond
-                                                        ));
+                                                            year, weight, specialFieldFirst,
+                                                            specialFieldSecond
+                                                            ));
 
     if (type == "Air")
     {

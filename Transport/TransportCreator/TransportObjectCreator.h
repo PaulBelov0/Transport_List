@@ -20,12 +20,12 @@ public:
                            const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
                            );
 
-    TransportBase* getTransportObject();
+    std::shared_ptr<TransportBase> getTransportObject();
 
 private:
     void showDataErrorMessage();
 
-    std::unique_ptr<TransportBase> base;
+    std::shared_ptr<TransportBase> base;
 };
 
 #endif // TRANSPORTOBJECTCREATOR_H

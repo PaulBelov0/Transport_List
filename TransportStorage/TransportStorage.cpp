@@ -1,6 +1,6 @@
 #include "TransportStorage/TransportStorage.h"
 
-TransportStorage::TransportStorage(std::map<uint32_t, TransportBase*> map)
+TransportStorage::TransportStorage(std::map<uint32_t, std::shared_ptr<TransportBase>> map)
 {
     for (auto& element : map)
     {
@@ -29,9 +29,9 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportStorage::addNewElement(TransportBase* object)
+void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
 {
-    transportDatabase.insert({object->getID(), object});
+    transportDatabase.insert(std::make_pair(object->getID(), object));
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
@@ -47,12 +47,12 @@ void TransportStorage::deleteElement(const uint32_t& index)
     }
 }
 
-std::map<uint32_t, TransportBase*> TransportStorage::getMap()
+std::map<uint32_t, std::shared_ptr<TransportBase>> TransportStorage::getMap()
 {
     return transportDatabase;
 }
 
-void TransportStorage::insertPair(TransportBase* object)
+void TransportStorage::insertPair(std::shared_ptr<TransportBase> object)
 {
     transportDatabase.insert({object->getID(), object});
 }

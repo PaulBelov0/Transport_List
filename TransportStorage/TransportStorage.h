@@ -13,20 +13,20 @@
 class TransportStorage
 {
 public:
-    TransportStorage(std::map<uint32_t, TransportBase*> map);
+    TransportStorage(std::map<uint32_t, std::shared_ptr<TransportBase>> map);
     TransportStorage(TransportStorage& map);
 
     bool findDatabaseElement(const uint32_t& index);
-    void addNewElement(TransportBase* object);
+    void addNewElement(std::shared_ptr<TransportBase> object);
     void deleteElement(const uint32_t& index);
 
-    std::map<uint32_t, TransportBase*> getMap();
+    std::map<uint32_t, std::shared_ptr<TransportBase>> getMap();
 
-    void insertPair(TransportBase* object);
+    void insertPair(std::shared_ptr<TransportBase> object);
 // signals:
 //     QSignalMapper error();
 private:
-    std::map<uint32_t, TransportBase*> transportDatabase;
+    std::map<uint32_t, std::shared_ptr<TransportBase>> transportDatabase;
 
     MessageToUserWindow messageToUserWindow;
 };

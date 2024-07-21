@@ -3,6 +3,7 @@ QT       += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
+CONFIG += object_parallel_to_source
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -75,22 +76,6 @@ HEADERS += \
     MainWindow.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
-    Transport/Transport.h \
-    Transport/TransportCreator/TransportObjectCreator.h \
-    Menu/Menu.h \
-    Transport/AirTransport.h \
-    Transport/Boat.h \
-    Transport/Car.h \
-    Transport/Shuttle.h \
-    Transport/TransportBase/TransportBase.h \
-    TransportStorage/TransportStorage.h \
-    transport.h
-    TransportBase.h
-    Boat.h
-    Car.h
-    Shuttle.h
-    AirTransport.h
-    Menu.h
 
 FORMS += \
     DeleteElementWindow.ui \
