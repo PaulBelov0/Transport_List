@@ -1,13 +1,12 @@
-//#include <QApplication>
+#include <QApplication>
 
 #include "Menu/Menu.h"
 
-int main(/*int argc, char *argv[]*/)
+int main()
 {
-    Menu* menu = new Menu();
+    Menu menu;
 
-    menu->mainProcedure();
+    menu.mainProcedure();
 
-    delete menu;
     return 0;
 }

@@ -20,6 +20,7 @@ public:
                            const uint32_t& year, const uint32_t& weight,
                            const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
                            );
+    TransportObjectCreator(std::vector<std::string> args);
 
     std::shared_ptr<TransportBase> getTransportObject();
 

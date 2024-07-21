@@ -30,11 +30,9 @@ void Menu::mainProcedure()
         system("cls");
 
         std::cout << "Select action (Enter number of action):" << std::endl;
-        std::cout << "1) Add new element.\n" << "2) Delete element.\n" << "3) Show database.\n" << "4) Edit element\n" <<"5) Exit.\n\n";
+        std::cout << "1) Add new element.\n" << "2) Delete element.\n" << "3) Show database.\n" << "4) Edit element.\n" <<"5) Exit.\n\n";
 
-        std::getline(std::cin, userInput);
-
-        system("cls");
+        std::cin >> userInput;
 
 
         try
@@ -53,9 +51,8 @@ void Menu::mainProcedure()
                 if (mapEmptyFlag == false)
                 {
                     auto map = controller->getStorage().getMap();
-                    for (auto& element : map)
-                    {
-                        std::cout << element.second->getID();
+                    std::for_each (map.begin(), map.end(), [](const auto& element){
+                        std::cout << std::to_string(element.second->getID());
 
                         std::cout << element.second->getType();
 
@@ -70,7 +67,16 @@ void Menu::mainProcedure()
                         std::cout << element.second->getSpecialFirst();
 
                         std::cout << element.second->getSpecialSecond();
-                    }
+                    });
+
+                    std::cout << "\n\nEnter something text to continue: " << std::endl;
+                    std::cin >> userInput;
+                }
+                else
+                {
+                    std::cout << "Database is empty!" << std::endl;
+                    std::cout << "\n\nEnter something text to continue: " << std::endl;
+                    std::cin >> userInput;
                 }
                 break;
 
@@ -106,122 +112,117 @@ void Menu::enterElementFields()
 
         argumentsList.push_back(enterTransportField("ID"));
 
+    reEnterType:
+        argumentsList.push_back(enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)"));
 
-        argumentsList.push_back(enterTransportField("type (Car, Air, Boat, Shuttle)"));
-
-        if (argumentsList.back().substr() != "car" || "air" || "boat" || "shuttle")
+        int typeIndex;
+        try
+        {
+            typeIndex = std::stoi(argumentsList[1]);
+        }
+        catch(std::invalid_argument& e)
         {
             throwError();
+            goto reEnterType;
         }
-        else
+
+
+
+
+        argumentsList.push_back(enterTransportField("brand"));
+
+        argumentsList.push_back(enterTransportField("model"));
+        try
         {
-            int typeIndex;
+        retry:
+            argumentsList.push_back(enterTransportField("year"));
 
-            if (userInput == "air")
+            if (checkDataConvertibleToUInt(argumentsList) == false)
             {
-                typeIndex = 1;
-            }
-            else if (userInput == "car")
-            {
-                typeIndex = 2;
-            }
-            else if (userInput == "boat")
-            {
-                typeIndex = 3;
-            }
-            else
-            {
-                typeIndex = 4;
+                goto retry;
             }
 
-            argumentsList.push_back(enterTransportField("brand"));
 
-            argumentsList.push_back(enterTransportField("model"));
-            try
+            argumentsList.push_back(enterTransportField("weight"));
+
+            if (checkDataConvertibleToUInt(argumentsList) == false)
             {
-                argumentsList.push_back(enterTransportField("year"));
+                goto retry;
+            }
 
-                checkDataConvertibleToUInt(argumentsList);
+        repeat:
+            switch(typeIndex)
+            {
+            case 1:
 
+                argumentsList.push_back(enterTransportField("wingspan"));
 
-                argumentsList.push_back(enterTransportField("weight"));
-
-                checkDataConvertibleToUInt(argumentsList);
-
-            repeat:
-                switch(typeIndex)
+                if (checkDataConvertibleToUInt(argumentsList) == false)
                 {
-                case 1:
-
-                    argumentsList.push_back(enterTransportField("wingspan"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    argumentsList.push_back(enterTransportField("payload capacity"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    looper = false;
-                    break;
-                case 2:
-
-                    argumentsList.push_back(enterTransportField("mileage"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    argumentsList.push_back(enterTransportField("owners quantity"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    looper = false;
-                    break;
-                case 3:
-
-                    argumentsList.push_back(enterTransportField("displacement"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    argumentsList.push_back(enterTransportField("screw depth"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-
-                    looper = false;
-                    break;
-                case 4:
-                    argumentsList.push_back(enterTransportField("max fluing distance"));
-
-                    if (checkDataConvertibleToUInt(argumentsList) == false)
-                    {
-                        goto repeat;
-                    }
-                    argumentsList.push_back(enterTransportField("fuel type"));
-
-                    looper = false;
-                    break;
+                    goto repeat;
                 }
+
+                argumentsList.push_back(enterTransportField("payload capacity"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+
+                looper = false;
+                break;
+            case 2:
+
+                argumentsList.push_back(enterTransportField("mileage"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+
+                argumentsList.push_back(enterTransportField("owners quantity"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+
+                looper = false;
+                break;
+            case 3:
+
+                argumentsList.push_back(enterTransportField("displacement"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+
+                argumentsList.push_back(enterTransportField("screw depth"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+
+                looper = false;
+                break;
+            case 4:
+                argumentsList.push_back(enterTransportField("max fluing distance"));
+
+                if (checkDataConvertibleToUInt(argumentsList) == false)
+                {
+                    goto repeat;
+                }
+                argumentsList.push_back(enterTransportField("fuel type"));
+
+                looper = false;
+                break;
             }
-            catch(std::invalid_argument& e)
-            {
-                throwError();
-            }
+        }
+        catch(std::invalid_argument& e)
+        {
+            throwError();
         }
     }
     controller->addNewElement(argumentsList);
@@ -241,7 +242,7 @@ std::string Menu::enterTransportField(std::string fieldName)
 {
     std::string userInput;
     std::cout << "Enter transport " << fieldName << ":\t";
-    std::getline(std::cin, userInput);
+    std::cin >> userInput;
 
     return userInput;
 }

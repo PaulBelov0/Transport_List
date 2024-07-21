@@ -21,6 +21,8 @@ private:
 
     void enterElementFields();
 
+    void showDatabase();
+
     std::string enterTransportField(const std::string fieldName);
 
     bool checkDataConvertibleToUInt(std::vector<std::string>& value);

@@ -1,8 +1,10 @@
 QT       += core gui sql
 
-greaterThan(QT_MAJOR_VERSION, 4): #QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TARGET += ConsoleApp
 CONFIG += c++17
+CONFIG += console
 CONFIG += object_parallel_to_source
 
 # You can make your code fail to compile if it uses deprecated APIs.
