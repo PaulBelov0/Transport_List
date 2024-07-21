@@ -10,36 +10,36 @@ Menu::~Menu()
     delete messageToUserWindow;
 }
 
-int Menu::addNewElement(const uint32_t& ID, const QString& type,
-                        const QString& brand, const QString& model,
+int Menu::addNewElement(const uint32_t& ID, const std::string& type,
+                        const std::string& brand, const std::string& model,
                         const uint32_t& year, const uint32_t& weight,
-                        const uint32_t& specialFieldFirst, const QString& specialFieldSecond
+                        const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
                         )
 {
 
 
-    TransportObjectCreator* transportObject(ID, type, brand, model, 
+    transportObjectCreator.reset(new TransportObjectCreator(ID, type, brand, model,
                                             year, weight, specialFieldFirst, 
                                             specialFieldSecond
-                                            );
+                                                        ));
 
     if (type == "Air")
     {
-        transportStorage->addNewElement(transportObject->getTransportObject());
+        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
     }
     else if(type == "Car")
     {
-        transportStorage->addNewElement(transportObject->getTransportObject());
+        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
     }
     else if(type == "Boat")
     {
-        transportStorage->addNewElement(transportObject->getTransportObject());
+        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
     }
     else if (type == "Shuttle")
     {
-        transportStorage->addNewElement(transportObject->getTransportObject());
+        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
     }
-
+    transportObjectCreator.get();
     return 0;
 }
 
@@ -68,9 +68,9 @@ bool Menu::checkElementAvilable(const uint32_t& ID)
     return result;
 }
 
-void Menu::editElement(const uint32_t& ID, const QString& type, const QString& brand,
-                       const QString& model, const uint32_t& year, const uint32_t& weight,
-                       const uint32_t& specialFieldFirst,  const QString& specialFieldSecond
+void Menu::editElement(const uint32_t& ID, const std::string& type, const std::string& brand,
+                       const std::string& model, const uint32_t& year, const uint32_t& weight,
+                       const uint32_t& specialFieldFirst,  const std::string& specialFieldSecond
                        )
 {
 
@@ -79,7 +79,7 @@ void Menu::editElement(const uint32_t& ID, const QString& type, const QString& b
 }
 
 
-TransportStorage& Menu::getMap()
+TransportStorage& Menu::getStorage()
 {
     return *transportStorage;
 }

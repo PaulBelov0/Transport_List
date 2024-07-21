@@ -22,12 +22,12 @@ std::unique_ptr<TransportStorage> Database::download()
     if (db->isValid())
         while (query->next())
         {
-            TransportObjectCreator creator(query->value("ID").toUInt(), query->value("Type").toString(),
-                                           query->value("Brand").toString(), query->value("Model").toString(),
+            TransportObjectCreator creator(query->value("ID").toUInt(), query->value("Type").toString().toStdString(),
+                                           query->value("Brand").toString().toStdString(), query->value("Model").toString().toStdString(),
                                            query->value("Year").toUInt(), query->value("weight").toUInt(),
-                                           query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString());
+                                           query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString().toStdString());
 
-            map.insert({creator.getTransportObject()->getID().toUInt(), creator.getTransportObject()});
+            map.insert({creator.getTransportObject()->getID(), creator.getTransportObject()});
         }
 
     std::unique_ptr<TransportStorage> outputStorage(new TransportStorage(map));
@@ -46,13 +46,13 @@ void Database::upload(TransportStorage& inputStorage)
         // Binding all values:
 
         query->bindValue(":ID", element.second->getID());
-        query->bindValue(":Type", element.second->getType());
-        query->bindValue(":Brand", element.second->getBrand());
-        query->bindValue(":Model", element.second->getModel());
+        query->bindValue(":Type", QString::fromStdString(element.second->getType()));
+        query->bindValue(":Brand", QString::fromStdString(element.second->getBrand()));
+        query->bindValue(":Model", QString::fromStdString(element.second->getModel()));
         query->bindValue(":Year", element.second->getYear());
         query->bindValue(":Weight", element.second->getWeight());
         query->bindValue(":SepcialFirst", element.second->getSpecialFirst());
-        query->bindValue(":SpecialSecond", element.second->getSpecialSecond());
+        query->bindValue(":SpecialSecond", QString::fromStdString(element.second->getSpecialSecond()));
     }
     query->finish();
 }

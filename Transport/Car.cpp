@@ -2,10 +2,10 @@
 
 //Realizatuion car type class:
 
-Car::Car(const int& ID, const QString& brand,
-         const QString& model, const int& year,
-         const int& weight, const int& mileage,
-         const int& ownersQuantity
+Car::Car(const uint32_t& ID, const std::string& brand,
+         const std::string& model, const uint32_t& year,
+         const uint32_t& weight, const uint32_t& mileage,
+         const uint32_t& ownersQuantity
          )
     : TransportBase(ID, brand, model, year, weight)
 {
@@ -15,14 +15,14 @@ Car::Car(const int& ID, const QString& brand,
 }
 
 Car::Car(TransportBase* transportObject)
-    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
-                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
-                    transportObject->getWeight().toUInt()
+    : TransportBase(transportObject->getID(), transportObject->getBrand(),
+                    transportObject->getModel(), transportObject->getYear(),
+                    transportObject->getWeight()
                     )
 {
     type = "Car";
-    mileage = transportObject->getSpecialFirst().toUInt();
-    ownersQuantity = transportObject->getSpecialSecond().toUInt();
+    mileage = transportObject->getSpecialFirst();
+    ownersQuantity = std::stoi(transportObject->getSpecialSecond());
 }
 
 void Car::editSpecialFirst(const uint32_t& mileage)
@@ -48,7 +48,7 @@ uint32_t Car::getSpecialFirst()
     return mileage;
 }
 
-uint32_t Car::getSpecialSecond()
+std::string Car::getSpecialSecond()
 {
-    return ownersQuantity;
+    return std::to_string(ownersQuantity);
 }

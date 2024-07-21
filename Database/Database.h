@@ -1,7 +1,6 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <QVariant>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSql>
@@ -22,7 +21,7 @@ public:
     QSqlQuery& getQuery();
 
 private:
-    std::unique_ptr<TransportStorage> outputMap;
+    std::unique_ptr<TransportStorage> outputStorage;
 
     QSqlDatabase* db;
     QSqlQuery* query;

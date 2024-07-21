@@ -10,9 +10,9 @@ class TransportBase
 {
 public:
 
-    TransportBase(const int& ID, const QString& brand,
-                  const QString& model, const int& year,
-                  const int& weight
+    TransportBase(const uint32_t& ID, const std::string& brand,
+                  const std::string& model, const uint32_t& year,
+                  const uint32_t& weight
                   );
     virtual ~TransportBase();
 
@@ -21,14 +21,14 @@ public:
     void editYear(const int& year);
     void editWeight(const int& weight);
 
-    QVariant getID();
-    virtual QVariant getType() = 0;
-    QVariant getBrand();
-    QVariant getModel();
-    QVariant getYear();
-    QVariant getWeight();
-    virtual QVariant getSpecialFirst();
-    virtual QVariant getSpecialSecond();
+    uint32_t getID();
+    virtual std::string getType() = 0;
+    std::string getBrand();
+    std::string getModel();
+    uint32_t getYear();
+    uint32_t getWeight();
+    virtual uint32_t getSpecialFirst() = 0;
+    virtual std::string getSpecialSecond() = 0;
 
 
 protected:

@@ -8,10 +8,10 @@
 class AirTransport : public TransportBase
 {
 public:
-    AirTransport(const int& ID, const QString& brand,
-                 const QString& model, const int& year,
-                 const int& weight, const int& wingspan,
-                 const int& payloadCapacity
+    AirTransport(const uint32_t& ID, const std::string& brand,
+                 const std::string& model, const uint32_t& year,
+                 const uint32_t& weight, const uint32_t& wingspan,
+                 const uint32_t& payloadCapacity
                  );
 
     AirTransport(TransportBase* transportObject);
@@ -22,7 +22,7 @@ public:
 
     uint32_t getSpecialFirst() override;
 
-    uint32_t getSpecialSecond() override;
+    std::string getSpecialSecond() override;
 
     std::string getType() override;
 

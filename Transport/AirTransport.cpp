@@ -2,10 +2,10 @@
 
 //Realizaton air transport class:
 
-AirTransport::AirTransport(const int& ID, const QString& brand,
-                           const QString& model, const int& year,
-                           const int& weight, const int& wingspan,
-                           const int& payloadCapacity
+AirTransport::AirTransport(const uint32_t& ID, const std::string& brand,
+                           const std::string& model, const uint32_t& year,
+                           const uint32_t& weight, const uint32_t& wingspan,
+                           const uint32_t& payloadCapacity
                            )
     : TransportBase(ID, brand, model, year, weight)
 {
@@ -15,14 +15,14 @@ AirTransport::AirTransport(const int& ID, const QString& brand,
 }
 
 AirTransport::AirTransport(TransportBase* transportObject)
-    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
-                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
-                    transportObject->getWeight().toUInt()
+    : TransportBase(transportObject->getID(), transportObject->getBrand(),
+                    transportObject->getModel(), transportObject->getYear(),
+                    transportObject->getWeight()
                     )
 {
     type = "Air";
-    wingspan = transportObject->getSpecialFirst().toUInt();
-    payloadCapacity = transportObject->getSpecialSecond().toUInt();
+    wingspan = transportObject->getSpecialFirst();
+    payloadCapacity = std::stoi(transportObject->getSpecialSecond());
 }
 
 
@@ -39,9 +39,9 @@ void AirTransport::editSpecialSecond (const QString& payloadCapacity)
 
 // Getters:
 
-QVariant AirTransport::getType()
+std::string AirTransport::getType()
 {
-    return QString::fromStdString(type);
+    return type;
 }
 
 uint32_t AirTransport::getSpecialFirst()
@@ -49,7 +49,7 @@ uint32_t AirTransport::getSpecialFirst()
     return wingspan;
 }
 
-uint32_t AirTransport::getSpecialSecond()
+std::string AirTransport::getSpecialSecond()
 {
-    return payloadCapacity;
+    return std::to_string(payloadCapacity);
 }

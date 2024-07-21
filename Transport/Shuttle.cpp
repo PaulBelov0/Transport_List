@@ -2,28 +2,28 @@
 
 //Realization Space shuttle class:
 
-Shuttle::Shuttle(const int& ID, const QString& brand,
-                 const QString& model, const int& year,
-                 const int& weight,
-                 const int& maxFlyingDistance,
-                 const QString& fuelType
+Shuttle::Shuttle(const uint32_t& ID, const std::string& brand,
+                 const std::string& model, const uint32_t& year,
+                 const uint32_t& weight,
+                 const uint32_t& maxFlyingDistance,
+                 const std::string& fuelType
                  )
     : TransportBase(ID, brand, model, year, weight)
 {
     type = "Shuttle";
     this->maxFlyingDistance = maxFlyingDistance;
-    this->fuelType = fuelType.toStdString();
+    this->fuelType = fuelType;
 }
 
 Shuttle::Shuttle(TransportBase* transportObject)
-    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
-                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
-                    transportObject->getWeight().toUInt()
+    : TransportBase(transportObject->getID(), transportObject->getBrand(),
+                    transportObject->getModel(), transportObject->getYear(),
+                    transportObject->getWeight()
                     )
 {
     type = "Shuttle";
-    maxFlyingDistance = transportObject->getSpecialFirst().toUInt();
-    fuelType = transportObject->getSpecialSecond().toString().toStdString();
+    maxFlyingDistance = transportObject->getSpecialFirst();
+    fuelType = transportObject->getSpecialSecond();
 }
 
 

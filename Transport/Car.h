@@ -7,21 +7,22 @@
 class Car : public TransportBase
 {
 public:
-    Car(const int& ID, const QString& brand,
-        const QString& model, const int& year,
-        const int& weight, const int& mileage,
-        const int& owners
+    Car(const uint32_t& ID, const std::string& brand,
+        const std::string& model, const uint32_t& year,
+        const uint32_t& weight, const uint32_t& mileage,
+        const uint32_t& owners
         );
 
     Car(TransportBase* transportObject);
 
     void editSpecialFirst(const uint32_t& mileage);
     void editSpecialSecond(const QString& ownersQuantity);
-    //std::unique_ptr<TransportBase> clone() const override;
 
-    uint32_t getSpecialFirst() override;
-    uint32_t getSpecialSecond() override;
-    std::string getType() override;
+    uint32_t getSpecialFirst();
+
+    std::string getSpecialSecond();
+
+    std::string getType();
 
 private:
     uint32_t mileage;

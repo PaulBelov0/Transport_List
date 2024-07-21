@@ -2,14 +2,14 @@
 
 #include "TransportBase.h"
 
-TransportBase::TransportBase(const int& ID, const QString& brand,
-                             const QString& model, const int& year,
-                             const int& weight
+TransportBase::TransportBase(const uint32_t& ID, const std::string& brand,
+                             const std::string& model, const uint32_t& year,
+                             const uint32_t& weight
                              )
 {
     uniqueID = ID;
-    this->brand = brand.toStdString();
-    this->model = model.toStdString();
+    this->brand = brand;
+    this->model = model;
     this->year = year;
     this->weight = weight;
 }
@@ -42,32 +42,28 @@ TransportBase::~TransportBase() {}
 
  // Getters :
 
- QVariant TransportBase::getID()
+ uint32_t TransportBase::getID()
  {
-     return QString::fromStdString(std::to_string(uniqueID));
+     return uniqueID;
  }
 
- QVariant TransportBase::getBrand()
+ std::string TransportBase::getBrand()
  {
-     return QString::fromStdString(brand);
+     return brand;
  }
 
- QVariant TransportBase::getModel()
+ std::string TransportBase::getModel()
  {
-     return QString::fromStdString(model);
+     return model;
  }
 
- QVariant TransportBase::getYear()
+ uint32_t TransportBase::getYear()
  {
-     return QString::fromStdString(std::to_string(year));
+     return year;
  }
 
- QVariant TransportBase::getWeight()
+ uint32_t TransportBase::getWeight()
  {
-     return QString::fromStdString(std::to_string(weight));
+     return weight;
  }
-
- QVariant TransportBase::getSpecialFirst() { return " ";}
-
- QVariant TransportBase::getSpecialSecond() { return " "; }
 

@@ -7,10 +7,10 @@
 class Boat : public TransportBase
 {
 public:
-    Boat(const int& ID, const QString& brand,
-         const QString& model, const int& year,
-         const int& weight, const int& displacement,
-         const int& screwDepth
+    Boat(const uint32_t& ID, const std::string& brand,
+         const std::string& model, const uint32_t& year,
+         const uint32_t& weight, const uint32_t& displacement,
+         const uint32_t& screwDepth
          );
 
     Boat(TransportBase* transportObject);
@@ -21,7 +21,7 @@ public:
 
     uint32_t getSpecialFirst() override;
 
-    uint32_t getSpecialSecond() override;
+    std::string getSpecialSecond() override;
 
     std::string getType() override;
 

@@ -14,10 +14,11 @@ class TransportObjectCreator
 {
 public:
     TransportObjectCreator();
-    TransportObjectCreator(const uint32_t ID, const QString type,
-                     const QString brand, const QString model,
-                     const uint32_t year, const uint32_t weight,
-                     const uint32_t specialFirst, const QString specialSecond);
+    TransportObjectCreator(const uint32_t& ID, const std::string& type,
+                           const std::string& brand, const std::string& model,
+                           const uint32_t& year, const uint32_t& weight,
+                           const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
+                           );
 
     TransportBase* getTransportObject();
 

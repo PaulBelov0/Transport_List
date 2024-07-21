@@ -4,13 +4,13 @@ TransportStorage::TransportStorage(std::map<uint32_t, TransportBase*> map)
 {
     for (auto& element : map)
     {
-        transportDatabase.insert({element.second->getID().toUInt(), element.second});
+        transportDatabase.insert({element.second->getID(), element.second});
     }
 }
 
 TransportStorage::TransportStorage(TransportStorage& map)
 {
-    transportDatabase = map.tanspotDatabase;
+    transportDatabase = map.transportDatabase;
 }
 
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
@@ -29,9 +29,9 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportStorage::addNewElement(const TransportBase* object)
+void TransportStorage::addNewElement(TransportBase* object)
 {
-    transportDatabase.insert({object->getID().toUInt(), object});
+    transportDatabase.insert({object->getID(), object});
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
@@ -54,5 +54,5 @@ std::map<uint32_t, TransportBase*> TransportStorage::getMap()
 
 void TransportStorage::insertPair(TransportBase* object)
 {
-    transportDatabase.insert({object->getID().toUInt(), object});
+    transportDatabase.insert({object->getID(), object});
 }

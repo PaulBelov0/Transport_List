@@ -51,12 +51,12 @@ void MainWindow::on_loadDatabaseButton_clicked()
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-    database.upload(menu.getMap());
+    database.upload(menu.getStorage());
 }
 
 void MainWindow::on_exitButton_clicked()
 {
-    database.upload(menu.getMap());
+    database.upload(menu.getStorage());
     this->close();
 }
 

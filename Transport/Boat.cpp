@@ -2,10 +2,10 @@
 
 //Realization boat class:
 
-Boat::Boat(const int& ID, const QString& brand,
-           const QString& model, const int& year,
-           const int& weight, const int& displacement,
-           const int& screwDepth
+Boat::Boat(const uint32_t& ID, const std::string& brand,
+           const std::string& model, const uint32_t& year,
+           const uint32_t& weight, const uint32_t& displacement,
+           const uint32_t& screwDepth
            )
     : TransportBase(ID, brand, model, year, weight)
 {
@@ -15,14 +15,14 @@ Boat::Boat(const int& ID, const QString& brand,
 }
 
 Boat::Boat(TransportBase* transportObject)
-    : TransportBase(transportObject->getID().toUInt(), transportObject->getBrand().toString(),
-                    transportObject->getModel().toString(), transportObject->getYear().toUInt(),
-                    transportObject->getWeight().toUInt()
+    : TransportBase(transportObject->getID(), transportObject->getBrand(),
+                    transportObject->getModel(), transportObject->getYear(),
+                    transportObject->getWeight()
                     )
 {
     type = "Boat";
-    this->displacement = transportObject->getSpecialFirst().toUInt();
-    this->screwDepth = transportObject->getSpecialSecond().toUInt();
+    this->displacement = transportObject->getSpecialFirst();
+    this->screwDepth = std::stoi(transportObject->getSpecialSecond());
 }
 
 void Boat::editSpecialFirst(const uint32_t& displacement)
@@ -48,7 +48,7 @@ uint32_t Boat::getSpecialFirst()
     return displacement;
 }
 
-uint32_t Boat::getSpecialSecond()
+std::string Boat::getSpecialSecond()
 {
-    return screwDepth;
+    return std::to_string(screwDepth);
 }

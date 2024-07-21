@@ -18,14 +18,14 @@ EditElementFieldsWindow::~EditElementFieldsWindow()
 
 void EditElementFieldsWindow::on_okButton_clicked()
 {
-    ID = ui->uinqueIDIntBox->value();
-    type = ui->typeComboBox->currentText();
-    brand = ui->brandTextBox->toPlainText();
-    model = ui->modelTextBox->toPlainText();
-    year = ui->yearSpinBox->value();
-    weight = ui->weightSpinBox->value();
-    firstSpecialField = ui->firstSpecialFieldSpinBox->value();
-    secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText();
+    uint32_t ID = ui->uinqueIDIntBox->value();
+    std::string type = ui->typeComboBox->currentText().toStdString();
+    std::string brand = ui->brandTextBox->toPlainText().toStdString();
+    std::string model = ui->modelTextBox->toPlainText().toStdString();
+    uint32_t year = ui->yearSpinBox->value();
+    uint32_t weight = ui->weightSpinBox->value();
+    uint32_t firstSpecialField = ui->firstSpecialFieldSpinBox->value();
+    std::string secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText().toStdString();
 
     if (actionWithDB == "add" || "Add") {
         menu.addNewElement(ID,
@@ -49,13 +49,13 @@ void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
     converter = transportStorage->getMap().at(ID)->getID();
     ui->uinqueIDIntBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportStorage->getMap().at(ID)->getType();
+    converter = QString::fromStdString(transportStorage->getMap().at(ID)->getType());
     ui->typeComboBox->setCurrentText(converter.toString());
 
-    converter = transportStorage->getMap().at(ID)->getBrand();
+    converter = QString::fromStdString(transportStorage->getMap().at(ID)->getBrand());
     ui->brandTextBox->setPlainText(converter.toString());
 
-    converter = transportStorage->getMap().at(ID)->getModel();
+    converter = QString::fromStdString(transportStorage->getMap().at(ID)->getModel());
     ui->modelTextBox->setPlainText(converter.toString());
 
     converter = transportStorage->getMap().at(ID)->getYear();
@@ -67,7 +67,7 @@ void EditElementFieldsWindow::setElementByID(const uint32_t &ID)
     converter = transportStorage->getMap().at(ID)->getSpecialFirst();
     ui->firstSpecialFieldSpinBox->setDisplayIntegerBase(converter.toInt());
 
-    converter = transportStorage->getMap().at(ID)->getSpecialSecond();
+    converter = QString::fromStdString(transportStorage->getMap().at(ID)->getSpecialSecond());
     ui->secondSpecialFieldTextBox->setPlainText(converter.toString());
 }
 

@@ -7,11 +7,11 @@
 class Shuttle : public TransportBase
 {
 public:
-    Shuttle(const int& ID, const QString& brand,
-            const QString& model, const int& year,
-            const int& weight,
-            const int& maxFlyingDistance,
-            const QString& fuelType
+    Shuttle(const uint32_t& ID, const std::string& brand,
+            const std::string& model, const uint32_t& year,
+            const uint32_t& weight,
+            const uint32_t& maxFlyingDistance,
+            const std::string& fuelType
             );
 
     Shuttle(TransportBase* transportObject);

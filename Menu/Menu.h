@@ -18,16 +18,16 @@ public:
     Menu();
 	~Menu();
 
-    int addNewElement(const uint32_t& ID, const QString& type,
-                      const QString& brand, const QString& model,
+    int addNewElement(const uint32_t& ID, const std::string& type,
+                      const std::string& brand, const std::string& model,
                       const uint32_t& year, const uint32_t& weight,
-                      const uint32_t& specialFirst, const QString& specialSecond
+                      const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
                       );
 
-    void editElement(const uint32_t& ID, const QString& type,
-                     const QString& brand, const QString& model,
+    void editElement(const uint32_t& ID, const std::string& type,
+                     const std::string& brand, const std::string& model,
                      const uint32_t& year, const uint32_t& weight,
-                     const uint32_t& specialFirst, const QString& specialSecond
+                     const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
                      );
 
     QString& deleteDatabaseElement(const uint32_t& ID);
@@ -48,6 +48,7 @@ private:
     uint32_t uniqueID;
     std::unique_ptr<TransportStorage> transportStorage;
     QString deletingResult;
+    std::shared_ptr<TransportObjectCreator> transportObjectCreator;
 };
 
 #endif //MENU_H
