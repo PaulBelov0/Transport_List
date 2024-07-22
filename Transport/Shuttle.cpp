@@ -5,21 +5,10 @@
 
 //CONSTRUCTORS:
 
-Shuttle::Shuttle(const uint32_t& ID, const std::string& brand,
-                 const std::string& model, const uint32_t& year,
-                 const uint32_t& weight,
-                 const uint32_t& maxFlyingDistance,
-                 const std::string& fuelType
-                 )
-    : TransportBase(ID, brand, model, year, weight)
-{
-    type = "Shuttle";
-    this->maxFlyingDistance = maxFlyingDistance;
-    this->fuelType = fuelType;
-}
 
 Shuttle::Shuttle(std::vector<std::string> args) : TransportBase(args)
 {
+    type = "Shuttle";
     maxFlyingDistance = std::stoi(args[6]);
     fuelType = args[7];
 }

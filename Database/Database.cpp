@@ -22,10 +22,22 @@ std::unique_ptr<TransportStorage> Database::download()
     if (db->isValid())
         while (query->next())
         {
-            TransportObjectCreator creator(query->value("ID").toUInt(), query->value("Type").toString().toStdString(),
-                                           query->value("Brand").toString().toStdString(), query->value("Model").toString().toStdString(),
-                                           query->value("Year").toUInt(), query->value("weight").toUInt(),
-                                           query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString().toStdString());
+            std::vector<std::string> args;
+
+            //Binding arguments to create transport object:
+
+            args.push_back(query->value("ID").toString().toStdString());
+            args.push_back(query->value("Type").toString().toStdString());
+            args.push_back(query->value("Brand").toString().toStdString());
+            args.push_back(query->value("Model").toString().toStdString());
+            args.push_back(query->value("Year").toString().toStdString());
+            args.push_back(query->value("weight").toString().toStdString());
+            args.push_back(query->value("SpecialFirst").toString().toStdString());
+            args.push_back(query->value("SpecialSecond").toString().toStdString());
+
+            //End of binding
+
+            TransportObjectCreator creator(args);
 
             map.insert({creator.getTransportObject()->getID(), creator.getTransportObject()});
         }

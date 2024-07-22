@@ -18,21 +18,10 @@ class Controller
 public:
     Controller();
 
-    void addNewElement(const uint32_t& ID, const std::string& type,
-                      const std::string& brand, const std::string& model,
-                      const uint32_t& year, const uint32_t& weight,
-                      const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
-                      );
 
     void addNewElement(std::vector<std::string> args);
 
-    void editElement(const uint32_t& ID, const std::string& type,
-                     const std::string& brand, const std::string& model,
-                     const uint32_t& year, const uint32_t& weight,
-                     const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
-                     );
-
-    void editElements(std::vector<std::string> args);
+    void editElement(std::vector<std::string> args);
 
     QString& deleteDatabaseElement(const uint32_t& ID);
 

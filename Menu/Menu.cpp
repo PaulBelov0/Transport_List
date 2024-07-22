@@ -109,12 +109,7 @@ void Menu::mainProcedure()
 
                             system("cls");
 
-                            auto map = controller->getStorage().getMap();
-                            std::map<uint32_t, std::shared_ptr<TransportBase>>::iterator iter = map.find(element->getID());
-
-                            controller->getStorage().getMap().erase(iter);
-
-                            controller->addNewElement(enterElementFields());
+                            controller->editElement(enterElementFields());
                         }
                     }
                     else

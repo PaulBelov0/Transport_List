@@ -5,38 +5,6 @@ Controller::Controller() : transportStorage(new TransportStorage()) // MUST BE R
 
 }
 
-void Controller::addNewElement(const uint32_t& ID, const std::string& type,
-                        const std::string& brand, const std::string& model,
-                        const uint32_t& year, const uint32_t& weight,
-                        const uint32_t& specialFieldFirst, const std::string& specialFieldSecond
-                        )
-{
-
-
-    transportObjectCreator.reset(new TransportObjectCreator(ID, type, brand, model,
-                                                            year, weight, specialFieldFirst,
-                                                            specialFieldSecond
-                                                            ));
-
-    if (type == "Air")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if(type == "Car")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if(type == "Boat")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if (type == "Shuttle")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    transportStorage.get();
-}
-
 void Controller::addNewElement(std::vector<std::string> args)
 {
     std::string type = args.at(2);
@@ -86,16 +54,11 @@ bool Controller::checkElementAvilable(const uint32_t& ID)
     return result;
 }
 
-void Controller::editElement(const uint32_t& ID, const std::string& type, const std::string& brand,
-                       const std::string& model, const uint32_t& year, const uint32_t& weight,
-                       const uint32_t& specialFieldFirst,  const std::string& specialFieldSecond
-                       )
+void Controller::editElement(std::vector<std::string> args)
 {
-
-    transportStorage->deleteElement(ID);
-    addNewElement(ID, type, brand, model, year, weight, specialFieldFirst, specialFieldSecond);
+    transportStorage->deleteElement(std::stoi(args[0]));
+    addNewElement(args);
 }
-
 
 TransportStorage& Controller::getStorage()
 {
