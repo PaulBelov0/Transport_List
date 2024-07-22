@@ -40,7 +40,9 @@ void Controller::addNewElement(const uint32_t& ID, const std::string& type,
 void Controller::addNewElement(std::vector<std::string> args)
 {
     std::string type = args.at(2);
+
     transportObjectCreator.reset(new TransportObjectCreator(args));
+
     if (type == "air")
     {
         transportStorage->addNewElement(transportObjectCreator->getTransportObject());
@@ -57,7 +59,6 @@ void Controller::addNewElement(std::vector<std::string> args)
     {
         transportStorage->addNewElement(transportObjectCreator->getTransportObject());
     }
-    transportStorage.get();
 }
 
 QString& Controller::deleteDatabaseElement(const uint32_t& ID)

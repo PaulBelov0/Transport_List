@@ -13,8 +13,10 @@ Menu::~Menu()
 void Menu::mainProcedure()
 {
     std::string userInput;
-    bool mapEmptyFlag;
     bool looper = true;
+    bool mapEmptyFlag;
+
+    std::vector<std::string> argumentsList;
 
     if (controller->getStorage().checkMapEmpty() == true)
     {
@@ -40,10 +42,33 @@ void Menu::mainProcedure()
             switch(std::stoi(userInput))
             {
             case 1:
-                enterElementFields();
+                argumentsList = enterElementFields();
+                controller->addNewElement(argumentsList);
                 break;
 
             case 2:
+
+                std::cout << "Enter the element ID:\t" << std::endl;
+                std::cin >> userInput;
+
+                try
+                {
+                    if (std::stoi(userInput) >= 0)
+                    {
+                        system("cls");
+                        std::cout << controller->deleteDatabaseElement(std::stoi(userInput)).toStdString() << std::endl;
+                        std::this_thread::sleep_for(std::chrono::seconds(3));
+                    }
+                    else
+                    {
+                        throwError();
+                    }
+                }
+                catch(std::invalid_argument& e)
+                {
+                    throwError();
+                }
+
                 break;
 
             case 3:
@@ -51,23 +76,10 @@ void Menu::mainProcedure()
                 if (mapEmptyFlag == false)
                 {
                     auto map = controller->getStorage().getMap();
-                    std::for_each (map.begin(), map.end(), [](const auto& element){
-                        std::cout << std::to_string(element.second->getID());
-
-                        std::cout << element.second->getType();
-
-                        std::cout << element.second->getBrand();
-
-                        std::cout << element.second->getModel();
-
-                        std::cout << element.second->getYear();
-
-                        std::cout << element.second->getWeight();
-
-                        std::cout << element.second->getSpecialFirst();
-
-                        std::cout << element.second->getSpecialSecond();
-                    });
+                    for (auto& element : map)
+                    {
+                        printElementFields(element.second);
+                    }
 
                     std::cout << "\n\nEnter something text to continue: " << std::endl;
                     std::cin >> userInput;
@@ -81,6 +93,39 @@ void Menu::mainProcedure()
                 break;
 
             case 4:
+                std::cout << "Enter the element ID:\t" << std::endl;
+                std::cin >> userInput;
+
+                try
+                {
+                    if (std::stoi(userInput) >= 0)
+                    {
+                        if (controller->getStorage().findDatabaseElement(std::stoi(userInput)) == true)
+                        {
+                            auto element = controller->getStorage().getMap().at(std::stoi(userInput));
+
+                            printElementFields(element);
+                            std::this_thread::sleep_for(std::chrono::seconds(3));
+
+                            system("cls");
+
+                            auto map = controller->getStorage().getMap();
+                            std::map<uint32_t, std::shared_ptr<TransportBase>>::iterator iter = map.find(element->getID());
+
+                            controller->getStorage().getMap().erase(iter);
+
+                            controller->addNewElement(enterElementFields());
+                        }
+                    }
+                    else
+                    {
+                        throwError();
+                    }
+                }
+                catch(std::invalid_argument& e)
+                {
+                    throwError();
+                }
                 break;
 
             case 5:
@@ -100,7 +145,7 @@ void Menu::mainProcedure()
     }
 }
 
-void Menu::enterElementFields()
+std::vector<std::string> Menu::enterElementFields()
 {
     bool looper = true;
     system("cls");
@@ -110,9 +155,17 @@ void Menu::enterElementFields()
     while (looper == true)
     {
 
+    reEnterFirstFields:
         argumentsList.push_back(enterTransportField("ID"));
+        if (checkDataConvertibleToUInt(argumentsList) == false)
+        {
+            goto reEnterFirstFields;
+        }
+        else if (std::stoi(argumentsList[0]) <= 0)
+        {
+            goto reEnterFirstFields;
+        }
 
-    reEnterType:
         argumentsList.push_back(enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)"));
 
         int typeIndex;
@@ -123,7 +176,7 @@ void Menu::enterElementFields()
         catch(std::invalid_argument& e)
         {
             throwError();
-            goto reEnterType;
+            goto reEnterFirstFields;
         }
 
 
@@ -225,7 +278,7 @@ void Menu::enterElementFields()
             throwError();
         }
     }
-    controller->addNewElement(argumentsList);
+    return argumentsList;
 }
 
 void Menu::throwError()
@@ -249,13 +302,41 @@ std::string Menu::enterTransportField(std::string fieldName)
 
 bool Menu::checkDataConvertibleToUInt(std::vector<std::string>& value)
 {
-    if(std::stoi(value.back()) <= 0)
+    try
+    {
+        if(std::stoi(value.back()) <= 0)
+        {
+            throwError();
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    catch (std::invalid_argument& e)
     {
         throwError();
+
         return false;
     }
-    else
-    {
-        return true;
-    }
+}
+
+void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
+{
+    std::cout << element->getID();
+
+    std::cout << element->getType();
+
+    std::cout << element->getBrand();
+
+    std::cout << element->getModel();
+
+    std::cout << element->getYear();
+
+    std::cout << element->getWeight();
+
+    std::cout << element->getSpecialFirst();
+
+    std::cout << element->getSpecialSecond();
 }

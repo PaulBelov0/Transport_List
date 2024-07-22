@@ -13,6 +13,8 @@ public:
         const uint32_t& owners
         );
 
+    Car(std::vector<std::string> args);
+
     Car(TransportBase* transportObject);
 
     void editSpecialFirst(const uint32_t& mileage);

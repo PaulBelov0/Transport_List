@@ -14,6 +14,12 @@ AirTransport::AirTransport(const uint32_t& ID, const std::string& brand,
     this->payloadCapacity = std::stoul(std::to_string(payloadCapacity));
 }
 
+AirTransport::AirTransport(std::vector<std::string> args) : TransportBase(args)
+{
+    wingspan = std::stoi(args[6]);
+    wingspan = std::stoi(args[7]);
+}
+
 AirTransport::AirTransport(TransportBase* transportObject)
     : TransportBase(transportObject->getID(), transportObject->getBrand(),
                     transportObject->getModel(), transportObject->getYear(),

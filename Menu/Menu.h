@@ -19,9 +19,11 @@ private:
 
     void throwError();
 
-    void enterElementFields();
+    std::vector<std::string> enterElementFields();
 
     void showDatabase();
+
+    void printElementFields(std::shared_ptr<TransportBase>& element);
 
     std::string enterTransportField(const std::string fieldName);
 

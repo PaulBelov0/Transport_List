@@ -2,6 +2,9 @@
 
 //Realizatuion car type class:
 
+
+//CONSTRUCTORS:
+
 Car::Car(const uint32_t& ID, const std::string& brand,
          const std::string& model, const uint32_t& year,
          const uint32_t& weight, const uint32_t& mileage,
@@ -12,6 +15,12 @@ Car::Car(const uint32_t& ID, const std::string& brand,
     type = "Car";
     this->mileage = mileage;
     this->ownersQuantity = std::stoi(std::to_string(ownersQuantity));
+}
+
+Car::Car(std::vector<std::string> args) : TransportBase(args)
+{
+    mileage = std::stoi(args[6]);
+    ownersQuantity = std::stoi(args[7]);
 }
 
 Car::Car(TransportBase* transportObject)
@@ -25,6 +34,8 @@ Car::Car(TransportBase* transportObject)
     ownersQuantity = std::stoi(transportObject->getSpecialSecond());
 }
 
+//GETTERS & SETTERS:
+
 void Car::editSpecialFirst(const uint32_t& mileage)
 {
     this->mileage = mileage;
@@ -36,7 +47,6 @@ void Car::editSpecialSecond(const QString& ownersQuantity)
     this->ownersQuantity = ownersQuantity.toInt();
 }
 
-// Getters:
 
 std::string Car::getType()
 {

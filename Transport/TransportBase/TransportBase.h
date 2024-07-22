@@ -14,6 +14,8 @@ public:
                   const std::string& model, const uint32_t& year,
                   const uint32_t& weight
                   );
+    TransportBase(std::vector<std::string> args);
+
     virtual ~TransportBase();
 
     void editBrand(const std::string& brand);

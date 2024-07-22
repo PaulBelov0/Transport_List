@@ -2,6 +2,9 @@
 
 //Realization Space shuttle class:
 
+
+//CONSTRUCTORS:
+
 Shuttle::Shuttle(const uint32_t& ID, const std::string& brand,
                  const std::string& model, const uint32_t& year,
                  const uint32_t& weight,
@@ -15,6 +18,12 @@ Shuttle::Shuttle(const uint32_t& ID, const std::string& brand,
     this->fuelType = fuelType;
 }
 
+Shuttle::Shuttle(std::vector<std::string> args) : TransportBase(args)
+{
+    maxFlyingDistance = std::stoi(args[6]);
+    fuelType = args[7];
+}
+
 Shuttle::Shuttle(TransportBase* transportObject)
     : TransportBase(transportObject->getID(), transportObject->getBrand(),
                     transportObject->getModel(), transportObject->getYear(),
@@ -26,6 +35,7 @@ Shuttle::Shuttle(TransportBase* transportObject)
     fuelType = transportObject->getSpecialSecond();
 }
 
+//GETTERS & SETTERS:
 
 void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
 {

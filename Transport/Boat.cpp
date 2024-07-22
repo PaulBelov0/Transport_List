@@ -14,6 +14,12 @@ Boat::Boat(const uint32_t& ID, const std::string& brand,
     this->screwDepth = std::stoi(std::to_string(screwDepth));
 }
 
+Boat::Boat(std::vector<std::string> args) : TransportBase(args)
+{
+    displacement = std::stoi(args[6]);
+    screwDepth = std::stoi(args[7]);
+}
+
 Boat::Boat(TransportBase* transportObject)
     : TransportBase(transportObject->getID(), transportObject->getBrand(),
                     transportObject->getModel(), transportObject->getYear(),
