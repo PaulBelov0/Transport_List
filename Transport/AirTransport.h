@@ -14,6 +14,8 @@ public:
                  const uint32_t& payloadCapacity
                  );
 
+    AirTransport(std::vector<std::string> args);
+
     AirTransport(TransportBase* transportObject);
 
     void editSpecialFirst(const uint32_t& wingspan);

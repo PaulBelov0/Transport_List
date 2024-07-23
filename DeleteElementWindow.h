@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QException>
 
-#include "Menu/Menu.h"
+#include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 
 namespace Ui {
@@ -29,7 +29,7 @@ private:
     Ui::DeleteElementWindow *ui;
 
     MessageToUserWindow messageToUserWindow;
-    Menu menu;
+    Controller controller;
 
     uint32_t index;
     std::string userInput;

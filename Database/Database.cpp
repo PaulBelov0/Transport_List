@@ -19,13 +19,22 @@ Database::~Database() { delete query; delete db; }
 std::unique_ptr<TransportStorage> Database::download()
 {
     std::map<uint32_t, std::shared_ptr<TransportBase>> map;
+
+    std::vector<std::string> transportArgs;
+
     if (db->isValid())
         while (query->next())
         {
-            TransportObjectCreator creator(query->value("ID").toUInt(), query->value("Type").toString().toStdString(),
-                                           query->value("Brand").toString().toStdString(), query->value("Model").toString().toStdString(),
-                                           query->value("Year").toUInt(), query->value("weight").toUInt(),
-                                           query->value("SpecialFirst").toUInt(), query->value("SpecialSecond").toString().toStdString());
+            transportArgs.push_back(query->value("ID").toString().toStdString());
+            transportArgs.push_back(query->value("Type").toString().toStdString());
+            transportArgs.push_back(query->value("Brand").toString().toStdString());
+            transportArgs.push_back(query->value("Model").toString().toStdString());
+            transportArgs.push_back(query->value("Year").toString().toStdString());
+            transportArgs.push_back(query->value("Weght").toString().toStdString());
+            transportArgs.push_back(query->value("SpecialFirst").toString().toStdString());
+            transportArgs.push_back(query->value("SpecialSecond").toString().toStdString());
+
+            TransportObjectCreator creator(transportArgs);
 
             map.insert({creator.getTransportObject()->getID(), creator.getTransportObject()});
         }

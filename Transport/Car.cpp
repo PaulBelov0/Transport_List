@@ -14,6 +14,13 @@ Car::Car(const uint32_t& ID, const std::string& brand,
     this->ownersQuantity = std::stoi(std::to_string(ownersQuantity));
 }
 
+Car::Car(std::vector<std::string> args) : TransportBase(args)
+{
+    type = "Car";
+    mileage = std::stoi(args[6]);
+    ownersQuantity = std::stoi(args[7]);
+}
+
 Car::Car(TransportBase* transportObject)
     : TransportBase(transportObject->getID(), transportObject->getBrand(),
                     transportObject->getModel(), transportObject->getYear(),
@@ -24,6 +31,8 @@ Car::Car(TransportBase* transportObject)
     mileage = transportObject->getSpecialFirst();
     ownersQuantity = std::stoi(transportObject->getSpecialSecond());
 }
+
+//GETTERS & SETTERS:
 
 void Car::editSpecialFirst(const uint32_t& mileage)
 {

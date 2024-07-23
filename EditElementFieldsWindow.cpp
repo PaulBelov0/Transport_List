@@ -18,26 +18,21 @@ EditElementFieldsWindow::~EditElementFieldsWindow()
 
 void EditElementFieldsWindow::on_okButton_clicked()
 {
-    uint32_t ID = ui->uinqueIDIntBox->value();
-    std::string type = ui->typeComboBox->currentText().toStdString();
-    std::string brand = ui->brandTextBox->toPlainText().toStdString();
-    std::string model = ui->modelTextBox->toPlainText().toStdString();
-    uint32_t year = ui->yearSpinBox->value();
-    uint32_t weight = ui->weightSpinBox->value();
-    uint32_t firstSpecialField = ui->firstSpecialFieldSpinBox->value();
-    std::string secondSpecialField = ui->secondSpecialFieldTextBox->toPlainText().toStdString();
+
+    std::vector<std::string> args;
+    args.push_back(std::to_string(ui->uinqueIDIntBox->value()));
+    args.push_back(ui->typeComboBox->currentText().toStdString());
+    args.push_back(ui->brandTextBox->toPlainText().toStdString());
+    args.push_back(ui->modelTextBox->toPlainText().toStdString());
+    args.push_back(std::to_string(ui->yearSpinBox->value()));
+    args.push_back(std::to_string(ui->weightSpinBox->value()));
+    args.push_back(std::to_string(ui->firstSpecialFieldSpinBox->value()));
+    args.push_back(ui->secondSpecialFieldTextBox->toPlainText().toStdString());
 
     if (actionWithDB == "add" || "Add") {
-        menu.addNewElement(ID,
-                           type,
-                           brand,
-                           model,
-                           year,
-                           weight,
-                           firstSpecialField,
-                           secondSpecialField);
+        controller.addNewElement(args);
     } else if (actionWithDB == "edit" || "Edit") {
-        menu.editElement(ID, type, brand, model, year, weight, firstSpecialField, secondSpecialField);
+        controller.editElement(args);
     }
     this->close();
 }

@@ -13,10 +13,19 @@ TransportBase::TransportBase(const uint32_t& ID, const std::string& brand,
     this->year = year;
     this->weight = weight;
 }
+
+TransportBase::TransportBase(std::vector<std::string> args)
+{
+    uniqueID = std::stoi(args[0]);
+    this->brand = args[2];
+    this->model = args[3];
+    this->year = std::stoi(args[4]);
+    this->weight = std::stoi(args[5]);
+}
+
 TransportBase::~TransportBase() {}
 
-
-// Setters / editors :
+// GETTERS & SETTERS :
 
  void TransportBase::editBrand(const std::string& brand)
 {

@@ -14,6 +14,8 @@ public:
             const std::string& fuelType
             );
 
+    Shuttle(std::vector<std::string> args);
+
     Shuttle(TransportBase* transportObject);
 
     void editSpecialFirst(const uint32_t& maxFlyingDistance);

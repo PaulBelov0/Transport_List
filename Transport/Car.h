@@ -8,10 +8,12 @@ class Car : public TransportBase
 {
 public:
     Car(const uint32_t& ID, const std::string& brand,
-        const std::string& model, const uint32_t& year,
-        const uint32_t& weight, const uint32_t& mileage,
-        const uint32_t& owners
-        );
+             const std::string& model, const uint32_t& year,
+             const uint32_t& weight, const uint32_t& mileage,
+             const uint32_t& ownersQuantity
+             );
+
+    Car(std::vector<std::string> args);
 
     Car(TransportBase* transportObject);
 

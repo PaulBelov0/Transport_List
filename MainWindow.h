@@ -9,7 +9,7 @@
 
 #include "DeleteElementWindow.h"
 #include "EditElementFieldsWindow.h"
-#include "Menu/Menu.h"
+#include "Controller/Controller.h"
 #include "SearchElementWindow.h"
 
 namespace Ui {
@@ -43,7 +43,7 @@ private:
     Ui::MainWindow *ui;
 
     Database database;
-    Menu menu;
+    Controller controller;
 
     EditElementFieldsWindow editElementFieldsWindow;
     SearchElementWindow searchElementWindow;

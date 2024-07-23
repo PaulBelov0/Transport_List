@@ -30,8 +30,8 @@ void SearchElementWindow::on_okButton_clicked()
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
-        Menu menu;
-        bool checkResult = menu.checkElementAvilable(index);
+        Controller controller;
+        bool checkResult = controller.checkElementAvilable(index);
 
         if (checkResult == true) {
             editElementFieldsWindow.show();

@@ -23,7 +23,7 @@ void DeleteElementWindow::on_deleteButton_clicked()
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
-        QString qString = menu.deleteDatabaseElement(index);
+        QString qString = controller.deleteDatabaseElement(index);
         messageToUserWindow.setTextMessage(qString);
     } else {
         messageToUserWindow.show();
@@ -38,5 +38,5 @@ void DeleteElementWindow::on_exitButton_clicked()
 
 uint32_t &DeleteElementWindow::getID()
 {
-    return menu.getID();
+    return controller.getID();
 }

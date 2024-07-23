@@ -14,10 +14,10 @@ SOURCES += \
     DeleteElementWindow.cpp \
     EditElementFieldsWindow.cpp \
     MainWindow.cpp \
+    Controller/Controller.cpp \
     MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
     Transport/TransportCreator/TransportObjectCreator.cpp \
-    Menu/Menu.cpp \
     Transport/AirTransport.cpp \
     Transport/Boat.cpp \
     Transport/Car.cpp \
@@ -25,36 +25,23 @@ SOURCES += \
     Transport/TransportBase/TransportBase.cpp \
     TransportStorage/TransportStorage.cpp \
     main.cpp
-    Menu.cpp
-    TransportBase.cpp
-    Car.cpp
-    Shuttle.cpp
-    Boat.cpp
-    AirTransport.cpp
 
 HEADERS += \
     Database/Database.h \
     DeleteElementWindow.h \
     EditElementFieldsWindow.h \
     MainWindow.h \
+    Controller/Controller.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
     Transport/Transport.h \
     Transport/TransportCreator/TransportObjectCreator.h \
-    Menu/Menu.h \
     Transport/AirTransport.h \
     Transport/Boat.h \
     Transport/Car.h \
     Transport/Shuttle.h \
     Transport/TransportBase/TransportBase.h \
-    TransportStorage/TransportStorage.h \
-    transport.h
-    TransportBase.h
-    Boat.h
-    Car.h
-    Shuttle.h
-    AirTransport.h
-    Menu.h
+    TransportStorage/TransportStorage.h
 
 FORMS += \
     DeleteElementWindow.ui \

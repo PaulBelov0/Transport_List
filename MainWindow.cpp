@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setModel(model);
 
-    menu.setMap(*database.download());
+    controller.setMap(*database.download());
 }
 
 MainWindow::~MainWindow()
@@ -46,17 +46,17 @@ void MainWindow::on_deleteElementButton_clicked()
 
 void MainWindow::on_loadDatabaseButton_clicked()
 {
-    menu.setMap(*database.download());
+    controller.setMap(*database.download());
 }
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-    database.upload(menu.getStorage());
+    database.upload(controller.getStorage());
 }
 
 void MainWindow::on_exitButton_clicked()
 {
-    database.upload(menu.getStorage());
+    database.upload(controller.getStorage());
     this->close();
 }
 

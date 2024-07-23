@@ -13,6 +13,8 @@ public:
          const uint32_t& screwDepth
          );
 
+    Boat(std::vector<std::string> args);
+
     Boat(TransportBase* transportObject);
 
     void editSpecialFirst(const uint32_t& displacement);

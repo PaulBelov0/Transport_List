@@ -5,7 +5,7 @@
 #include <QException>
 
 #include "EditElementFieldsWindow.h"
-#include "Menu/Menu.h"
+#include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 
 namespace Ui {

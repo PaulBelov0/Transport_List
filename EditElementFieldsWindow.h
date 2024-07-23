@@ -4,7 +4,7 @@
 #include <QDialog>
 
 #include "Database/Database.h"
-#include "Menu/Menu.h"
+#include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 #include "TransportStorage/TransportStorage.h"
 
@@ -22,7 +22,7 @@ public:
 
     void setElementByID(const uint32_t &ID);
     void setActionForRealizationThisWnd(std::string action);
-    void menuInitialization(Menu &menu);
+    void menuInitialization(Controller &Controller);
 
 private slots:
     void on_okButton_clicked();
@@ -30,9 +30,10 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
+
     Ui::EditElementFieldsWindow *ui;
 
-    Menu menu;
+    Controller controller;
     std::unique_ptr<TransportStorage> transportStorage;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
