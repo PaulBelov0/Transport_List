@@ -55,15 +55,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-
-HEADERS += \
-    Database/Database.h \
-    DeleteElementWindow.h \
-    EditElementFieldsWindow.h \
-    MainWindow.h \
-    MessageToUserWindow.h \
-    SearchElementWindow.h \
-
 FORMS += \
     DeleteElementWindow.ui \
     EditElementFieldsWindow.ui \
