@@ -8,11 +8,6 @@
 class AirTransport : public TransportBase
 {
 public:
-    AirTransport(const uint32_t& ID, const std::string& brand,
-                 const std::string& model, const uint32_t& year,
-                 const uint32_t& weight, const uint32_t& wingspan,
-                 const uint32_t& payloadCapacity
-                 );
 
     AirTransport(std::vector<std::string> args);
 

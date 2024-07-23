@@ -2,18 +2,6 @@
 
 //Realization boat class:
 
-Boat::Boat(const uint32_t& ID, const std::string& brand,
-           const std::string& model, const uint32_t& year,
-           const uint32_t& weight, const uint32_t& displacement,
-           const uint32_t& screwDepth
-           )
-    : TransportBase(ID, brand, model, year, weight)
-{
-    type = "Boat";
-    this->displacement = displacement;
-    this->screwDepth = std::stoi(std::to_string(screwDepth));
-}
-
 Boat::Boat(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Boat";
