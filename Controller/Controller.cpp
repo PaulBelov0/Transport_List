@@ -9,7 +9,7 @@ void Controller::addNewElement(std::vector<std::string> args)
 {
     std::string type = args.at(2);
 
-    transportObjectCreator.reset(new TransportObjectCreator(args));
+    std::shared_ptr<TransportObjectCreator>transportObjectCreator(new TransportObjectCreator(args));
 
     if (type == "air")
     {

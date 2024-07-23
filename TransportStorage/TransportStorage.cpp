@@ -15,6 +15,8 @@ TransportStorage::TransportStorage(TransportStorage& map)
 
 TransportStorage::TransportStorage() {}
 
+
+
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
 {
     bool output;

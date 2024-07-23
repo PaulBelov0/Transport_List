@@ -276,16 +276,6 @@ std::vector<std::string> Menu::enterElementFields()
     return argumentsList;
 }
 
-void Menu::throwError()
-{
-    system("cls");
-
-    std::cout << "Error! Unsupported input data!" << std::endl;
-
-    std::this_thread::sleep_for(std::chrono::seconds(3));
-    system("cls");
-}
-
 std::string Menu::enterTransportField(std::string fieldName)
 {
     std::string userInput;
@@ -334,4 +324,14 @@ void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
     std::cout << element->getSpecialFirst();
 
     std::cout << element->getSpecialSecond();
+}
+
+void Menu::throwError()
+{
+    system("cls");
+
+    std::cout << "Error! Unsupported input data!" << std::endl;
+
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    system("cls");
 }
