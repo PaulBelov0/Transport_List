@@ -18,7 +18,7 @@ void Menu::mainProcedure()
 
     std::vector<std::string> argumentsList;
 
-    if (controller->getStorage().checkMapEmpty() == true)
+    if (controller->getStorage().checkListEmpty() == true)
     {
         mapEmptyFlag = true;
     }
@@ -75,10 +75,10 @@ void Menu::mainProcedure()
                 system("cls");
                 if (mapEmptyFlag == false)
                 {
-                    auto map = controller->getStorage().getMap();
+                    auto map = controller->getStorage().getList();
                     for (auto& element : map)
                     {
-                        printElementFields(element.second);
+                        printElementFields(element);
                     }
 
                     std::cout << "\n\nEnter something text to continue: " << std::endl;
@@ -102,9 +102,14 @@ void Menu::mainProcedure()
                     {
                         if (controller->getStorage().findDatabaseElement(std::stoi(userInput)) == true)
                         {
-                            auto element = controller->getStorage().getMap().at(std::stoi(userInput));
+                            for (auto& element : controller->getStorage().getList())
+                            {
+                                if (element->uniqueID == std::stoul(userInput))
+                                {
+                                    printElementFields(element);
+                                }
+                            }
 
-                            printElementFields(element);
                             std::this_thread::sleep_for(std::chrono::seconds(3));
 
                             system("cls");

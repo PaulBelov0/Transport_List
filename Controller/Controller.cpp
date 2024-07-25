@@ -11,29 +11,12 @@ void Controller::addNewElement(std::vector<std::string> args)
 
     std::shared_ptr<TransportObjectCreator>transportObjectCreator(new TransportObjectCreator(args));
 
-    if (type == "air")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if(type == "car")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if(type == "boat")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
-    else if (type == "shuttle")
-    {
-        transportStorage->addNewElement(transportObjectCreator->getTransportObject());
-    }
+    transportStorage->addNewElement(transportObjectCreator->getTransportObject());
 }
 
 QString& Controller::deleteDatabaseElement(const uint32_t& ID)
 {
-    transportStorage->findDatabaseElement(ID);
-
-    if (transportStorage->getMap().count(ID) != 0)
+    if (transportStorage->findDatabaseElement(ID) != true)
     {
         transportStorage->deleteElement(ID);
         deletingResult = "Element deleted successful!";
