@@ -309,21 +309,46 @@ bool Menu::checkDataConvertibleToUInt(std::vector<std::string>& value)
 
 void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
 {
-    std::cout << element->getID();
+    std::cout << element->uniqueID << std::endl;;
 
-    std::cout << element->getType();
+    std::cout << element->type << std::endl;;
 
-    std::cout << element->getBrand();
+    std::cout << element->brand << std::endl;;
 
-    std::cout << element->getModel();
+    std::cout << element->model << std::endl;;
 
-    std::cout << element->getYear();
+    std::cout << element->year << std::endl;;
 
-    std::cout << element->getWeight();
+    std::cout << element->weight << std::endl;;
 
-    std::cout << element->getSpecialFirst();
+    if (element->type == "Air")
+    {
+        auto air = std::dynamic_pointer_cast<std::shared_ptr<AirTransport>>(element);
 
-    std::cout << element->getSpecialSecond();
+        std::cout << air.get()->get()->wingspan << std::endl;;
+        std::cout << air.get()->get()->payloadCapacity << std::endl;;
+    }
+    else if (element->type == "Car")
+    {
+        auto car = std::dynamic_pointer_cast<std::shared_ptr<Car>>(element);
+
+        std::cout << car.get()->get()->mileage << std::endl;;
+        std::cout << car.get()->get()->ownersQuantity << std::endl;;
+    }
+    else if (element->type == "Boat")
+    {
+        auto boat = std::dynamic_pointer_cast<std::shared_ptr<Boat>>(element);
+
+        std::cout << boat.get()->get()->displacement << std::endl;;
+        std::cout << boat.get()->get()->screwDepth << std::endl;;
+    }
+    else
+    {
+        auto shuttle = std::dynamic_pointer_cast<std::shared_ptr<Shuttle>>(element);
+
+        std::cout << shuttle.get()->get()->maxFlyingDistance << std::endl;;
+        std::cout << shuttle.get()->get()->fuelType << std::endl;;
+    }
 }
 
 void Menu::throwError()

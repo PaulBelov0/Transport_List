@@ -9,43 +9,14 @@ AirTransport::AirTransport(std::vector<std::string> args) : TransportBase(args)
     wingspan = std::stoi(args[6]);
     wingspan = std::stoi(args[7]);
 }
-
-AirTransport::AirTransport(TransportBase* transportObject)
-    : TransportBase(transportObject->getID(), transportObject->getBrand(),
-                    transportObject->getModel(), transportObject->getYear(),
-                    transportObject->getWeight()
+AirTransport::AirTransport(std::shared_ptr<AirTransport> transportObject)
+    : TransportBase(transportObject->uniqueID, transportObject->brand,
+                    transportObject->model, transportObject->year,
+                    transportObject->weight
                     )
 {
     type = "Air";
-    wingspan = transportObject->getSpecialFirst();
-    payloadCapacity = std::stoi(transportObject->getSpecialSecond());
+    this->wingspan = transportObject->wingspan;
+    this->payloadCapacity = transportObject->payloadCapacity;
 }
 
-
-void AirTransport::editSpecialFirst(const uint32_t& wingspan)
-{
-    this->wingspan = wingspan;
-}
-
-
-void AirTransport::editSpecialSecond (const QString& payloadCapacity)
-{
-    this->payloadCapacity = payloadCapacity.toInt();
-}
-
-// Getters:
-
-std::string AirTransport::getType()
-{
-    return type;
-}
-
-uint32_t AirTransport::getSpecialFirst()
-{
-    return wingspan;
-}
-
-std::string AirTransport::getSpecialSecond()
-{
-    return std::to_string(payloadCapacity);
-}

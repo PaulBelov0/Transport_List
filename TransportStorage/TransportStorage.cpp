@@ -4,7 +4,7 @@ TransportStorage::TransportStorage(std::map<uint32_t, std::shared_ptr<TransportB
 {
     for (auto& element : map)
     {
-        transportDatabase.insert({element.second->getID(), element.second});
+        transportDatabase.insert({element.second->uniqueID, element.second});
     }
 }
 
@@ -33,7 +33,7 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
 
 void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
 {
-    transportDatabase.insert(std::make_pair(object->getID(), object));
+    transportDatabase.insert(std::make_pair(object->uniqueID, object));
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
@@ -68,5 +68,5 @@ bool TransportStorage::checkMapEmpty()
 
 void TransportStorage::insertPair(std::shared_ptr<TransportBase> object)
 {
-    transportDatabase.insert({object->getID(), object});
+    transportDatabase.insert({object->uniqueID, object});
 }

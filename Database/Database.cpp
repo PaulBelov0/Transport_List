@@ -39,7 +39,7 @@ std::unique_ptr<TransportStorage> Database::download()
 
             TransportObjectCreator creator(args);
 
-            map.insert({creator.getTransportObject()->getID(), creator.getTransportObject()});
+            map.insert({creator.getTransportObject()->uniqueID, creator.getTransportObject()});
         }
 
     std::unique_ptr<TransportStorage> outputStorage(new TransportStorage(map));
@@ -53,18 +53,41 @@ void Database::upload(TransportStorage& inputStorage)
     for(const auto& element : inputStorage.getMap())
     {
         query->prepare("INSERT INTO TransportDatabase(ID, Type, Brand, Model, Year, Weight, Specialfirst, SpecialSecond)"
-                       "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :Specialfirst, :SpecialSecond)");
+                       "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :SpecialFirst, :SpecialSecond)");
 
         // Binding all values:
 
-        query->bindValue(":ID", element.second->getID());
-        query->bindValue(":Type", QString::fromStdString(element.second->getType()));
-        query->bindValue(":Brand", QString::fromStdString(element.second->getBrand()));
-        query->bindValue(":Model", QString::fromStdString(element.second->getModel()));
-        query->bindValue(":Year", element.second->getYear());
-        query->bindValue(":Weight", element.second->getWeight());
-        query->bindValue(":SepcialFirst", element.second->getSpecialFirst());
-        query->bindValue(":SpecialSecond", QString::fromStdString(element.second->getSpecialSecond()));
+        query->bindValue(":ID", element.second->uniqueID);
+        query->bindValue(":Type", QString::fromStdString(element.second->type));
+        query->bindValue(":Brand", QString::fromStdString(element.second->brand));
+        query->bindValue(":Model", QString::fromStdString(element.second->model));
+        query->bindValue(":Year", element.second->year);
+        query->bindValue(":Weight", element.second->weight);
+
+        if (element.second->type == "Air")
+        {
+            auto air = std::dynamic_pointer_cast<std::shared_ptr<AirTransport>>(element.second);
+            query->bindValue(":SpecialFirst", air.get()->get()->wingspan);
+            query->bindValue(":SpecialSecond", air.get()->get()->payloadCapacity);
+        }
+        else if (element.second->type == "Car")
+        {
+            auto car = std::dynamic_pointer_cast<std::shared_ptr<Car>>(element.second);
+            query->bindValue(":SpecialFirst", car.get()->get()->mileage);
+            query->bindValue(":SpecialSecond", car.get()->get()->ownersQuantity);
+        }
+        else if (element.second->type == "Boat")
+        {
+            auto boat = std::dynamic_pointer_cast<std::shared_ptr<Boat>>(element.second);
+            query->bindValue(":SpecialFirst", boat.get()->get()->displacement);
+            query->bindValue(":SpecialSecond", boat.get()->get()->screwDepth);
+        }
+        else
+        {
+            auto shuttle = std::dynamic_pointer_cast<std::shared_ptr<Shuttle>>(element.second);
+            query->bindValue(":SpecialFirst", shuttle.get()->get()->maxFlyingDistance);
+            query->bindValue(":SpecialSecond", QString::fromStdString(shuttle.get()->get()->fuelType));
+        }
     }
     query->finish();
 }
