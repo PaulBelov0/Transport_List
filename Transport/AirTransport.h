@@ -1,4 +1,3 @@
-#pragma once
 
 #ifndef AIRTRANSPORT_H
 #define AIRTRANSPORT_H
@@ -11,19 +10,10 @@ public:
 
     AirTransport(std::vector<std::string> args);
 
-    AirTransport(TransportBase* transportObject);
+    AirTransport(std::shared_ptr<AirTransport> transportObject);
 
-    void editSpecialFirst(const uint32_t& wingspan);
+    AirTransport(AirTransport* transportObject);
 
-    void editSpecialSecond(const QString& payloadCapacity);
-
-    uint32_t getSpecialFirst() override;
-
-    std::string getSpecialSecond() override;
-
-    std::string getType() override;
-
-private:
     uint32_t wingspan;
     uint32_t payloadCapacity;
 };

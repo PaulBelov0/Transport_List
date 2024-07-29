@@ -2,48 +2,24 @@
 
 //Realization Space shuttle class:
 
+
+//CONSTRUCTORS:
+
+
 Shuttle::Shuttle(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Shuttle";
-    maxFlyingDistance = std::stoi(args[6]);
-    fuelType = args[7];
+    maxFlyingDistance = std::stoi(args[5]);
+    fuelType = args[6];
 }
 
-Shuttle::Shuttle(TransportBase* transportObject)
-    : TransportBase(transportObject->getID(), transportObject->getBrand(),
-                    transportObject->getModel(), transportObject->getYear(),
-                    transportObject->getWeight()
+Shuttle::Shuttle(std::shared_ptr<Shuttle> transportObject)
+    : TransportBase(transportObject->uniqueID, transportObject->brand,
+                    transportObject->model, transportObject->year,
+                    transportObject->weight
                     )
 {
     type = "Shuttle";
-    maxFlyingDistance = transportObject->getSpecialFirst();
-    fuelType = transportObject->getSpecialSecond();
-}
-
-//GETTERS & SETTERS:
-
-void Shuttle::editSpecialFirst(const uint32_t& maxFlyingDisatnce)
-{
-    this->maxFlyingDistance = maxFlyingDisatnce;
-}
-
-
-void Shuttle::editSpecialSecond(const QString& fuelType)
-{
-    this->fuelType = fuelType.toStdString();
-}
-
-std::string Shuttle::getType()
-{
-    return type;
-}
-
-uint32_t Shuttle::getSpecialFirst()
-{
-    return maxFlyingDistance;
-}
-
-std::string Shuttle::getSpecialSecond()
-{
-    return fuelType;
+    this->maxFlyingDistance = transportObject->maxFlyingDistance;
+    this->fuelType = transportObject->fuelType;
 }

@@ -29,7 +29,6 @@ private:
     Ui::DeleteElementWindow *ui;
 
     MessageToUserWindow messageToUserWindow;
-    Controller controller;
 
     uint32_t index;
     std::string userInput;

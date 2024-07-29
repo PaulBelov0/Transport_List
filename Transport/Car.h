@@ -10,18 +10,8 @@ public:
 
     Car(std::vector<std::string> args);
 
-    Car(TransportBase* transportObject);
+    Car(std::shared_ptr<Car> transportObject);
 
-    void editSpecialFirst(const uint32_t& mileage);
-    void editSpecialSecond(const QString& ownersQuantity);
-
-    uint32_t getSpecialFirst();
-
-    std::string getSpecialSecond();
-
-    std::string getType();
-
-private:
     uint32_t mileage;
     uint32_t ownersQuantity;
 };

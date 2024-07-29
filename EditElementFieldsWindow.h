@@ -3,7 +3,6 @@
 
 #include <QDialog>
 
-#include "Database/Database.h"
 #include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 #include "TransportStorage/TransportStorage.h"
@@ -37,16 +36,6 @@ private:
     std::unique_ptr<TransportStorage> transportStorage;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
-    Database db;
-
-    uint32_t ID;
-    QString type;
-    QString brand;
-    QString model;
-    uint32_t year;
-    uint32_t weight;
-    uint32_t firstSpecialField;
-    QString secondSpecialField;
 };
 
 #endif // EDITELEMENTFIELDSWINDOW_H

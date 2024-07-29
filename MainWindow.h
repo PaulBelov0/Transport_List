@@ -41,9 +41,8 @@ private:
     void reloadDatabase();
 
     Ui::MainWindow *ui;
-
-    Database database;
-    Controller controller;
+    Database* database;
+    Controller* controller;
 
     EditElementFieldsWindow editElementFieldsWindow;
     SearchElementWindow searchElementWindow;

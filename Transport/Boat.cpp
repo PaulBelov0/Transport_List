@@ -2,50 +2,22 @@
 
 //Realization boat class:
 
+
+
 Boat::Boat(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Boat";
-    displacement = std::stoi(args[6]);
-    screwDepth = std::stoi(args[7]);
+    displacement = std::stoi(args[5]);
+    screwDepth = std::stoi(args[6]);
 }
 
-Boat::Boat(TransportBase* transportObject)
-    : TransportBase(transportObject->getID(), transportObject->getBrand(),
-                    transportObject->getModel(), transportObject->getYear(),
-                    transportObject->getWeight()
+Boat::Boat(std::shared_ptr<Boat> transportObject)
+    : TransportBase(transportObject->uniqueID, transportObject->brand,
+                    transportObject->model, transportObject->year,
+                    transportObject->weight
                     )
 {
     type = "Boat";
-    this->displacement = transportObject->getSpecialFirst();
-    this->screwDepth = std::stoi(transportObject->getSpecialSecond());
-}
-
-//GETTERS & SETTERS:
-
-void Boat::editSpecialFirst(const uint32_t& displacement)
-{
-    this->displacement = displacement;
-}
-
-
-void Boat::editSpecialSecond(const QString& screwDepth)
-{
-    this->screwDepth = screwDepth.toInt();
-}
-
-// Getters:
-
-std::string Boat::getType()
-{
-    return type;
-}
-
-uint32_t Boat::getSpecialFirst()
-{
-    return displacement;
-}
-
-std::string Boat::getSpecialSecond()
-{
-    return std::to_string(screwDepth);
+    this->displacement = transportObject->displacement;
+    this->screwDepth = transportObject->screwDepth;
 }

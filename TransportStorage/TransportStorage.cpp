@@ -1,58 +1,66 @@
 #include "TransportStorage/TransportStorage.h"
 
-TransportStorage::TransportStorage(std::map<uint32_t, std::shared_ptr<TransportBase>> map)
+TransportStorage::TransportStorage(std::list<std::shared_ptr<TransportBase>> list)
 {
-    for (auto& element : map)
+    for (auto& element : list)
     {
-        transportDatabase.insert({element.second->getID(), element.second});
+        transportDatabase.push_back(element);
     }
 }
 
-TransportStorage::TransportStorage(TransportStorage& map)
+TransportStorage::TransportStorage(const TransportStorage& list)
 {
-    transportDatabase = map.transportDatabase;
+    transportDatabase = list.transportDatabase;
+}
+
+TransportStorage::TransportStorage()
+{
+    TransportObjectCreator testObj(TransportObjectCreator(std::vector<std::string>{"0", "1", "0", "0", "0", "0", "0"}));
+    transportDatabase.push_back(testObj.getTransportObject());
 }
 
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
 {
-    bool output;
-    if (transportDatabase.count(index))
+    bool output = false;
+    for(auto& element : transportDatabase)
     {
-        output = true;
-    }
-    else
-    {
-        output = false;
-        messageToUserWindow.show();
-        messageToUserWindow.setTextMessage("Error! No one element have this ID!");
+        if (element->uniqueID == index)
+        {
+            output = true;
+        }
     }
     return output;
 }
 
-void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
+void TransportStorage::addNewElement(std::shared_ptr<TransportBase>& object)
 {
-    transportDatabase.insert(std::make_pair(object->getID(), object));
+    transportDatabase.push_front(object);
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
 {
-    if (transportDatabase.count(index) > 0 && !transportDatabase.empty())
+    for (std::list<std::shared_ptr<TransportBase>>::iterator iter = transportDatabase.begin(); iter != transportDatabase.end(); ++iter)
     {
-        const auto& iterator = transportDatabase.find(index);
-
-        if (iterator != transportDatabase.end() && iterator != transportDatabase.begin())
+        if(iter->get()->uniqueID == index)
         {
-            transportDatabase.erase(iterator);
+            transportDatabase.erase(iter);
         }
     }
 }
 
-std::map<uint32_t, std::shared_ptr<TransportBase>> TransportStorage::getMap()
+std::list<std::shared_ptr<TransportBase>>& TransportStorage::getList()
 {
     return transportDatabase;
 }
 
-void TransportStorage::insertPair(std::shared_ptr<TransportBase> object)
+bool TransportStorage::checkListEmpty()
 {
-    transportDatabase.insert({object->getID(), object});
+    if (transportDatabase.size() == 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }

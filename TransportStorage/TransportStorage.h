@@ -1,34 +1,39 @@
 #ifndef TRANSPORTSTORAGE_H
 #define TRANSPORTSTORAGE_H
 
-#include <map>
+#include <list>
 #include <cstdint>
 
 #include <QString>
 #include <QSignalMapper>
 
 #include "Transport/TransportBase/TransportBase.h"
+#include "Transport/TransportCreator/TransportObjectCreator.h"
 #include "MessageToUserWindow.h"
 
 class TransportStorage
 {
 public:
-    TransportStorage(std::map<uint32_t, std::shared_ptr<TransportBase>> map);
-    TransportStorage(TransportStorage& map);
+
+    TransportStorage(std::list<std::shared_ptr<TransportBase>> storage);
+
+    TransportStorage(const TransportStorage& storage);
+
+    TransportStorage();
 
     bool findDatabaseElement(const uint32_t& index);
-    void addNewElement(std::shared_ptr<TransportBase> object);
+
+    void addNewElement(std::shared_ptr<TransportBase>& object);
+
     void deleteElement(const uint32_t& index);
 
-    std::map<uint32_t, std::shared_ptr<TransportBase>> getMap();
+    std::list<std::shared_ptr<TransportBase>>& getList();
 
-    void insertPair(std::shared_ptr<TransportBase> object);
-// signals:
-//     QSignalMapper error();
+    bool checkListEmpty();
+
 private:
-    std::map<uint32_t, std::shared_ptr<TransportBase>> transportDatabase;
-
-    MessageToUserWindow messageToUserWindow;
+    std::list<std::shared_ptr<TransportBase>> transportDatabase;
+    MessageToUserWindow* messageToUserWindow;
 };
 
 #endif // TRANSPORTSTORAGE_H

@@ -10,11 +10,11 @@ CONFIG += object_parallel_to_source
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Controller/Controller.cpp \
     Database/Database.cpp \
     DeleteElementWindow.cpp \
     EditElementFieldsWindow.cpp \
     MainWindow.cpp \
-    Controller/Controller.cpp \
     MessageToUserWindow.cpp \
     SearchElementWindow.cpp \
     Transport/TransportCreator/TransportObjectCreator.cpp \
@@ -27,11 +27,11 @@ SOURCES += \
     main.cpp
 
 HEADERS += \
+    Controller/Controller.h \
     Database/Database.h \
     DeleteElementWindow.h \
     EditElementFieldsWindow.h \
     MainWindow.h \
-    Controller/Controller.h \
     MessageToUserWindow.h \
     SearchElementWindow.h \
     Transport/Transport.h \
@@ -55,12 +55,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-FORMS += \
-    DeleteElementWindow.ui \
-    EditElementFieldsWindow.ui \
-    MainWindow.ui \
-    MessageToUserWindow.ui \
-    SearchElementWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

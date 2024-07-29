@@ -5,21 +5,25 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    database = new Database();
     ui->setupUi(this);
 
-    model = new QSqlTableModel(this, database.getDatabase());
+    model = new QSqlTableModel(this, database->getDatabase());
     model->setTable("TransportDatabase");
     model->select();
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     ui->tableView->setModel(model);
 
-    controller.setMap(*database.download());
+    controller = new Controller(*database->download().get());
 }
 
 MainWindow::~MainWindow()
 {
+    database->upload(controller->getStorage());
     delete model;
+    delete database;
+    delete controller;
     delete ui;
 }
 
@@ -34,7 +38,7 @@ void MainWindow::on_addNewElementButton_clicked()
 void MainWindow::on_editElementButton_clicked()
 {
     searchElementWindow.show();
-    //editElementFieldsWindow.setActionForRealizationThisWnd("edit");
+    editElementFieldsWindow.setActionForRealizationThisWnd("edit");
 }
 
 void MainWindow::on_deleteElementButton_clicked()
@@ -46,22 +50,17 @@ void MainWindow::on_deleteElementButton_clicked()
 
 void MainWindow::on_loadDatabaseButton_clicked()
 {
-    controller.setMap(*database.download());
+    controller->setList(*database->download());
 }
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-    database.upload(controller.getStorage());
+    database->upload(controller->getStorage());
 }
 
 void MainWindow::on_exitButton_clicked()
 {
-    database.upload(controller.getStorage());
+    database->upload(controller->getStorage());
     this->close();
 }
 
-void MainWindow::reloadDatabase()
-{
-    //database.upload(menu.getMap());
-    //database.download();
-}
