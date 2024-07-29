@@ -12,8 +12,11 @@
 class TransportStorage
 {
 public:
-    TransportStorage(std::list<std::shared_ptr<TransportBase>> map);
-    TransportStorage(TransportStorage& map);
+
+    TransportStorage(std::list<std::shared_ptr<TransportBase>> storage);
+
+    TransportStorage(TransportStorage& storage);
+
     TransportStorage();
 
     bool findDatabaseElement(const uint32_t& index);
@@ -27,8 +30,7 @@ public:
     void insertPair(std::shared_ptr<TransportBase> object);
 
     bool checkListEmpty();
-// signals:
-//     QSignalMapper error();
+
 private:
     std::list<std::shared_ptr<TransportBase>> transportDatabase;
 };

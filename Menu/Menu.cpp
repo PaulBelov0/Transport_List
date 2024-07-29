@@ -3,11 +3,13 @@
 Menu::Menu()
 {
     controller = new Controller();
+    controller->loadDatabase();
     uniqueID = 0;
 }
 
 Menu::~Menu()
 {
+    controller->saveDatabase();
     delete controller;
 }
 
@@ -173,9 +175,6 @@ std::vector<std::string> Menu::enterElementFields()
             throwError();
             goto reEnterFirstFields;
         }
-
-
-
 
         argumentsList.push_back(enterTransportField("brand"));
 

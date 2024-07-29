@@ -5,6 +5,7 @@
 #include <QtSql/QSqlQuery>
 #include <QtSql/QSql>
 #include <QtSql/QSqlDriver>
+#include <QCoreApplication>
 
 #include "TransportStorage/TransportStorage.h"
 #include "Transport/TransportCreator/TransportObjectCreator.h"
@@ -16,7 +17,7 @@ public:
     ~Database();
 
     std::unique_ptr<TransportStorage> download();
-    void upload(TransportStorage& inputMap);
+    void upload(TransportStorage& inputStorage);
     QSqlDatabase& getDatabase();
     QSqlQuery& getQuery();
 

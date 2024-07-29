@@ -18,6 +18,7 @@ class Controller
 public:
     Controller();
 
+    ~Controller();
 
     void addNewElement(std::vector<std::string>& args);
 
@@ -35,12 +36,16 @@ public:
 
     uint32_t& getID();
 
+    void loadDatabase();
+
+    void saveDatabase();
 
 private:
     uint32_t uniqueID;
-    std::unique_ptr<TransportStorage> transportStorage;
+    std::shared_ptr<TransportStorage> transportStorage;
     QString deletingResult;
     std::shared_ptr<TransportObjectCreator> transportObjectCreator;
+    Database* db;
 };
 
 #endif //CONTROLLER_H

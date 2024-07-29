@@ -2,7 +2,13 @@
 
 Controller::Controller() : transportStorage(new TransportStorage())
 {
-
+    db = new Database();
+    transportStorage.reset(new TransportStorage(*db->download().get()));
+}
+Controller::~Controller()
+{
+    db->upload(*transportStorage.get());
+    delete db;
 }
 
 void Controller::addNewElement(std::vector<std::string>& args)
@@ -57,4 +63,14 @@ void Controller::setID(const uint32_t& ID)
 uint32_t& Controller::getID()
 {
     return uniqueID;
+}
+
+void Controller::loadDatabase()
+{
+
+}
+
+void Controller::saveDatabase()
+{
+
 }

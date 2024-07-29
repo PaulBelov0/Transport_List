@@ -2,10 +2,13 @@
 
 Database::Database()
 {
+    QCoreApplication::addLibraryPath ("./plugins");
     db = new QSqlDatabase;
     *db = QSqlDatabase::addDatabase("QSQLITE");
     db->setDatabaseName("./TransportDatabase.db");
     db->open();
+
+    //В случае добавления новых полей в классы наследующих TransportBase - добавить соответствующие Special... поля в БД.
 
     query = new QSqlQuery;
     *query = QSqlQuery(*db);
@@ -14,7 +17,11 @@ Database::Database()
     outputStorage.reset(download().get());
 }
 
-Database::~Database() { delete query; delete db; }
+Database::~Database()
+{
+    delete query;
+    delete db;
+}
 
 std::unique_ptr<TransportStorage> Database::download()
 {
