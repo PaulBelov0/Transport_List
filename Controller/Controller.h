@@ -19,7 +19,7 @@ public:
     Controller();
 
 
-    void addNewElement(std::vector<std::string> args);
+    void addNewElement(std::vector<std::string>& args);
 
     void editElement(std::vector<std::string> args);
 

@@ -2,7 +2,7 @@
 
 TransportObjectCreator::TransportObjectCreator() {}
 
-TransportObjectCreator::TransportObjectCreator(std::vector<std::string> args)
+TransportObjectCreator::TransportObjectCreator(std::vector<std::string>& args)
 {
     try
     {
@@ -42,7 +42,7 @@ void TransportObjectCreator::showDataErrorMessage()
     std::cout << "Error!" << std::endl;
 }
 
-std::shared_ptr<TransportBase> TransportObjectCreator::getTransportObject()
+std::shared_ptr<TransportBase>& TransportObjectCreator::getTransportObject()
 {
     return base;
 }

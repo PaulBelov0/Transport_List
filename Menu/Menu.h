@@ -30,6 +30,8 @@ private:
     bool checkDataConvertibleToUInt(std::vector<std::string>& value);
 
     Controller* controller;
+
+    uint32_t uniqueID;
 };
 
 #endif // MENU_H

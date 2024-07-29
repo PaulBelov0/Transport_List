@@ -1,14 +1,12 @@
 #include "Controller/Controller.h"
 
-Controller::Controller() : transportStorage(new TransportStorage()) // MUST BE RESET!
+Controller::Controller() : transportStorage(new TransportStorage())
 {
 
 }
 
-void Controller::addNewElement(std::vector<std::string> args)
+void Controller::addNewElement(std::vector<std::string>& args)
 {
-    std::string type = args.at(2);
-
     std::shared_ptr<TransportObjectCreator>transportObjectCreator(new TransportObjectCreator(args));
 
     transportStorage->addNewElement(transportObjectCreator->getTransportObject());
@@ -30,11 +28,7 @@ QString& Controller::deleteDatabaseElement(const uint32_t& ID)
 
 bool Controller::checkElementAvilable(const uint32_t& ID)
 {
-    bool result;
-
-    result = transportStorage->findDatabaseElement(ID);
-
-    return result;
+    return transportStorage->findDatabaseElement(ID);
 }
 
 void Controller::editElement(std::vector<std::string> args)

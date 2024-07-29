@@ -3,6 +3,7 @@
 Menu::Menu()
 {
     controller = new Controller();
+    uniqueID = 0;
 }
 
 Menu::~Menu()
@@ -75,10 +76,11 @@ void Menu::mainProcedure()
                 system("cls");
                 if (mapEmptyFlag == false)
                 {
-                    auto map = controller->getStorage().getList();
-                    for (auto& element : map)
+                    auto list = controller->getStorage().getList();
+                    for (auto& element : list)
                     {
-                        printElementFields(element);
+                        if (element->uniqueID != 0)
+                            printElementFields(element);
                     }
 
                     std::cout << "\n\nEnter something text to continue: " << std::endl;
@@ -156,15 +158,8 @@ std::vector<std::string> Menu::enterElementFields()
     {
 
     reEnterFirstFields:
-        argumentsList.push_back(enterTransportField("ID"));
-        if (checkDataConvertibleToUInt(argumentsList) == false)
-        {
-            goto reEnterFirstFields;
-        }
-        else if (std::stoi(argumentsList[0]) <= 0)
-        {
-            goto reEnterFirstFields;
-        }
+        ++uniqueID;
+        argumentsList.push_back(std::to_string(uniqueID));
 
         argumentsList.push_back(enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)"));
 
@@ -314,45 +309,45 @@ bool Menu::checkDataConvertibleToUInt(std::vector<std::string>& value)
 
 void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
 {
-    std::cout << element->uniqueID << std::endl;;
+    std::cout << "Unique ID: " << element->uniqueID << std::endl;
 
-    std::cout << element->type << std::endl;;
+    std::cout << "Type:" << element->type << std::endl;
 
-    std::cout << element->brand << std::endl;;
+    std::cout << "Brand: " << element->brand << std::endl;
 
-    std::cout << element->model << std::endl;;
+    std::cout << "Model: " << element->model << std::endl;
 
-    std::cout << element->year << std::endl;;
+    std::cout << "Year: " << element->year << std::endl;
 
-    std::cout << element->weight << std::endl;;
+    std::cout << "Weight: " << element->weight << std::endl;
 
     if (element->type == "Air")
     {
-        auto air = std::dynamic_pointer_cast<std::shared_ptr<AirTransport>>(element);
+        auto air = std::dynamic_pointer_cast<AirTransport>(element);
 
-        std::cout << air.get()->get()->wingspan << std::endl;;
-        std::cout << air.get()->get()->payloadCapacity << std::endl;;
+        std::cout << "Wingspan: " << air.get()->wingspan << std::endl;
+        std::cout << "Payload Capacity: " << air.get()->payloadCapacity << "\n" << std::endl;
     }
     else if (element->type == "Car")
     {
-        auto car = std::dynamic_pointer_cast<std::shared_ptr<Car>>(element);
+        auto car = std::dynamic_pointer_cast<Car>(element);
 
-        std::cout << car.get()->get()->mileage << std::endl;;
-        std::cout << car.get()->get()->ownersQuantity << std::endl;;
+        std::cout << "Mileage: " << car.get()->mileage << std::endl;
+        std::cout << "Owners Quantity: " << car.get()->ownersQuantity << "\n" << std::endl;
     }
     else if (element->type == "Boat")
     {
-        auto boat = std::dynamic_pointer_cast<std::shared_ptr<Boat>>(element);
+        auto boat = std::dynamic_pointer_cast<Boat>(element);
 
-        std::cout << boat.get()->get()->displacement << std::endl;;
-        std::cout << boat.get()->get()->screwDepth << std::endl;;
+        std::cout << "Displacement: " << boat.get()->displacement << std::endl;
+        std::cout << "Screw Depth: " << boat.get()->screwDepth << "\n" << std::endl;
     }
-    else
+    else if (element->type == "Shuttle")
     {
-        auto shuttle = std::dynamic_pointer_cast<std::shared_ptr<Shuttle>>(element);
+        auto shuttle = std::dynamic_pointer_cast<Shuttle>(element);
 
-        std::cout << shuttle.get()->get()->maxFlyingDistance << std::endl;;
-        std::cout << shuttle.get()->get()->fuelType << std::endl;;
+        std::cout << "Max Flying Distance: " << shuttle.get()->maxFlyingDistance << std::endl;
+        std::cout << "Fuel Type: " << shuttle.get()->fuelType << "\n" << std::endl;
     }
 }
 

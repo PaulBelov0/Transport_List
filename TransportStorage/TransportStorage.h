@@ -18,7 +18,7 @@ public:
 
     bool findDatabaseElement(const uint32_t& index);
 
-    void addNewElement(std::shared_ptr<TransportBase> object);
+    void addNewElement(std::shared_ptr<TransportBase>& object);
 
     void deleteElement(const uint32_t& index);
 

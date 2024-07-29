@@ -8,12 +8,16 @@ TransportStorage::TransportStorage(std::list<std::shared_ptr<TransportBase>> lis
     }
 }
 
-TransportStorage::TransportStorage(TransportStorage& map)
+TransportStorage::TransportStorage(TransportStorage& list)
 {
-    transportDatabase = map.transportDatabase;
+    transportDatabase = list.transportDatabase;
 }
 
-TransportStorage::TransportStorage() {}
+TransportStorage::TransportStorage()
+{
+    std::shared_ptr<TransportBase> testObj(new TransportBase(std::vector<std::string>{"0", "1", "0", "0", "0", "0"}));
+    transportDatabase.push_back(testObj);
+}
 
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
 {
@@ -28,9 +32,9 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
+void TransportStorage::addNewElement(std::shared_ptr<TransportBase>& object)
 {
-    transportDatabase.push_back(object);
+    transportDatabase.push_front(object);
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
