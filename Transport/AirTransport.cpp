@@ -6,8 +6,8 @@
 AirTransport::AirTransport(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Air";
-    wingspan = std::stoi(args[6]);
-    wingspan = std::stoi(args[7]);
+    wingspan = std::stoi(args[5]);
+    payloadCapacity = std::stoi(args[6]);
 }
 AirTransport::AirTransport(std::shared_ptr<AirTransport> transportObject)
     : TransportBase(transportObject->uniqueID, transportObject->brand,

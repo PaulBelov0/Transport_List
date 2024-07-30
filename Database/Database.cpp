@@ -6,7 +6,7 @@ Database::Database()
     db = new QSqlDatabase;
     *db = QSqlDatabase::addDatabase("QSQLITE");
     db->setDatabaseName("./TransportDatabase.db");
-    db->open();
+    //db->open();
 
     //В случае добавления новых полей в классы наследующих TransportBase - добавить соответствующие Special... поля в БД.
 

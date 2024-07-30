@@ -6,19 +6,19 @@ TransportObjectCreator::TransportObjectCreator(std::vector<std::string>& args)
 {
     try
     {
-        if (args[1] == "1")
+        if (args[1] == "1" || "Air")
         {
             AirTransport air(args);
             base = std::make_unique<AirTransport>(air);
 
         }
-        else if(args[1] == "2")
+        else if(args[1] == "2" || "Car")
         {
             Car car(args);
             base = std::make_unique<Car>(car);
 
         }
-        else if(args[1] == "3")
+        else if(args[1] == "3" || "Boat")
         {
             Boat boat(args);
             base = std::make_unique<Boat>(boat);

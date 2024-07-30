@@ -2,12 +2,12 @@
 
 Controller::Controller() : transportStorage(new TransportStorage())
 {
-    db = new Database();
-    transportStorage.reset(new TransportStorage(*db->download().get()));
+    //db = new Database();
+    //transportStorage.reset(new TransportStorage(*db->download().get()));
 }
 Controller::~Controller()
 {
-    db->upload(*transportStorage.get());
+    //db->upload(*transportStorage.get());
     delete db;
 }
 
