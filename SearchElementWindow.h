@@ -17,7 +17,7 @@ class SearchElementWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit SearchElementWindow(QWidget *parent = nullptr);
+    explicit SearchElementWindow(Controller* controller, QWidget *parent = nullptr);
     ~SearchElementWindow();
 
     QString &getElement();
@@ -30,8 +30,9 @@ private slots:
 private:
     Ui::SearchElementWindow *ui;
 
-    EditElementFieldsWindow editElementFieldsWindow;
-    MessageToUserWindow messageToUserWindow;
+    Controller* controller;
+    EditElementFieldsWindow* editElementFieldsWindow;
+    MessageToUserWindow* messageToUserWindow;
     QString outputText;
 };
 

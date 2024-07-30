@@ -1,10 +1,11 @@
 #include "DeleteElementWindow.h"
 #include "ui_DeleteElementWindow.h"
 
-DeleteElementWindow::DeleteElementWindow(QWidget *parent)
+DeleteElementWindow::DeleteElementWindow(Controller* controller, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::DeleteElementWindow)
 {
+    this->controller = controller;
     ui->setupUi(this);
 }
 
@@ -23,7 +24,7 @@ void DeleteElementWindow::on_deleteButton_clicked()
             messageToUserWindow.show();
             messageToUserWindow.setTextMessage("Error! Wrong input data!");
         }
-        QString qString = controller.deleteDatabaseElement(index);
+        QString qString = controller->deleteDatabaseElement(index);
         messageToUserWindow.setTextMessage(qString);
     } else {
         messageToUserWindow.show();
@@ -38,5 +39,5 @@ void DeleteElementWindow::on_exitButton_clicked()
 
 uint32_t &DeleteElementWindow::getID()
 {
-    return controller.getID();
+    return controller->getID();
 }

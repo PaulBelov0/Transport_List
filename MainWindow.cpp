@@ -16,6 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setModel(model);
 
     controller = new Controller(*database->download().get());
+
+    editElementFieldsWindow = new EditElementFieldsWindow(controller);
+    deleteElementWindow = new DeleteElementWindow(controller);
 }
 
 MainWindow::~MainWindow()
@@ -29,23 +32,23 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addNewElementButton_clicked()
 {
-    editElementFieldsWindow.show();
-    editElementFieldsWindow.setActionForRealizationThisWnd("add");
+    editElementFieldsWindow->show();
+    editElementFieldsWindow->setActionForRealizationThisWnd("add");
 
     model->insertRow(model->rowCount());
 }
 
 void MainWindow::on_editElementButton_clicked()
 {
-    searchElementWindow.show();
-    editElementFieldsWindow.setActionForRealizationThisWnd("edit");
+    searchElementWindow->show();
+    editElementFieldsWindow->setActionForRealizationThisWnd("edit");
 }
 
 void MainWindow::on_deleteElementButton_clicked()
 {
-    deleteElementWindow.show();
+    deleteElementWindow->show();
 
-    model->removeRow(deleteElementWindow.getID());
+    model->removeRow(deleteElementWindow->getID());
 }
 
 void MainWindow::on_loadDatabaseButton_clicked()

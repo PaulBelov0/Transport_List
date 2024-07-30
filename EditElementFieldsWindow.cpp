@@ -1,13 +1,11 @@
 #include "EditElementFieldsWindow.h"
 #include "ui_EditElementFieldsWindow.h"
 
-EditElementFieldsWindow::EditElementFieldsWindow(QWidget *parent)
+EditElementFieldsWindow::EditElementFieldsWindow(Controller* controller, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::EditElementFieldsWindow)
 {
-    if (!db.getQuery().value(0).isNull())
-        transportStorage.reset(new TransportStorage(*db.download()));
-
+    this->controller = controller;
     ui->setupUi(this);
 }
 
@@ -20,6 +18,8 @@ void EditElementFieldsWindow::on_okButton_clicked()
 {
 
     std::vector<std::string> args;
+
+    args.push_back(actionWithDB);
 
     args.push_back(std::to_string(ui->uinqueIDIntBox->value()));
 
@@ -57,28 +57,7 @@ void EditElementFieldsWindow::on_okButton_clicked()
             args[1] = "4";
         }
 
-        controller.addNewElement(args);
-    }
-    else if (actionWithDB == "edit" || "Edit")
-    {
-        if (args[1] == "Air")
-        {
-            args[1] = "1";
-        }
-        else if (args[1] == "Car")
-        {
-            args[1] = "2";
-        }
-        else if (args[1] == "Boat")
-        {
-            args[1] = "3";
-        }
-        else
-        {
-            args[1] = "4";
-        }
-
-        controller.editElement(args);
+        controller->editElement(args);
     }
     this->close();
 }

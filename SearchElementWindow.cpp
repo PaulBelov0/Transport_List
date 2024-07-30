@@ -1,15 +1,18 @@
 #include <SearchElementWindow.h>
 #include <ui_SearchElementWindow.h>
 
-SearchElementWindow::SearchElementWindow(QWidget *parent)
+SearchElementWindow::SearchElementWindow(Controller* controller, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::SearchElementWindow)
 {
+    editElementFieldsWindow = new EditElementFieldsWindow(controller);
     ui->setupUi(this);
+    this->controller = controller;
 }
 
 SearchElementWindow::~SearchElementWindow()
 {
+    delete editElementFieldsWindow;
     delete ui;
 }
 
@@ -27,23 +30,23 @@ void SearchElementWindow::on_okButton_clicked()
         try {
             index = std::stoi(text);
         } catch (QException &e) {
-            messageToUserWindow.show();
-            messageToUserWindow.setTextMessage("Error! Wrong input data!");
+            messageToUserWindow->show();
+            messageToUserWindow->setTextMessage("Error! Wrong input data!");
         }
-        Controller controller;
-        bool checkResult = controller.checkElementAvilable(index);
+
+        bool checkResult = controller->checkElementAvilable(index);
 
         if (checkResult == true) {
-            editElementFieldsWindow.show();
-            editElementFieldsWindow.setActionForRealizationThisWnd("edit");
-            editElementFieldsWindow.setElementByID(index);
+            editElementFieldsWindow->show();
+            editElementFieldsWindow->setActionForRealizationThisWnd("edit");
+            editElementFieldsWindow->setElementByID(index);
         } else {
-            messageToUserWindow.show();
-            messageToUserWindow.setTextMessage("Error! \nNo one element have this ID!");
+            messageToUserWindow->show();
+            messageToUserWindow->setTextMessage("Error! \nNo one element have this ID!");
         }
     } else {
-        messageToUserWindow.show();
-        messageToUserWindow.setTextMessage("Error! Wrong input data!");
+        messageToUserWindow->show();
+        messageToUserWindow->setTextMessage("Error! Wrong input data!");
     }
 }
 

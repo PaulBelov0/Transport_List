@@ -44,9 +44,9 @@ private:
     Database* database;
     Controller* controller;
 
-    EditElementFieldsWindow editElementFieldsWindow;
-    SearchElementWindow searchElementWindow;
-    DeleteElementWindow deleteElementWindow;
+    EditElementFieldsWindow* editElementFieldsWindow;
+    SearchElementWindow* searchElementWindow;
+    DeleteElementWindow* deleteElementWindow;
 
     QSqlTableModel *model;
 };

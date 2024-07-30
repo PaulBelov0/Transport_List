@@ -16,7 +16,7 @@ class DeleteElementWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit DeleteElementWindow(QWidget *parent = nullptr);
+    explicit DeleteElementWindow(Controller* controller, QWidget *parent = nullptr);
     ~DeleteElementWindow();
     uint32_t &getID();
 
@@ -31,7 +31,10 @@ private:
     MessageToUserWindow messageToUserWindow;
 
     uint32_t index;
+
     std::string userInput;
+
+    Controller* controller;
 };
 
 #endif // DELETEELEMENTWINDOW_H
