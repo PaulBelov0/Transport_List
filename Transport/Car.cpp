@@ -1,11 +1,5 @@
 #include "Transport/Car.h"
 
-//Realizatuion car type class:
-
-
-//CONSTRUCTORS:
-
-
 Car::Car(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Car";

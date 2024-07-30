@@ -1,21 +1,6 @@
 #include "Serializable.h"
 
-Serializator::Serializator() : filename("database.txt")
-{
-
-}
-
-Serializator::Serializator(const std::list<std::shared_ptr<TransportBase>>& inputList) : filename("database.txt")
-{
-
-    if (inputList.empty() != true)
-    {
-        for (auto& value : inputList)
-        {
-            localList.push_back(value);
-        }
-    }
-}
+Serializator::Serializator() : filename("database.txt") {}
 
 void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputList)
 {
@@ -28,7 +13,7 @@ void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputLis
     std::string elementFields;
     for (auto& element : inputList)
     {
-        elementFields = objectFieldsToString(elementFields, element);
+        elementFields = objectFieldsToString(element);
         file.write(elementFields.c_str(), elementFields.size());
     }
     file.close();
@@ -37,8 +22,9 @@ void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputLis
 
 std::list<std::shared_ptr<TransportBase>> Serializator::deserialize()
 {
+    std::string filename = "database.txt";
     std::list<std::shared_ptr<TransportBase>> outputList;
-
+    std::fstream dbFile(filename);
     std::ifstream file(filename, std::ios::binary);
 
     if(!file.is_open())
@@ -53,71 +39,73 @@ std::list<std::shared_ptr<TransportBase>> Serializator::deserialize()
             outputList.push_back(getTransportObject(fileRawTmp));
         }
     }
-
+    dbFile.close();
     return outputList;
 }
 
-inline std::string& Serializator::objectFieldsToString(std::string& raw, std::shared_ptr<TransportBase>& obj)
+inline std::string& Serializator::objectFieldsToString(std::shared_ptr<TransportBase>& obj)
 {
+    rawTmp.clear();
+
     if (obj->type == "Air")
     {
         std::shared_ptr<AirTransport> airTmp(std::dynamic_pointer_cast<AirTransport>(obj));
 
-        raw+= airTmp->type + "|";
-        raw = std::to_string(airTmp->uniqueID) + "|";
-        raw+= airTmp->brand + "|";
-        raw+= airTmp->model + "|";
-        raw+= std::to_string(airTmp->year) + "|";
-        raw+= std::to_string(airTmp->weight) + "|";
-        raw+= std::to_string(airTmp->wingspan) + "|";
-        raw+= std::to_string(airTmp->payloadCapacity) + "|";
+        rawTmp+= airTmp->type + "|";
+        rawTmp = std::to_string(airTmp->uniqueID) + "|";
+        rawTmp+= airTmp->brand + "|";
+        rawTmp+= airTmp->model + "|";
+        rawTmp+= std::to_string(airTmp->year) + "|";
+        rawTmp+= std::to_string(airTmp->weight) + "|";
+        rawTmp+= std::to_string(airTmp->wingspan) + "|";
+        rawTmp+= std::to_string(airTmp->payloadCapacity) + "|";
 
-        return raw;
+        return rawTmp;
     }
     else if (obj->type == "Car")
     {
         std::shared_ptr<Car> boatTmp(std::dynamic_pointer_cast<Car>(obj));
 
-        raw+= boatTmp->type + "|";
-        raw = std::to_string(boatTmp->uniqueID) + "|";
-        raw+= boatTmp->brand + "|";
-        raw+= boatTmp->model + "|";
-        raw+= std::to_string(boatTmp->year) + "|";
-        raw+= std::to_string(boatTmp->weight) + "|";
-        raw+= std::to_string(boatTmp->mileage) + "|";
-        raw+= std::to_string(boatTmp->ownersQuantity) + "|";
+        rawTmp+= boatTmp->type + "|";
+        rawTmp = std::to_string(boatTmp->uniqueID) + "|";
+        rawTmp+= boatTmp->brand + "|";
+        rawTmp+= boatTmp->model + "|";
+        rawTmp+= std::to_string(boatTmp->year) + "|";
+        rawTmp+= std::to_string(boatTmp->weight) + "|";
+        rawTmp+= std::to_string(boatTmp->mileage) + "|";
+        rawTmp+= std::to_string(boatTmp->ownersQuantity) + "|";
 
-        return raw;
+        return rawTmp;
     }
     else if (obj->type == "Boat")
     {
         std::shared_ptr<Boat> boatTmp(std::dynamic_pointer_cast<Boat>(obj));
 
-        raw+= boatTmp->type + "|";
-        raw = std::to_string(boatTmp->uniqueID) + "|";
-        raw+= boatTmp->brand + "|";
-        raw+= boatTmp->model + "|";
-        raw+= std::to_string(boatTmp->year) + "|";
-        raw+= std::to_string(boatTmp->weight) + "|";
-        raw+= std::to_string(boatTmp->displacement) + "|";
-        raw+= std::to_string(boatTmp->displacement) + "|";
+        rawTmp+= boatTmp->type + "|";
+        rawTmp = std::to_string(boatTmp->uniqueID) + "|";
+        rawTmp+= boatTmp->brand + "|";
+        rawTmp+= boatTmp->model + "|";
+        rawTmp+= std::to_string(boatTmp->year) + "|";
+        rawTmp+= std::to_string(boatTmp->weight) + "|";
+        rawTmp+= std::to_string(boatTmp->displacement) + "|";
+        rawTmp+= std::to_string(boatTmp->displacement) + "|";
 
-        return raw;
+        return rawTmp;
     }
     else
     {
         std::shared_ptr<Shuttle> shuttleTmp(std::dynamic_pointer_cast<Shuttle>(obj));
 
-        raw = std::to_string(shuttleTmp->uniqueID) + "|";
-        raw+= shuttleTmp->type + "|";
-        raw+= shuttleTmp->brand + "|";
-        raw+= shuttleTmp->model + "|";
-        raw+= std::to_string(shuttleTmp->year) + "|";
-        raw+= std::to_string(shuttleTmp->weight) + "|";
-        raw+= std::to_string(shuttleTmp->maxFlyingDistance) + "|";
-        raw+= shuttleTmp->fuelType + "|";
+        rawTmp = std::to_string(shuttleTmp->uniqueID) + "|";
+        rawTmp+= shuttleTmp->type + "|";
+        rawTmp+= shuttleTmp->brand + "|";
+        rawTmp+= shuttleTmp->model + "|";
+        rawTmp+= std::to_string(shuttleTmp->year) + "|";
+        rawTmp+= std::to_string(shuttleTmp->weight) + "|";
+        rawTmp+= std::to_string(shuttleTmp->maxFlyingDistance) + "|";
+        rawTmp+= shuttleTmp->fuelType + "|";
 
-        return raw;
+        return rawTmp;
     }
 }
 

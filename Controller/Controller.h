@@ -6,12 +6,15 @@
 #include "Database/Database.h"
 #include "Transport/Transport.h"
 #include "Transport/TransportCreator/TransportObjectCreator.h"
+#include "Serializable/Serializable.h"
 
 #include <memory>
 #include <chrono>
 #include <thread>
 
 #include <QMap>
+
+// Данный класс отвечает за все операции со структурой и базой данных в зависимости от полученных комманд
 
 class Controller
 {
@@ -28,9 +31,10 @@ public:
 
     bool checkElementAvilable(const uint32_t& ID);
 
+    // Метод возвращает объект класса в который обёрнута структура данных
     TransportStorage& getStorage();
 
-    void setMap(TransportStorage& inputStorage);
+    void setList(TransportStorage& inputStorage);
 
     void setID(const uint32_t& ID);
 
@@ -41,6 +45,8 @@ public:
     void saveDatabase();
 
 private:
+    std::unique_ptr<Serializator> serializator;
+
     uint32_t uniqueID;
     std::shared_ptr<TransportStorage> transportStorage;
     QString deletingResult;

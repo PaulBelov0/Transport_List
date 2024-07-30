@@ -1,11 +1,5 @@
 #include "Transport/Shuttle.h"
 
-//Realization Space shuttle class:
-
-
-//CONSTRUCTORS:
-
-
 Shuttle::Shuttle(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Shuttle";

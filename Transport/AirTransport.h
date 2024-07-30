@@ -1,9 +1,9 @@
-#pragma once
-
 #ifndef AIRTRANSPORT_H
 #define AIRTRANSPORT_H
 
 #include "Transport/TransportBase/TransportBase.h"
+
+// Транспортный класс реализующий воздушный тип транспорта
 
 class AirTransport : public TransportBase
 {

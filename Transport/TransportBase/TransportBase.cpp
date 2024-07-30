@@ -3,8 +3,6 @@
 #include "TransportBase.h"
 
 
-//CONSTRUCTORS:
-
 TransportBase::TransportBase(const uint32_t& ID, const std::string& brand,
                              const std::string& model, const uint32_t& year,
                              const uint32_t& weight

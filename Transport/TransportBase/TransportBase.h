@@ -6,6 +6,8 @@
 #include <cstdint>
 #include <QVariant>
 
+// Базовый абстрактный класс для создания различных видов транспорта
+
 class TransportBase
 {
 public:

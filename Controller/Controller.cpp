@@ -2,12 +2,13 @@
 
 Controller::Controller() : transportStorage(new TransportStorage())
 {
-    //db = new Database();
-    //transportStorage.reset(new TransportStorage(*db->download().get()));
+    serializator.reset();
+    // TODO:
+    transportStorage.reset(new TransportStorage(serializator->deserialize()));
 }
 Controller::~Controller()
 {
-    //db->upload(*transportStorage.get());
+    serializator->serialize(transportStorage->getList());
     delete db;
 }
 
@@ -48,7 +49,7 @@ TransportStorage& Controller::getStorage()
     return *transportStorage;
 }
 
-void Controller::setMap(TransportStorage& inputStorage)
+void Controller::setList(TransportStorage& inputStorage)
 {
     TransportStorage transportDatabase(inputStorage);
     transportStorage = std::make_unique<TransportStorage>(transportDatabase);

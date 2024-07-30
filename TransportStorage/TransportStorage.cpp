@@ -48,7 +48,7 @@ void TransportStorage::deleteElement(const uint32_t& index)
     }
 }
 
-std::list<std::shared_ptr<TransportBase>> TransportStorage::getList()
+std::list<std::shared_ptr<TransportBase>>& TransportStorage::getList()
 {
     return transportDatabase;
 }

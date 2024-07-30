@@ -1,8 +1,5 @@
 #include "Transport/AirTransport.h"
 
-//Realizaton air transport class:
-
-
 AirTransport::AirTransport(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Air";

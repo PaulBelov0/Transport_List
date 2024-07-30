@@ -9,6 +9,8 @@
 
 #include "Transport/TransportBase/TransportBase.h"
 
+// Класс хранит в себе структуру данных и имеет методы для взаимодействия с ней
+
 class TransportStorage
 {
 public:
@@ -25,7 +27,7 @@ public:
 
     void deleteElement(const uint32_t& index);
 
-    std::list<std::shared_ptr<TransportBase>> getList();
+    std::list<std::shared_ptr<TransportBase>>& getList();
 
     void insertPair(std::shared_ptr<TransportBase> object);
 

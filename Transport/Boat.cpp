@@ -1,9 +1,5 @@
 #include "Transport/Boat.h"
 
-//Realization boat class:
-
-
-
 Boat::Boat(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Boat";

@@ -10,6 +10,7 @@
 #include <iostream>
 #include <memory>
 
+// Класс который создаёт экземпляры траснпортных классов, и позволяет получать созданный объект
 
 class TransportObjectCreator
 {
