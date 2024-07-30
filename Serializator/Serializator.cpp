@@ -1,4 +1,4 @@
-#include "Serializable.h"
+#include "Serializator.h"
 
 Serializator::Serializator() : filename("database.txt") {}
 

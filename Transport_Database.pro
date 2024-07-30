@@ -13,7 +13,7 @@ CONFIG += object_parallel_to_source
 
 SOURCES += \
     Database/Database.cpp \
-    Serializable/Serializable.cpp \
+    Serializator/Serializator.cpp \
     Transport/TransportCreator/TransportObjectCreator.cpp \
     Menu/Menu.cpp \
     Transport/AirTransport.cpp \
@@ -33,7 +33,7 @@ SOURCES += \
 
 HEADERS += \
     Database/Database.h \
-    Serializable/Serializable.h \
+    Serializator/Serializator.h \
     Transport/Transport.h \
     Transport/TransportCreator/TransportObjectCreator.h \
     Menu/Menu.h \

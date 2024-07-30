@@ -1,5 +1,5 @@
-#ifndef SERIALIZABLE_H
-#define SERIALIZABLE_H
+#ifndef SERIALIZATOR_H
+#define SERIALIZATOR_H
 
 #include <memory>
 #include <list>
@@ -36,4 +36,4 @@ private:
     std::string rawTmp;
 };
 
-#endif // SERIALIZABLE_H
+#endif // SERIALIZATOR_H

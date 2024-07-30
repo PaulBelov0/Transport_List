@@ -6,7 +6,7 @@
 #include "Database/Database.h"
 #include "Transport/Transport.h"
 #include "Transport/TransportCreator/TransportObjectCreator.h"
-#include "Serializable/Serializable.h"
+#include "Serializator/Serializator.h"
 
 #include <memory>
 #include <chrono>
