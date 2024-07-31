@@ -19,7 +19,7 @@ private:
 
     void throwError();
 
-    std::vector<std::string> enterElementFields();
+    std::vector<std::string> enterElementFields(bool adding);
 
     void showDatabase();
 
@@ -27,7 +27,7 @@ private:
 
     std::string enterTransportField(const std::string fieldName);
 
-    bool checkDataConvertibleToUInt(std::vector<std::string>& value);
+    bool checkDataConvertibleToUInt(std::vector<std::string>& value, int elementNumber);
 
     Controller* controller;
 

@@ -3,8 +3,8 @@
 Boat::Boat(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Boat";
-    displacement = std::stoi(args[5]);
-    screwDepth = std::stoi(args[6]);
+    displacement = std::stoi(args[6]);
+    screwDepth = std::stoi(args[7]);
 }
 
 Boat::Boat(std::shared_ptr<Boat> transportObject)

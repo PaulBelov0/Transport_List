@@ -32,9 +32,8 @@ void Menu::mainProcedure()
 
     while(looper == true)
     {
-        system("cls");
 
-        std::cout << "Select action (Enter number of action):" << std::endl;
+        std::cout << "\nSelect action (Enter number of action):" << std::endl;
         std::cout << "1) Add new element.\n" << "2) Delete element.\n" << "3) Show database.\n" << "4) Edit element.\n" <<"5) Exit.\n\n";
 
         std::cin >> userInput;
@@ -45,7 +44,7 @@ void Menu::mainProcedure()
             switch(std::stoi(userInput))
             {
             case 1:
-                argumentsList = enterElementFields();
+                argumentsList = enterElementFields(true);
                 controller->addNewElement(argumentsList);
                 break;
 
@@ -56,7 +55,7 @@ void Menu::mainProcedure()
 
                 try
                 {
-                    if (std::stoi(userInput) >= 0)
+                    if (std::stoi(userInput) > 0)
                     {
                         system("cls");
                         std::cout << controller->deleteDatabaseElement(std::stoi(userInput)).toStdString() << std::endl;
@@ -76,6 +75,9 @@ void Menu::mainProcedure()
 
             case 3:
                 system("cls");
+
+                mapEmptyFlag = controller->getStorage().checkListEmpty();
+
                 if (mapEmptyFlag == false)
                 {
                     auto list = controller->getStorage().getList();
@@ -85,13 +87,13 @@ void Menu::mainProcedure()
                             printElementFields(element);
                     }
 
-                    std::cout << "\n\nEnter something text to continue: " << std::endl;
+                    std::cout << "\n\nEnter any symbol to continue to continue: " << std::endl;
                     std::cin >> userInput;
                 }
                 else
                 {
                     std::cout << "Database is empty!" << std::endl;
-                    std::cout << "\n\nEnter something text to continue: " << std::endl;
+                    std::cout << "\n\nEnter any symbol to continue to continue: " << std::endl;
                     std::cin >> userInput;
                 }
                 break;
@@ -102,7 +104,7 @@ void Menu::mainProcedure()
 
                 try
                 {
-                    if (std::stoi(userInput) >= 0)
+                    if (std::stoi(userInput) > 0)
                     {
                         if (controller->getStorage().findDatabaseElement(std::stoi(userInput)) == true)
                         {
@@ -118,7 +120,7 @@ void Menu::mainProcedure()
 
                             system("cls");
 
-                            controller->editElement(enterElementFields());
+                            controller->editElement(enterElementFields(false));
                         }
                     }
                     else
@@ -146,34 +148,51 @@ void Menu::mainProcedure()
         {
             throwError();
         }
+
+        system("cls");
     }
 }
 
-std::vector<std::string> Menu::enterElementFields()
+std::vector<std::string> Menu::enterElementFields(bool adding)
 {
-    bool looper = true;
+    if(adding == true)
+    {
+        ++uniqueID;
+    }
+
     system("cls");
+
+    bool looper = true;
     std::vector<std::string> argumentsList;
     std::string userInput;
 
     while (looper == true)
     {
 
-    reEnterFirstFields:
-        ++uniqueID;
+    reEnterFields:
+        argumentsList.clear();
         argumentsList.push_back(std::to_string(uniqueID));
 
-        argumentsList.push_back(enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)"));
-
+        userInput = enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)");
         int typeIndex;
         try
         {
-            typeIndex = std::stoi(argumentsList[1]);
+            typeIndex = std::stoi(userInput);
+            if (typeIndex < 5 && typeIndex > 0)
+            {
+                argumentsList.push_back(userInput);
+                userInput.clear();
+            }
+            else
+            {
+                throwError();
+                goto reEnterFields;
+            }
         }
         catch(std::invalid_argument& e)
         {
             throwError();
-            goto reEnterFirstFields;
+            goto reEnterFields;
         }
 
         argumentsList.push_back(enterTransportField("brand"));
@@ -181,39 +200,37 @@ std::vector<std::string> Menu::enterElementFields()
         argumentsList.push_back(enterTransportField("model"));
         try
         {
-        retry:
             argumentsList.push_back(enterTransportField("year"));
 
-            if (checkDataConvertibleToUInt(argumentsList) == false)
+            if (checkDataConvertibleToUInt(argumentsList, 4) == false)
             {
-                goto retry;
+                goto reEnterFields;
             }
 
 
             argumentsList.push_back(enterTransportField("weight"));
 
-            if (checkDataConvertibleToUInt(argumentsList) == false)
+            if (checkDataConvertibleToUInt(argumentsList, 5) == false)
             {
-                goto retry;
+                goto reEnterFields;
             }
 
-        repeat:
             switch(typeIndex)
             {
             case 1:
 
                 argumentsList.push_back(enterTransportField("wingspan"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 6) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 argumentsList.push_back(enterTransportField("payload capacity"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 7) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 looper = false;
@@ -222,16 +239,16 @@ std::vector<std::string> Menu::enterElementFields()
 
                 argumentsList.push_back(enterTransportField("mileage"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 6) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 argumentsList.push_back(enterTransportField("owners quantity"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 7) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 looper = false;
@@ -240,16 +257,16 @@ std::vector<std::string> Menu::enterElementFields()
 
                 argumentsList.push_back(enterTransportField("displacement"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 6) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 argumentsList.push_back(enterTransportField("screw depth"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 7) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
 
                 looper = false;
@@ -257,10 +274,11 @@ std::vector<std::string> Menu::enterElementFields()
             case 4:
                 argumentsList.push_back(enterTransportField("max fluing distance"));
 
-                if (checkDataConvertibleToUInt(argumentsList) == false)
+                if (checkDataConvertibleToUInt(argumentsList, 6) == false)
                 {
-                    goto repeat;
+                    goto reEnterFields;
                 }
+
                 argumentsList.push_back(enterTransportField("fuel type"));
 
                 looper = false;
@@ -284,11 +302,11 @@ std::string Menu::enterTransportField(std::string fieldName)
     return userInput;
 }
 
-bool Menu::checkDataConvertibleToUInt(std::vector<std::string>& value)
+bool Menu::checkDataConvertibleToUInt(std::vector<std::string>& value, int elementNumber)
 {
     try
     {
-        if(std::stoi(value.back()) <= 0)
+        if(std::stoi(value[elementNumber]) <= 0)
         {
             throwError();
             return false;

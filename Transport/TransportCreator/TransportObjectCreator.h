@@ -18,7 +18,7 @@ public:
     TransportObjectCreator();
     TransportObjectCreator(std::vector<std::string>& args);
 
-    std::shared_ptr<TransportBase>& getTransportObject();
+    std::shared_ptr<TransportBase> getTransportObject();
 
 private:
     void showDataErrorMessage();

@@ -7,6 +7,8 @@
 #include <QString>
 #include <QSignalMapper>
 
+#include <iostream>
+
 #include "Transport/TransportBase/TransportBase.h"
 
 // Класс хранит в себе структуру данных и имеет методы для взаимодействия с ней
@@ -23,7 +25,7 @@ public:
 
     bool findDatabaseElement(const uint32_t& index);
 
-    void addNewElement(std::shared_ptr<TransportBase>& object);
+    void addNewElement(std::shared_ptr<TransportBase> object);
 
     void deleteElement(const uint32_t& index);
 

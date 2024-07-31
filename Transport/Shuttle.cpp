@@ -3,8 +3,8 @@
 Shuttle::Shuttle(std::vector<std::string> args) : TransportBase(args)
 {
     type = "Shuttle";
-    maxFlyingDistance = std::stoi(args[5]);
-    fuelType = args[6];
+    maxFlyingDistance = std::stoi(args[6]);
+    fuelType = args[7];
 }
 
 Shuttle::Shuttle(std::shared_ptr<Shuttle> transportObject)

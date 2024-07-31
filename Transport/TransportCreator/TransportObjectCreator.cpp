@@ -4,35 +4,33 @@ TransportObjectCreator::TransportObjectCreator() {}
 
 TransportObjectCreator::TransportObjectCreator(std::vector<std::string>& args)
 {
-    try
+    int typeIndex = std::stoi(args[1]);
+    switch(typeIndex)
     {
-        if (args[1] == "1" || "Air")
-        {
-            AirTransport air(args);
-            base = std::make_unique<AirTransport>(air);
-
-        }
-        else if(args[1] == "2" || "Car")
-        {
-            Car car(args);
-            base = std::make_unique<Car>(car);
-
-        }
-        else if(args[1] == "3" || "Boat")
-        {
-            Boat boat(args);
-            base = std::make_unique<Boat>(boat);
-
-        }
-        else
-        {
-            Shuttle shuttle(args);
-            base = std::make_unique<Shuttle>(shuttle);
-        }
+    case 1:
+    {
+        AirTransport air(args);
+        base = std::make_unique<AirTransport>(air);
+        break;
     }
-    catch (const std::invalid_argument &e)
+    case 2:
     {
-        showDataErrorMessage();
+        Car car(args);
+        base = std::make_unique<Car>(car);
+        break;
+    }
+    case 3:
+    {
+        Boat boat(args);
+        base = std::make_unique<Boat>(boat);
+        break;
+    }
+    case 4:
+    {
+        Shuttle shuttle(args);
+        base = std::make_unique<Shuttle>(shuttle);
+        break;
+    }
     }
 }
 
@@ -42,7 +40,7 @@ void TransportObjectCreator::showDataErrorMessage()
     std::cout << "Error!" << std::endl;
 }
 
-std::shared_ptr<TransportBase>& TransportObjectCreator::getTransportObject()
+std::shared_ptr<TransportBase> TransportObjectCreator::getTransportObject()
 {
     return base;
 }

@@ -32,18 +32,19 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportStorage::addNewElement(std::shared_ptr<TransportBase>& object)
+void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
 {
     transportDatabase.push_front(object);
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
 {
-    for (std::list<std::shared_ptr<TransportBase>>::iterator iter = transportDatabase.begin(); iter != transportDatabase.end(); ++iter)
+    for (std::list<std::shared_ptr<TransportBase>>::const_iterator iter = transportDatabase.begin(); iter != transportDatabase.end(); ++iter)
     {
         if(iter->get()->uniqueID == index)
         {
             transportDatabase.erase(iter);
+            return;
         }
     }
 }

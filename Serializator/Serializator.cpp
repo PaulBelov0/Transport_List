@@ -5,6 +5,7 @@ Serializator::Serializator() : filename("database.txt") {}
 void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputList)
 {
     std::ofstream file(filename, std::ios::binary);
+    file.open(filename, std::ios::binary);
     if(!file.is_open())
     {
         std::cerr << "Error: Failed open file for writing" << std::endl;

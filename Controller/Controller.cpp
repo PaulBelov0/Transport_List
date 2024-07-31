@@ -21,7 +21,7 @@ void Controller::addNewElement(std::vector<std::string>& args)
 
 QString& Controller::deleteDatabaseElement(const uint32_t& ID)
 {
-    if (transportStorage->findDatabaseElement(ID) != true)
+    if (transportStorage->findDatabaseElement(ID) == true)
     {
         transportStorage->deleteElement(ID);
         deletingResult = "Element deleted successful!";
