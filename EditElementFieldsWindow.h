@@ -3,9 +3,9 @@
 
 #include <QDialog>
 
-#include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 #include "TransportStorage/TransportStorage.h"
+#include "Transport/Transport.h"
 
 namespace Ui {
 class EditElementFieldsWindow;
@@ -16,26 +16,31 @@ class EditElementFieldsWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditElementFieldsWindow(Controller* controller, QWidget *parent = nullptr);
+    explicit EditElementFieldsWindow(std::vector<std::string>* args, QWidget *parent = nullptr);
+
     ~EditElementFieldsWindow();
 
     void setElementByID(const uint32_t &ID);
+
     void setActionForRealizationThisWnd(std::string action);
-    void menuInitialization(Controller &Controller);
 
 private slots:
+
     void on_okButton_clicked();
 
     void on_cancelButton_clicked();
+
+signals:
 
 private:
 
     Ui::EditElementFieldsWindow *ui;
 
-    Controller* controller;
     std::unique_ptr<TransportStorage> transportStorage;
     std::string actionWithDB = "add";
     MessageToUserWindow messageToUserWindow;
+
+    std::vector<std::string>* args;
 };
 
 #endif // EDITELEMENTFIELDSWINDOW_H

@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <QException>
 
-#include "Controller/Controller.h"
 #include "MessageToUserWindow.h"
 
 namespace Ui {
@@ -16,9 +15,8 @@ class DeleteElementWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit DeleteElementWindow(Controller* controller, QWidget *parent = nullptr);
+    explicit DeleteElementWindow(uint32_t* args, QWidget *parent = nullptr);
     ~DeleteElementWindow();
-    uint32_t &getID();
 
 private slots:
     void on_deleteButton_clicked();
@@ -28,13 +26,7 @@ private slots:
 private:
     Ui::DeleteElementWindow *ui;
 
-    MessageToUserWindow messageToUserWindow;
-
-    uint32_t index;
-
-    std::string userInput;
-
-    Controller* controller;
+    uint32_t* args;
 };
 
 #endif // DELETEELEMENTWINDOW_H

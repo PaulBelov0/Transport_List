@@ -1,8 +1,9 @@
-
 #ifndef BOAT_H
 #define BOAT_H
 
 #include "Transport/TransportBase/TransportBase.h"
+
+// Транспортный класс реализующий водный тип транспорта
 
 class Boat : public TransportBase
 {

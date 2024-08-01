@@ -8,15 +8,22 @@ TransportStorage::TransportStorage(std::list<std::shared_ptr<TransportBase>> lis
     }
 }
 
-TransportStorage::TransportStorage(const TransportStorage& list)
+TransportStorage::TransportStorage(TransportStorage& list)
 {
-    transportDatabase = list.transportDatabase;
+    if (list.getList().empty() != true)
+    {
+        auto listTmp = list.getList();
+        for (auto& element : listTmp)
+        {
+            transportDatabase.push_back(element);
+        }
+    }
 }
 
 TransportStorage::TransportStorage()
 {
-    TransportObjectCreator testObj(TransportObjectCreator(std::vector<std::string>{"0", "1", "0", "0", "0", "0", "0"}));
-    transportDatabase.push_back(testObj.getTransportObject());
+    std::shared_ptr<TransportBase> testObj(new TransportBase(std::vector<std::string>{"0", "1", "0", "0", "0", "0"}));
+    transportDatabase.push_back(testObj);
 }
 
 bool TransportStorage::findDatabaseElement(const uint32_t& index)
@@ -32,18 +39,19 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
     return output;
 }
 
-void TransportStorage::addNewElement(std::shared_ptr<TransportBase>& object)
+void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
 {
-    transportDatabase.push_front(object);
+    transportDatabase.push_back(object);
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
 {
-    for (std::list<std::shared_ptr<TransportBase>>::iterator iter = transportDatabase.begin(); iter != transportDatabase.end(); ++iter)
+    for (std::list<std::shared_ptr<TransportBase>>::const_iterator iter = transportDatabase.begin(); iter != transportDatabase.end(); ++iter)
     {
         if(iter->get()->uniqueID == index)
         {
             transportDatabase.erase(iter);
+            return;
         }
     }
 }

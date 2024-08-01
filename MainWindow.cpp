@@ -15,15 +15,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->tableView->setModel(model);
 
-    controller = new Controller(*database->download().get());
-
-    editElementFieldsWindow = new EditElementFieldsWindow(controller);
-    deleteElementWindow = new DeleteElementWindow(controller);
+    controller = new Controller();
 }
 
 MainWindow::~MainWindow()
 {
-    database->upload(controller->getStorage());
+    database->upload(controller->getStorage().getList());
     delete model;
     delete database;
     delete controller;
@@ -53,17 +50,17 @@ void MainWindow::on_deleteElementButton_clicked()
 
 void MainWindow::on_loadDatabaseButton_clicked()
 {
-    controller->setList(*database->download());
+    controller->setList(database->download());
 }
 
 void MainWindow::on_saveDataBaseButton_clicked()
 {
-    database->upload(controller->getStorage());
+    database->upload(controller->getStorage().getList());
 }
 
 void MainWindow::on_exitButton_clicked()
 {
-    database->upload(controller->getStorage());
+    database->upload(controller->getStorage().getList());
     this->close();
 }
 

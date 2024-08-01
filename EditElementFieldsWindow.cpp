@@ -1,11 +1,11 @@
 #include "EditElementFieldsWindow.h"
 #include "ui_EditElementFieldsWindow.h"
 
-EditElementFieldsWindow::EditElementFieldsWindow(Controller* controller, QWidget *parent)
+EditElementFieldsWindow::EditElementFieldsWindow(std::vector<std::string>* args, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::EditElementFieldsWindow)
 {
-    this->controller = controller;
+    this->args = args;
     ui->setupUi(this);
 }
 
@@ -16,49 +16,22 @@ EditElementFieldsWindow::~EditElementFieldsWindow()
 
 void EditElementFieldsWindow::on_okButton_clicked()
 {
+    args->push_back(std::to_string(ui->uinqueIDIntBox->value()));
 
-    std::vector<std::string> args;
+    args->push_back(ui->typeComboBox->currentText().toStdString());
 
-    args.push_back(actionWithDB);
+    args->push_back(ui->brandTextBox->toPlainText().toStdString());
 
-    args.push_back(std::to_string(ui->uinqueIDIntBox->value()));
+    args->push_back(ui->modelTextBox->toPlainText().toStdString());
 
-    args.push_back(ui->typeComboBox->currentText().toStdString());
+    args->push_back(std::to_string(ui->yearSpinBox->value()));
 
-    args.push_back(ui->brandTextBox->toPlainText().toStdString());
+    args->push_back(std::to_string(ui->weightSpinBox->value()));
 
-    args.push_back(ui->modelTextBox->toPlainText().toStdString());
+    args->push_back(std::to_string(ui->firstSpecialFieldSpinBox->value()));
 
-    args.push_back(std::to_string(ui->yearSpinBox->value()));
+    args->push_back(ui->secondSpecialFieldTextBox->toPlainText().toStdString());
 
-    args.push_back(std::to_string(ui->weightSpinBox->value()));
-
-    args.push_back(std::to_string(ui->firstSpecialFieldSpinBox->value()));
-
-    args.push_back(ui->secondSpecialFieldTextBox->toPlainText().toStdString());
-
-
-    if (actionWithDB == "add" || "Add")
-    {
-        if (args[1] == "Air")
-        {
-            args[1] = "1";
-        }
-        else if (args[1] == "Car")
-        {
-            args[1] = "2";
-        }
-        else if (args[1] == "Boat")
-        {
-            args[1] = "3";
-        }
-        else
-        {
-            args[1] = "4";
-        }
-
-        controller->editElement(args);
-    }
     this->close();
 }
 

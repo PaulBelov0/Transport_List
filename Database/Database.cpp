@@ -1,22 +1,25 @@
 #include "Database.h"
 
 Database::Database()
+    : db(new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))),
+      query(new QSqlQuery(*db))
 {
-    db = new QSqlDatabase;
-    *db = QSqlDatabase::addDatabase("QSQLITE");
     db->setDatabaseName("./TransportDatabase.db");
     db->open();
 
-    query = new QSqlQuery;
-    *query = QSqlQuery(*db);
     query->exec("CREATE TABLE TransportDatabase(ID INT, Type TEXT, Brand TEXT, Model TEXT, Year INT, Weight INT, SpecialFirst INT, SpecialSecond TEXT);");
 
-    outputStorage.reset(download().get());
+    outputStorage.reset(new TransportStorage());
 }
 
-Database::~Database() { delete query; delete db; }
+Database::~Database()
+{
+    //delete query;
+    //delete db;
+}
 
-std::unique_ptr<TransportStorage> Database::download()
+
+TransportStorage& Database::download()
 {
     std::list<std::shared_ptr<TransportBase>> list;
 
@@ -39,15 +42,15 @@ std::unique_ptr<TransportStorage> Database::download()
             list.push_back(creator.getTransportObject());
         }
 
-    std::unique_ptr<TransportStorage> outputStorage(new TransportStorage(list));
-    return outputStorage;
+    std::shared_ptr<TransportStorage> outputStorage(new TransportStorage(list));
+    return *outputStorage.get();
 
 }
 
-void Database::upload(TransportStorage& inputStorage)
+void Database::upload(std::list<std::shared_ptr<TransportBase>> inputMap)
 {
 
-    for(const auto& element : inputStorage.getList())
+    for(const auto& element : inputMap)
     {
         query->prepare("INSERT INTO TransportDatabase(ID, Type, Brand, Model, Year, Weight, Specialfirst, SpecialSecond)"
                        "VALUES(:ID, :Type, :Brand, :Model, :Year, :Weight, :Specialfirst, :SpecialSecond)");

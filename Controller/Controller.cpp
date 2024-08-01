@@ -1,17 +1,31 @@
 #include "Controller/Controller.h"
 
-Controller::Controller(const TransportStorage& storage) : transportStorage(new TransportStorage(storage)) {}
-
-void Controller::addNewElement(std::vector<std::string>& args)
+Controller::Controller() : transportStorage(new TransportStorage())
 {
+    //transportStorage.reset(new TransportStorage(serializator->download()));
+}
+Controller::~Controller()
+{
+    //serializator->upload(transportStorage->getList());
+    delete db;
+}
+
+void Controller::addNewElement()
+{
+    std::vector<std::string> args;
+    EditElementFieldsWindow editElementFieldsWindow(args);
+    editElementFieldsWindow.setActionForRealizationThisWnd("add");
+
     std::shared_ptr<TransportObjectCreator>transportObjectCreator(new TransportObjectCreator(args));
 
     transportStorage->addNewElement(transportObjectCreator->getTransportObject());
 }
 
-QString& Controller::deleteDatabaseElement(const uint32_t& ID)
+QString& Controller::deleteDatabaseElement()
 {
-    if (transportStorage->findDatabaseElement(ID) != true)
+    uint32_t* inputID;
+    DeleteDatabaseElement deletWND(inputID);
+    if (transportStorage->findDatabaseElement(ID) == true)
     {
         transportStorage->deleteElement(ID);
         deletingResult = "Element deleted successful!";
@@ -39,10 +53,10 @@ TransportStorage& Controller::getStorage()
     return *transportStorage;
 }
 
-void Controller::setList(const TransportStorage& inputStorage)
+void Controller::setList(TransportStorage& inputStorage)
 {
-    //TODO:
-    transportStorage.reset(new TransportStorage(inputStorage));
+    TransportStorage transportDatabase(inputStorage);
+    transportStorage = std::make_unique<TransportStorage>(transportDatabase);
 }
 
 void Controller::setID(const uint32_t& ID)
@@ -54,4 +68,14 @@ void Controller::setID(const uint32_t& ID)
 uint32_t& Controller::getID()
 {
     return uniqueID;
+}
+
+void Controller::loadDatabase()
+{
+
+}
+
+void Controller::saveDatabase()
+{
+
 }

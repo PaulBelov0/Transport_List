@@ -15,13 +15,13 @@ public:
     Database();
     ~Database();
 
-    std::unique_ptr<TransportStorage> download();
-    void upload(TransportStorage& inputMap);
+    TransportStorage& download();
+    void upload(std::list<std::shared_ptr<TransportBase>> inputMap);
     QSqlDatabase& getDatabase();
     QSqlQuery& getQuery();
 
 private:
-    std::unique_ptr<TransportStorage> outputStorage;
+    std::shared_ptr<TransportStorage> outputStorage;
 
     QSqlDatabase* db;
     QSqlQuery* query;

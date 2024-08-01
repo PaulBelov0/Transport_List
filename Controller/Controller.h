@@ -6,27 +6,37 @@
 #include "Database/Database.h"
 #include "Transport/Transport.h"
 #include "Transport/TransportCreator/TransportObjectCreator.h"
+#include "DeleteElementWindow.h"
+#include "EditElementFieldsWindow.h"
+#include "SearchElementWindow.h"
 
 #include <memory>
+#include <chrono>
+#include <thread>
 
 #include <QMap>
+
+// Данный класс отвечает за все операции со структурой и базой данных в зависимости от полученных комманд
 
 class Controller
 {
 public:
-    Controller(const TransportStorage& storage);
+    Controller();
 
-    void addNewElement(std::vector<std::string>& args);
+    ~Controller();
+
+    void addNewElement();
 
     void editElement(std::vector<std::string> args);
 
-    QString& deleteDatabaseElement(const uint32_t& ID);
+    QString& deleteDatabaseElement();
 
     bool checkElementAvilable(const uint32_t& ID);
 
+    // Метод возвращает объект класса в который обёрнута структура данных
     TransportStorage& getStorage();
 
-    void setList(const TransportStorage& inputStorage);
+    void setList(TransportStorage& inputStorage);
 
     void setID(const uint32_t& ID);
 
@@ -37,6 +47,8 @@ public:
     void saveDatabase();
 
 private:
+    std::unique_ptr<Database> serializator;
+
     uint32_t uniqueID;
     std::shared_ptr<TransportStorage> transportStorage;
     QString deletingResult;
