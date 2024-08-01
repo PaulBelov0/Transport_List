@@ -385,7 +385,7 @@ void Menu::throwError()
 
     system("cls");
 
-    std::cerr << "Error! Unsupported input data!" << std::endl;
+    std::cout << "Error! Unsupported input data!" << std::endl;
 
     std::this_thread::sleep_for(std::chrono::seconds(2));
     system("cls");

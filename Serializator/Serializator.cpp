@@ -6,12 +6,14 @@ Serializator::Serializator() : filename("database.txt") {}
 void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputList)
 {
     std::ofstream dbFile;
+
     dbFile.open(filename);
     dbFile << std::fixed;
     dbFile.setf(std::ios_base::showpoint);
+
     if(dbFile.is_open() == false)
     {
-        std::cerr << "Error: Failed open file for writing" << std::endl;
+        std::cout << "Error: Failed open file for writing" << std::endl;
         return;
     }
 
@@ -44,7 +46,7 @@ std::list<std::shared_ptr<TransportBase>> Serializator::deserialize()
 
     if(dbFile.is_open() == false)
     {
-        std::cerr << "Error: Failed open file for writing" << std::endl;
+        std::cout << "Error: Failed open file for writing" << std::endl;
     }
     else
     {
