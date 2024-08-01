@@ -340,7 +340,7 @@ void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
 {
     std::cout << "Unique ID: " << element->uniqueID << std::endl;
 
-    std::cout << "Type:" << element->type << std::endl;
+    std::cout << "Type: " << element->type << std::endl;
 
     std::cout << "Brand: " << element->brand << std::endl;
 
