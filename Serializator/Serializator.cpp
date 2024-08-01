@@ -1,46 +1,62 @@
 #include "Serializator.h"
+#include <thread>
 
 Serializator::Serializator() : filename("database.txt") {}
 
 void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputList)
 {
-    std::ofstream file(filename, std::ios::binary);
-    file.open(filename, std::ios::binary);
-    if(file.is_open() == false)
+    std::ofstream dbFile;
+    dbFile.open(filename);
+    dbFile << std::fixed;
+    dbFile.setf(std::ios_base::showpoint);
+    if(dbFile.is_open() == false)
     {
         std::cerr << "Error: Failed open file for writing" << std::endl;
         return;
     }
+
     std::string elementFields;
+
     for (auto& element : inputList)
     {
         elementFields = objectFieldsToString(element);
-        file.write(elementFields.c_str(), elementFields.size());
+        dbFile.write(elementFields.c_str(), elementFields.size());
     }
-    file.close();
+
+    dbFile.close();
+
+    system("cls");
+
     std::cout << "Data structure serialized succesfully!" << std::endl;
+
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 }
 
 std::list<std::shared_ptr<TransportBase>> Serializator::deserialize()
 {
-    std::string filename = "database.txt";
     std::list<std::shared_ptr<TransportBase>> outputList;
-    std::fstream dbFile(filename);
-    std::ifstream file(filename, std::ios::binary);
 
-    if(!file.is_open())
+    std::ifstream dbFile(filename);
+
+    dbFile >> std::fixed;
+    dbFile.setf(std::ios_base::showpoint);
+    dbFile.open(filename);
+
+    if(dbFile.is_open() == false)
     {
         std::cerr << "Error: Failed open file for writing" << std::endl;
     }
     else
     {
         std::string fileRawTmp;
-        while(std::getline(file, fileRawTmp))
+        while(std::getline(dbFile, fileRawTmp))
         {
             outputList.push_back(getTransportObject(fileRawTmp));
         }
     }
+
     dbFile.close();
+
     return outputList;
 }
 
