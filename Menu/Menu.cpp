@@ -32,24 +32,25 @@ void Menu::mainProcedure()
 
     while(looper == true)
     {
+        userInput.clear();
 
         std::cout << "\nSelect action (Enter number of action):" << std::endl;
         std::cout << "1) Add new element.\n" << "2) Delete element.\n" << "3) Show database.\n" << "4) Edit element.\n" <<"5) Exit.\n\n";
 
         std::cin >> userInput;
 
-
         try
         {
             switch(std::stoi(userInput))
             {
             case 1:
+            {
                 argumentsList = enterElementFields(true);
                 controller->addNewElement(argumentsList);
                 break;
-
+            }
             case 2:
-
+            {
                 std::cout << "Enter the element ID:\t" << std::endl;
                 std::cin >> userInput;
 
@@ -72,8 +73,9 @@ void Menu::mainProcedure()
                 }
 
                 break;
-
+            }
             case 3:
+            {
                 system("cls");
 
                 mapEmptyFlag = controller->getStorage().checkListEmpty();
@@ -97,8 +99,9 @@ void Menu::mainProcedure()
                     std::cin >> userInput;
                 }
                 break;
-
+            }
             case 4:
+            {
                 std::cout << "Enter the element ID:\t" << std::endl;
                 std::cin >> userInput;
 
@@ -108,19 +111,23 @@ void Menu::mainProcedure()
                     {
                         if (controller->getStorage().findDatabaseElement(std::stoi(userInput)) == true)
                         {
-                            for (auto& element : controller->getStorage().getList())
+                            auto storageTmp = controller->getStorage().getList();
+                            for (auto& element : storageTmp)
                             {
                                 if (element->uniqueID == std::stoul(userInput))
                                 {
                                     printElementFields(element);
+
+                                    uniqueTmp = uniqueID;
+                                    uniqueID = element->uniqueID;
+
+                                    controller->editElement(enterElementFields(false));
+
+                                    uniqueID = uniqueTmp;
                                 }
                             }
 
-                            std::this_thread::sleep_for(std::chrono::seconds(3));
-
                             system("cls");
-
-                            controller->editElement(enterElementFields(false));
                         }
                     }
                     else
@@ -133,15 +140,18 @@ void Menu::mainProcedure()
                     throwError();
                 }
                 break;
-
+            }
             case 5:
+            {
                 looper = false;
                 system("cls");
                 break;
-
+            }
             default:
+            {
                 throwError();
                 break;
+            }
             }
         }
         catch (std::invalid_argument& e)
@@ -165,20 +175,23 @@ std::vector<std::string> Menu::enterElementFields(bool adding)
     bool looper = true;
     std::vector<std::string> argumentsList;
     std::string userInput;
+    int typeIndex;
 
     while (looper == true)
     {
 
     reEnterFields:
+
         argumentsList.clear();
         argumentsList.push_back(std::to_string(uniqueID));
 
-        userInput = enterTransportField("type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle)");
-        int typeIndex;
+        std::cout << "Enter transport type (1 - Air, 2 - Car, 3 - Boat, 4 - Shuttle):\t";
+        std::cin >> userInput;
+
         try
         {
             typeIndex = std::stoi(userInput);
-            if (typeIndex < 5 && typeIndex > 0)
+            if (typeIndex < 6 && typeIndex > 0)
             {
                 argumentsList.push_back(userInput);
                 userInput.clear();
@@ -296,9 +309,8 @@ std::vector<std::string> Menu::enterElementFields(bool adding)
 std::string Menu::enterTransportField(std::string fieldName)
 {
     std::string userInput;
-    std::cout << "Enter transport " << fieldName << ":\t";
+    std::cout << "Enter transport " << fieldName << ":   ";
     std::cin >> userInput;
-
     return userInput;
 }
 
@@ -370,10 +382,11 @@ void Menu::printElementFields(std::shared_ptr<TransportBase>& element)
 
 void Menu::throwError()
 {
+
     system("cls");
 
     std::cerr << "Error! Unsupported input data!" << std::endl;
 
-    std::this_thread::sleep_for(std::chrono::seconds(3));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     system("cls");
 }

@@ -32,6 +32,8 @@ private:
     Controller* controller;
 
     uint32_t uniqueID;
+
+    uint32_t uniqueTmp;
 };
 
 #endif // MENU_H

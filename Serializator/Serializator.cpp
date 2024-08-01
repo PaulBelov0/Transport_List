@@ -6,7 +6,7 @@ void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputLis
 {
     std::ofstream file(filename, std::ios::binary);
     file.open(filename, std::ios::binary);
-    if(!file.is_open())
+    if(file.is_open() == false)
     {
         std::cerr << "Error: Failed open file for writing" << std::endl;
         return;

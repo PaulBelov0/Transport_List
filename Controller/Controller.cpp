@@ -3,7 +3,6 @@
 Controller::Controller() : transportStorage(new TransportStorage())
 {
     serializator.reset();
-    // TODO:
     transportStorage.reset(new TransportStorage(serializator->deserialize()));
 }
 Controller::~Controller()

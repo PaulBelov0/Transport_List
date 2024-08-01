@@ -34,7 +34,7 @@ bool TransportStorage::findDatabaseElement(const uint32_t& index)
 
 void TransportStorage::addNewElement(std::shared_ptr<TransportBase> object)
 {
-    transportDatabase.push_front(object);
+    transportDatabase.push_back(object);
 }
 
 void TransportStorage::deleteElement(const uint32_t& index)
@@ -64,9 +64,4 @@ bool TransportStorage::checkListEmpty()
     {
         return false;
     }
-}
-
-void TransportStorage::insertPair(std::shared_ptr<TransportBase> object)
-{
-    transportDatabase.push_back(object);
 }

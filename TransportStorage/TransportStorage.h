@@ -31,8 +31,6 @@ public:
 
     std::list<std::shared_ptr<TransportBase>>& getList();
 
-    void insertPair(std::shared_ptr<TransportBase> object);
-
     bool checkListEmpty();
 
 private:
