@@ -1,6 +1,8 @@
 #ifndef AIRTRANSPORT_H
 #define AIRTRANSPORT_H
 
+#include <memory>
+
 #include "Transport/TransportBase/TransportBase.h"
 
 // Транспортный класс реализующий воздушный тип транспорта

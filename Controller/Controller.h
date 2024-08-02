@@ -3,7 +3,6 @@
 
 #include "TransportStorage/TransportStorage.h"
 #include "Transport/TransportBase/TransportBase.h"
-#include "Database/Database.h"
 #include "Transport/Transport.h"
 #include "Transport/TransportCreator/TransportObjectCreator.h"
 #include "Serializator/Serializator.h"
@@ -45,13 +44,12 @@ public:
     void saveDatabase();
 
 private:
-    std::unique_ptr<Serializator> serializator;
+    Serializator serializator;
 
     uint32_t uniqueID;
     std::shared_ptr<TransportStorage> transportStorage;
     QString deletingResult;
     std::shared_ptr<TransportObjectCreator> transportObjectCreator;
-    Database* db;
 };
 
 #endif //CONTROLLER_H

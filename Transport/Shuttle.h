@@ -1,6 +1,8 @@
 #ifndef SHUTTLE_H
 #define SHUTTLE_H
 
+#include <memory>
+
 #include "Transport/TransportBase/TransportBase.h"
 
 // Транспортный класс реализующий космический тип транспорта

@@ -2,13 +2,12 @@
 
 Controller::Controller() : transportStorage(new TransportStorage())
 {
-    serializator.reset();
-    transportStorage.reset(new TransportStorage(serializator->deserialize()));
+    transportStorage.reset(new TransportStorage(serializator.deserialize()));
 }
+
 Controller::~Controller()
 {
-    serializator->serialize(transportStorage->getList());
-    delete db;
+    serializator.serialize(transportStorage->getList());
 }
 
 void Controller::addNewElement(std::vector<std::string>& args)
@@ -67,10 +66,10 @@ uint32_t& Controller::getID()
 
 void Controller::loadDatabase()
 {
-
+    serializator.deserialize();
 }
 
 void Controller::saveDatabase()
 {
-
+    serializator.serialize();
 }

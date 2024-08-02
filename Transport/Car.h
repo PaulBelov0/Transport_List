@@ -1,6 +1,8 @@
 #ifndef CAR_H
 #define CAR_H
 
+#include <memory>
+
 #include "Transport/TransportBase/TransportBase.h"
 
 // Транспортный класс реализующий наземный тип транспорта

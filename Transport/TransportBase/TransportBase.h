@@ -1,10 +1,10 @@
 #ifndef TRANSPORTBASE_H
 #define TRANSPORTBASE_H
 
+#include <QVariant>
 #include <QString>
 #include <string>
 #include <cstdint>
-#include <QVariant>
 
 // Базовый абстрактный класс для создания различных видов транспорта
 

@@ -1,4 +1,5 @@
 #include "Serializator.h"
+
 #include <thread>
 
 Serializator::Serializator() : filename("database.txt") {}
@@ -8,8 +9,6 @@ void Serializator::serialize(std::list<std::shared_ptr<TransportBase>>& inputLis
     std::ofstream dbFile;
 
     dbFile.open(filename);
-    dbFile << std::fixed;
-    dbFile.setf(std::ios_base::showpoint);
 
     if(dbFile.is_open() == false)
     {
@@ -40,8 +39,6 @@ std::list<std::shared_ptr<TransportBase>> Serializator::deserialize()
 
     std::ifstream dbFile(filename);
 
-    dbFile >> std::fixed;
-    dbFile.setf(std::ios_base::showpoint);
     dbFile.open(filename);
 
     if(dbFile.is_open() == false)
